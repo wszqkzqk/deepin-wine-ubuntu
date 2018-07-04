@@ -1,0 +1,78 @@
+/*
+ * Copyright (C) 2013 Nikolay Sivov
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
+ */
+
+#if 0
+#pragma makedep install
+#endif
+
+[
+    object,
+    uuid(0c733a83-2a1c-11ce-ade5-00aa0044773d),
+    pointer_default(unique)
+]
+interface IRowsetNotify : IUnknown
+{
+    [local]
+    HRESULT OnFieldChange([in] IRowset *rowset,
+                          [in] HROW row,
+                          [in] DBORDINAL ccols,
+                          [in, size_is((ULONG)ccols)] DBORDINAL *columns,
+                          [in] DBREASON reason,
+                          [in] DBEVENTPHASE phase,
+                          [in] BOOL cantdeny);
+
+    [call_as(OnFieldChange)]
+    HRESULT RemoteOnFieldChange(
+                          [in] IRowset *rowset,
+                          [in] HROW row,
+                          [in] DBORDINAL ccols,
+                          [in, size_is((ULONG)ccols)] DBORDINAL *columns,
+                          [in] DBREASON reason,
+                          [in] DBEVENTPHASE phase,
+                          [in] BOOL cantdeny);
+
+    [local]
+    HRESULT OnRowChange([in] IRowset *rowset,
+                        [in] DBCOUNTITEM rows,
+                        [in, size_is((ULONG)rows)] HROW *hrows,
+                        [in] DBREASON reason,
+                        [in] DBEVENTPHASE phase,
+                        [in] BOOL cantdeny);
+
+    [call_as(OnRowChange)]
+    HRESULT RemoteOnRowChange(
+                        [in] IRowset *rowset,
+                        [in] DBCOUNTITEM rows,
+                        [in, size_is((ULONG)rows)] HROW *hrows,
+                        [in] DBREASON reason,
+                        [in] DBEVENTPHASE phase,
+                        [in] BOOL cantdeny);
+
+    [local]
+    HRESULT OnRowsetChange([in] IRowset *rowset,
+                           [in] DBREASON reason,
+                           [in] DBEVENTPHASE phase,
+                           [in] BOOL cantdeny);
+
+    [call_as(OnRowsetChange)]
+    HRESULT RemoteOnRowsetChange(
+                           [in] IRowset *rowset,
+                           [in] DBREASON reason,
+                           [in] DBEVENTPHASE phase,
+                           [in] BOOL cantdeny);
+}

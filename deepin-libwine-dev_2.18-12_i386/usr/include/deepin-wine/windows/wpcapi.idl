@@ -1,0 +1,130 @@
+/*
+ * Copyright 2011 Jacek Caban for CodeWeavers
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
+ */
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+#ifndef __WIDL__
+#define threading(model)
+#endif
+
+typedef [v1_enum] enum tagWPCFLAG_RESTRICTION {
+    WPCFLAG_NO_RESTRICTION    = 0x0000,
+    WPCFLAG_LOGGING_REQUIRED  = 0x0001,
+    WPCFLAG_WEB_FILTERED      = 0x0002,
+    WPCFLAG_HOURS_RESTRICTED  = 0x0004,
+    WPCFLAG_GAMES_BLOCKED     = 0x0008,
+    WPCFLAG_APPS_RESTRICTED   = 0x0010
+} WPCFLAG_RESTRICTION;
+
+[
+    uuid(8fdf6ca1-0189-47e4-b670-1a8a4636e340),
+    object
+]
+interface IWPCSettings : IUnknown
+{
+    HRESULT IsLoggingRequired(
+            [out] BOOL *pfRequired);
+
+    HRESULT GetLastSettingsChangeTime(
+            [out] SYSTEMTIME *pTime) ;
+
+    HRESULT GetRestrictions(
+            [out] DWORD *pdwRestrictions);
+}
+
+[
+    uuid(95e87780-e158-489e-b452-bbb850790715),
+    object
+]
+interface IWPCGamesSettings : IWPCSettings
+{
+    HRESULT IsBlocked(
+            [in] GUID guidAppID,
+            [out] DWORD *pdwReasons);
+}
+
+[
+    uuid(ffccbdb8-0992-4c30-b0f1-1cbb09c240aa),
+    object
+]
+interface IWPCWebSettings : IWPCSettings
+{
+    typedef enum tagWPCFLAG_WEB_SETTING {
+        WPCFLAG_WEB_SETTING_NOTBLOCKED = 0,
+        WPCFLAG_WEB_SETTING_DOWNLOADSBLOCKED = 1
+    } WPCFLAG_WEB_SETTING;
+
+    HRESULT GetSettings(
+            [out] DWORD *pdwSettings);
+
+    HRESULT RequestURLOverride(
+            [in] HWND hWnd,
+            [in] LPCWSTR pcszURL,
+            [in] DWORD cURLs,
+            [in] LPCWSTR *ppcszSubURLs,
+            [out] BOOL *pfChanged);
+}
+
+typedef enum tagWPCFLAG_VISIBILITY {
+    WPCFLAG_WPC_VISIBLE = 0,
+    WPCFLAG_WPC_HIDDEN = 1
+} WPCFLAG_VISIBILITY;
+
+[
+    uuid(4FF40A0F-3F3B-4d7c-A41B-4F39D7B44D05),
+    object
+]
+interface IWindowsParentalControlsCore : IUnknown
+{
+    HRESULT GetVisibility(
+            [out] WPCFLAG_VISIBILITY *peVisibility) ;
+
+    HRESULT GetUserSettings(
+            [in] LPCWSTR pcszSID,
+            [out] IWPCSettings **ppSettings);
+
+    HRESULT GetWebSettings(
+            [in] LPCWSTR pcszSID,
+            [out] IWPCWebSettings **ppSettings);
+
+    HRESULT GetWebFilterInfo(
+            [out] GUID *pguidID,
+            [in] LPWSTR *ppszName);
+}
+
+[
+    uuid(4ff40a0f-3f3b-4d7c-a41b-4f39d7b44d05),
+    object
+]
+interface IWindowsParentalControls : IWindowsParentalControlsCore
+{
+    HRESULT GetGamesSettings(
+            [in] LPCWSTR pcszSID,
+            [out] IWPCGamesSettings **ppSettings) ;
+}
+
+[
+    helpstring("WindowsParentalControls class"),
+    threading(both),
+    uuid(e77cc89b-7401-4c04-8ced-149db35add04)
+]
+coclass WindowsParentalControls
+{
+    [default] interface IWindowsParentalControls;
+}

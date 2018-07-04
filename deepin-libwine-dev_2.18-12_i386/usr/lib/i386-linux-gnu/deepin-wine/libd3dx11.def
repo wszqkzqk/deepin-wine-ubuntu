@@ -1,0 +1,18 @@
+; File generated automatically from ./dlls/d3dx11_43/d3dx11_43.spec; do not edit!
+
+LIBRARY d3dx11_43.dll
+
+EXPORTS
+  D3DX11CheckVersion@8 @1
+  D3DX11CompileFromFileA@44 @2
+  D3DX11CompileFromFileW@44 @3
+  D3DX11CompileFromMemory@52 @4
+  D3DX11CreateAsyncFileLoaderA@8 @9
+  D3DX11CreateAsyncFileLoaderW@8 @10
+  D3DX11CreateAsyncMemoryLoader@12 @11
+  D3DX11CreateAsyncResourceLoaderA@12 @12
+  D3DX11CreateAsyncResourceLoaderW@12 @13
+  D3DX11CreateTextureFromMemory@28 @25
+  D3DX11FilterTexture@16 @29
+  D3DX11GetImageInfoFromMemory@20 @32
+  D3DX11SaveTextureToMemory@20 @44

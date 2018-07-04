@@ -1,0 +1,137 @@
+/*
+ * Copyright (C) 2017 Alistair Leslie-Hughes
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
+ */
+
+import "mfobjects.idl";
+import "mftransform.idl";
+
+enum
+{
+    MF_SOURCE_READER_INVALID_STREAM_INDEX = 0xffffffff,
+    MF_SOURCE_READER_ALL_STREAMS          = 0xfffffffe,
+    MF_SOURCE_READER_ANY_STREAM           = 0xfffffffe,
+    MF_SOURCE_READER_FIRST_AUDIO_STREAM   = 0xfffffffd,
+    MF_SOURCE_READER_FIRST_VIDEO_STREAM   = 0xfffffffc,
+    MF_SOURCE_READER_MEDIASOURCE          = 0xffffffff,
+    MF_SOURCE_READER_CURRENT_TYPE_INDEX   = 0xffffffff
+};
+
+typedef enum MF_SOURCE_READER_FLAG
+{
+    MF_SOURCE_READERF_ERROR                   = 0x001,
+    MF_SOURCE_READERF_ENDOFSTREAM             = 0x002,
+    MF_SOURCE_READERF_NEWSTREAM               = 0x004,
+    MF_SOURCE_READERF_NATIVEMEDIATYPECHANGED  = 0x010,
+    MF_SOURCE_READERF_CURRENTMEDIATYPECHANGED = 0x020,
+    MF_SOURCE_READERF_STREAMTICK              = 0x100,
+    MF_SOURCE_READERF_ALLEFFECTSREMOVED       = 0x200
+} MF_SOURCE_READER_FLAG;
+
+typedef struct _MF_SINK_WRITER_STATISTICS
+{
+    DWORD    cb;
+    LONGLONG llLastTimestampReceived;
+    LONGLONG llLastTimestampEncoded;
+    LONGLONG llLastTimestampProcessed;
+    LONGLONG llLastStreamTickReceived;
+    LONGLONG llLastSinkSampleRequest;
+    QWORD    qwNumSamplesReceived;
+    QWORD    qwNumSamplesEncoded;
+    QWORD    qwNumSamplesProcessed;
+    QWORD    qwNumStreamTicksReceived;
+    DWORD    dwByteCountQueued;
+    QWORD    qwByteCountProcessed;
+    DWORD    dwNumOutstandingSinkSampleRequests;
+    DWORD    dwAverageSampleRateReceived;
+    DWORD    dwAverageSampleRateEncoded;
+    DWORD    dwAverageSampleRateProcessed;
+} MF_SINK_WRITER_STATISTICS;
+
+cpp_quote("EXTERN_GUID(CLSID_MFReadWriteClassFactory,           0x48e2ed0f, 0x98c2, 0x4a37, 0xbe, 0xd5, 0x16, 0x63, 0x12, 0xdd, 0xd8, 0x3f);")
+cpp_quote("EXTERN_GUID(CLSID_MFSourceReader,                    0x1777133c, 0x0881, 0x411b, 0xa5, 0x77, 0xad, 0x54, 0x5f, 0x07, 0x14, 0xc4);")
+cpp_quote("EXTERN_GUID(CLSID_MFSinkWriter,                      0xa3bbfb17, 0x8273, 0x4e52, 0x9e, 0x0e, 0x97, 0x39, 0xdc, 0x88, 0x79, 0x90);")
+
+cpp_quote("EXTERN_GUID(MF_SINK_WRITER_ASYNC_CALLBACK,           0x48cb183e, 0x7b0b, 0x46f4, 0x82, 0x2e, 0x5e, 0x1d, 0x2d, 0xda, 0x43, 0x54);")
+cpp_quote("EXTERN_GUID(MF_SINK_WRITER_DISABLE_THROTTLING,       0x08b845d8, 0x2b74, 0x4afe, 0x9d, 0x53, 0xbe, 0x16, 0xd2, 0xd5, 0xae, 0x4f);")
+cpp_quote("EXTERN_GUID(MF_SINK_WRITER_D3D_MANAGER,              0xec822da2, 0xe1e9, 0x4b29, 0xa0, 0xd8, 0x56, 0x3c, 0x71, 0x9f, 0x52, 0x69);")
+cpp_quote("EXTERN_GUID(MF_SINK_WRITER_ENCODER_CONFIG,           0xad91cd04, 0xa7cc, 0x4ac7, 0x99, 0xb6, 0xa5, 0x7b, 0x9a, 0x4a, 0x7c, 0x70);")
+
+cpp_quote("EXTERN_GUID(MF_READWRITE_DISABLE_CONVERTERS,         0x98d5b065, 0x1374, 0x4847, 0x8d, 0x5d, 0x31, 0x52, 0x0f, 0xee, 0x71, 0x56);")
+cpp_quote("EXTERN_GUID(MF_READWRITE_ENABLE_HARDWARE_TRANSFORMS, 0xa634a91c, 0x822b, 0x41b9, 0xa4, 0x94, 0x4d, 0xe4, 0x64, 0x36, 0x12, 0xb0);")
+cpp_quote("EXTERN_GUID(MF_READWRITE_MMCSS_CLASS,                0x39384300, 0xd0eb, 0x40b1, 0x87, 0xa0, 0x33, 0x18, 0x87, 0x1b, 0x5a, 0x53);")
+cpp_quote("EXTERN_GUID(MF_READWRITE_MMCSS_PRIORITY,             0x43ad19ce, 0xf33f, 0x4ba9, 0xa5, 0x80, 0xe4, 0xcd, 0x12, 0xf2, 0xd1, 0x44);")
+cpp_quote("EXTERN_GUID(MF_READWRITE_MMCSS_CLASS_AUDIO,          0x430847da, 0x0890, 0x4b0e, 0x93, 0x8c, 0x05, 0x43, 0x32, 0xc5, 0x47, 0xe1);")
+cpp_quote("EXTERN_GUID(MF_READWRITE_MMCSS_PRIORITY_AUDIO,       0x273db885, 0x2de2, 0x4db2, 0xa6, 0xa7, 0xfd, 0xb6, 0x6f, 0xb4, 0x0b, 0x61);")
+cpp_quote("EXTERN_GUID(MF_READWRITE_D3D_OPTIONAL,               0x216479d9, 0x3071, 0x42ca, 0xbb, 0x6c, 0x4c, 0x22, 0x10, 0x2e, 0x1d, 0x18);")
+
+interface IMFMediaSource;
+
+[
+    object,
+    uuid(70ae66f2-c809-4e4f-8915-bdcb406b7993),
+    local
+]
+interface IMFSourceReader : IUnknown
+{
+    HRESULT GetStreamSelection([in] DWORD index, [out] BOOL *selected);
+    HRESULT SetStreamSelection([in] DWORD index, [in] BOOL selected);
+    HRESULT GetNativeMediaType([in] DWORD index, [in] DWORD typeindex, [out] IMFMediaType **type);
+    HRESULT GetCurrentMediaType([in] DWORD index, [out] IMFMediaType **type);
+    HRESULT SetCurrentMediaType([in] DWORD index, [in, out] DWORD *reserved, [in] IMFMediaType *type);
+    HRESULT SetCurrentPosition([in] REFGUID format, [in] REFPROPVARIANT position);
+    HRESULT ReadSample([in] DWORD index, [in] DWORD flags, [out] DWORD *actualindex, [out] DWORD *sampleflags,
+                       [out] LONGLONG *timestamp, [out] IMFSample **sample);
+    HRESULT Flush([in] DWORD index);
+    HRESULT GetServiceForStream([in] DWORD index, [in] REFGUID service, [in] REFIID riid, [out] void **object);
+    HRESULT GetPresentationAttribute([in] DWORD index, [in] REFGUID guid, [out] PROPVARIANT *attr);
+};
+
+[
+    object,
+    uuid(3137f1cd-fe5e-4805-a5d8-fb477448cb3d),
+    local
+]
+interface IMFSinkWriter : IUnknown
+{
+    HRESULT AddStream([in] IMFMediaType *type, [out] DWORD *index);
+    HRESULT SetInputMediaType([in] DWORD index, [in] IMFMediaType *type, [in] IMFAttributes *parameters);
+    HRESULT BeginWriting(void);
+    HRESULT WriteSample([in] DWORD index, [in] IMFSample *sample);
+    HRESULT SendStreamTick([in] DWORD index, [in] LONGLONG timestamp);
+    HRESULT PlaceMarker([in] DWORD index, [in] void *context);
+    HRESULT NotifyEndOfSegment([in] DWORD index);
+    HRESULT Flush([in] DWORD index);
+    HRESULT Finalize(void);
+    HRESULT GetServiceForStream([in] DWORD index, [in] REFGUID service, [in] REFIID riid, [out] void **object);
+    HRESULT GetStatistics([in] DWORD index, [out] MF_SINK_WRITER_STATISTICS *stats);
+};
+
+[
+    object,
+    uuid(588d72ab-5Bc1-496a-8714-b70617141b25),
+    local
+]
+interface IMFSinkWriterEx : IMFSinkWriter
+{
+    HRESULT GetTransformForStream([in] DWORD index, [in] DWORD tindex, [out] GUID *category,
+                                  [out] IMFTransform **transform);
+}
+
+cpp_quote( "HRESULT WINAPI MFCreateSourceReaderFromByteStream(IMFByteStream *stream, IMFAttributes *attributes," )
+cpp_quote( "                                                  IMFSourceReader **reader);" )
+cpp_quote( "HRESULT WINAPI MFCreateSourceReaderFromMediaSource(IMFMediaSource *source, IMFAttributes *attributes," )
+cpp_quote( "                                                   IMFSourceReader **reader);" )

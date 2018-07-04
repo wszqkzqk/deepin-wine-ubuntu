@@ -1,0 +1,72 @@
+; File generated automatically from ./dlls/urlmon/urlmon.spec; do not edit!
+
+LIBRARY urlmon.dll
+
+EXPORTS
+  AsyncInstallDistributionUnit@36 @4
+  BindAsyncMoniker@20 @5
+  CoGetClassObjectFromURL@40 @6
+  CoInternetCombineUrl@28 @8
+  CoInternetCombineUrlEx@20 @9
+  CoInternetCompareUrl@12 @10
+  CoInternetCombineIUri@20 @11
+  CoInternetCreateSecurityManager@12 @12
+  CoInternetCreateZoneManager@12 @13
+  CoInternetGetSecurityUrl@16 @15
+  CoInternetGetSecurityUrlEx@16 @16
+  CoInternetGetSession@12 @17
+  CoInternetIsFeatureEnabled@8 @18
+  CoInternetIsFeatureEnabledForUrl@16 @19
+  CoInternetIsFeatureZoneElevationEnabled@16 @20
+  CoInternetParseUrl@28 @21
+  CoInternetParseIUri@28 @22
+  CoInternetQueryInfo@28 @23
+  CoInternetSetFeatureEnabled@12 @24
+  CompareSecurityIds@20 @25
+  CopyBindInfo@8 @26
+  CopyStgMedium@8 @27
+  CreateAsyncBindCtx@16 @28
+  CreateAsyncBindCtxEx@24 @29
+  CreateFormatEnumerator@12 @30
+  CreateIUriBuilder@16 @31
+  CreateUri@16 @32
+  CreateUriWithFragment@20 @33
+  CreateURLMoniker@12 @34
+  CreateURLMonikerEx@16 @35
+  CreateURLMonikerEx2@16 @36
+  DllCanUnloadNow@0 @37 PRIVATE
+  DllGetClassObject@12 @38 PRIVATE
+  DllInstall@8 @39 PRIVATE
+  DllRegisterServer@0 @40 PRIVATE
+  DllRegisterServerEx@0 @41 PRIVATE
+  DllUnregisterServer@0 @42 PRIVATE
+  Extract@8 @43
+  FaultInIEFeature@16 @44
+  FindMimeFromData@32 @47
+  GetClassFileOrMime@28 @48
+  GetSoftwareUpdateInfo@8 @52
+  HlinkNavigateString@8 @56
+  HlinkSimpleNavigateToMoniker@32 @57
+  HlinkSimpleNavigateToString@32 @58
+  IsAsyncMoniker@4 @60
+  IsLoggingEnabledA@4 @61
+  IsLoggingEnabledW@4 @62
+  IsValidURL@12 @63
+  MkParseDisplayNameEx@16 @64
+  ObtainUserAgentString@12 @65
+  RegisterBindStatusCallback@16 @67
+  RegisterFormatEnumerator@12 @68
+  RegisterMediaTypes@12 @70
+  ReleaseBindInfo@4 @71
+  RevokeBindStatusCallback@8 @72
+  RevokeFormatEnumerator@8 @73
+  URLDownloadToCacheFileA@24 @76
+  URLDownloadToCacheFileW@24 @77
+  URLDownloadToFileA@20 @78
+  URLDownloadToFileW@20 @79
+  URLOpenBlockingStreamA@20 @81
+  URLOpenBlockingStreamW@20 @82
+  URLOpenStreamA@16 @85
+  URLOpenStreamW@16 @86
+  UrlMkGetSessionOption@20 @88
+  UrlMkSetSessionOption@16 @89

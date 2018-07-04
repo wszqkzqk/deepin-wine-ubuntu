@@ -1,0 +1,2 @@
+#!/bin/sh
+$(dirname $0)/wineserver.real -p0 "$@"

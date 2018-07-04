@@ -1,0 +1,9 @@
+; File generated automatically from ./dlls/avicap32/avicap32.spec; do not edit!
+
+LIBRARY avicap32.dll
+
+EXPORTS
+  capCreateCaptureWindowA@32 @1
+  capCreateCaptureWindowW@32 @2
+  capGetDriverDescriptionA@20 @3
+  capGetDriverDescriptionW@20 @4

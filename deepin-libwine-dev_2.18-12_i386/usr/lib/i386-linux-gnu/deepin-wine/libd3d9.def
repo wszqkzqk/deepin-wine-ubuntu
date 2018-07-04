@@ -1,0 +1,16 @@
+; File generated automatically from ./dlls/d3d9/d3d9.spec; do not edit!
+
+LIBRARY d3d9.dll
+
+EXPORTS
+  Direct3DShaderValidatorCreate9@0 @1
+  D3DPERF_BeginEvent@8 @4
+  D3DPERF_EndEvent@0 @5
+  D3DPERF_GetStatus@0 @6
+  D3DPERF_QueryRepeatFrame@0 @7
+  D3DPERF_SetMarker@8 @8
+  D3DPERF_SetOptions@4 @9
+  D3DPERF_SetRegion@8 @10
+  DebugSetMute@0 @12
+  Direct3DCreate9@4 @13
+  Direct3DCreate9Ex@8 @14

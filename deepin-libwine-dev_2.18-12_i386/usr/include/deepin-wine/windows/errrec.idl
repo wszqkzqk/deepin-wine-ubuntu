@@ -1,0 +1,82 @@
+/*
+ * Copyright (C) 2013 Alistair Leslie-Hughes
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
+ */
+
+#if 0
+#pragma makedep install
+#endif
+
+[
+    object,
+    uuid(0c733a67-2a1c-11ce-ade5-00aa0044773d),
+    pointer_default(unique)
+]
+interface IErrorRecords : IUnknown
+{
+
+cpp_quote("#define IDENTIFIER_SDK_MASK   0xF0000000")
+cpp_quote("#define IDENTIFIER_SDK_ERROR  0x10000000")
+
+typedef struct tagERRORINFO
+{
+    HRESULT hrError;
+    DWORD dwMinor;
+    CLSID clsid;
+    IID iid;
+    DISPID dispid;
+} ERRORINFO;
+
+    [local]
+    HRESULT AddErrorRecord([in] ERRORINFO * pErrorInfo, [in] DWORD dwLookupID, [in] DISPPARAMS * pdispparams,
+        [in] IUnknown * punkCustomError, [in] DWORD dwDynamicErrorID);
+
+    [call_as(AddErrorRecord)]
+    HRESULT RemoteAddErrorRecord([in] ERRORINFO * pErrorInfo, [in] DWORD dwLookupID, [in] DISPPARAMS * pdispparams,
+        [in] IUnknown * punkCustomError, [in] DWORD dwDynamicErrorID, [out] IErrorInfo ** ppErrorInfoRem);
+
+    [local]
+    HRESULT GetBasicErrorInfo([in] ULONG ulRecordNum, [out] ERRORINFO * pErrorInfo);
+
+    [call_as(GetBasicErrorInfo)]
+    HRESULT RemoteGetBasicErrorInfo([in] ULONG ulRecordNum, [out] ERRORINFO * pErrorInfo, [out] IErrorInfo **ppErrorInfoRem);
+
+    [local]
+    HRESULT GetCustomErrorObject([in] ULONG ulRecordNum, [in] REFIID riid, [out] IUnknown ** ppObject);
+
+    [call_as(GetCustomErrorObject)]
+    HRESULT RemoteGetCustomErrorObject([in] ULONG ulRecordNum, [in] REFIID riid, [out] IUnknown ** ppObject,
+        [out] IErrorInfo **ppErrorInfoRem);
+
+    [local]
+    HRESULT GetErrorInfo([in] ULONG ulRecordNum, [in] LCID lcid, [out] IErrorInfo **ppErrorInfo);
+
+    [call_as(GetErrorInfo)]
+    HRESULT RemoteGetErrorInfo([in] ULONG ulRecordNum, [in] LCID lcid, [out] IErrorInfo **ppErrorInfo,
+        [out] IErrorInfo **ppErrorInfoRem);
+
+    [local]
+    HRESULT GetErrorParameters([in] ULONG ulRecordNum, [out] DISPPARAMS * pdispparams);
+
+    [call_as(GetErrorParameters)]
+    HRESULT RemoteGetErrorParameters([in] ULONG ulRecordNum, [out] DISPPARAMS * pdispparams, [out] IErrorInfo ** ppErrorInfoRem);
+
+    [local]
+    HRESULT GetRecordCount([out] ULONG *records);
+
+    [call_as(GetRecordCount)]
+    HRESULT RemoteGetRecordCount([out] ULONG * pcRecords, [out] IErrorInfo **ppErrorInfoRem);
+}

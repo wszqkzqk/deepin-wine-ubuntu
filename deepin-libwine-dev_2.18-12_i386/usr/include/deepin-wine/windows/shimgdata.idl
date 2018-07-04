@@ -1,0 +1,100 @@
+/*
+ * Copyright 2016 Nikolay Sivov For CodeWeavers
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
+ */
+
+import "unknwn.idl";
+import "propidl.idl";
+
+cpp_quote("#ifndef _GDIPLUSPIXELFORMATS_H")
+typedef DWORD PixelFormat;
+cpp_quote("#endif")
+
+cpp_quote("#ifndef _GDIPLUSENUMS_H")
+typedef DWORD InterpolationMode;
+cpp_quote("#endif")
+
+cpp_quote("#ifndef _GDIPLUSIMAGING_H")
+typedef BYTE EncoderParameters;
+cpp_quote("#endif")
+
+cpp_quote("#ifndef _GDIPLUSHEADERS_H")
+typedef BYTE Image;
+cpp_quote("#endif")
+
+cpp_quote("#define SHIMGDEC_DEFAULT   0x0")
+cpp_quote("#define SHIMGDEC_THUMBNAIL 0x1")
+cpp_quote("#define SHIMGDEC_LOADFULL  0x2")
+
+[
+    object,
+    uuid(53fb8e58-50c0-4003-b4aa-0c8df28e7f3a)
+]
+interface IShellImageDataAbort : IUnknown
+{
+    HRESULT QueryAbort();
+}
+
+[
+    object,
+    local,
+    uuid(bfdeec12-8040-4403-a5ea-9e07dafcf530)
+]
+interface IShellImageData : IUnknown
+{
+    HRESULT Decode([in] DWORD flags, [in] ULONG cx_desired, [in] ULONG cy_desired);
+    HRESULT Draw([in] HDC hdc, [in] RECT *dest, [in] RECT *src);
+    HRESULT NextFrame();
+    HRESULT NextPage();
+    HRESULT PrevPage();
+    HRESULT IsTransparent();
+    HRESULT IsAnimated();
+    HRESULT IsVector();
+    HRESULT IsMultipage();
+    HRESULT IsEditable();
+    HRESULT IsPrintable();
+    HRESULT IsDecoded();
+    HRESULT GetCurrentPage([out] ULONG *page);
+    HRESULT GetPageCount([out] ULONG *count);
+    HRESULT SelectPage([in] ULONG page);
+    HRESULT GetSize([out] SIZE *size);
+    HRESULT GetRawDataFormat([out] GUID *format);
+    HRESULT GetPixelFormat([out] PixelFormat *format);
+    HRESULT GetDelay([out] DWORD *delay);
+    HRESULT GetProperties([in] DWORD mode, [out] IPropertySetStorage **props);
+    HRESULT Rotate([in] DWORD angle);
+    HRESULT Scale([in] ULONG cx, [in] ULONG cy, [in] InterpolationMode mode);
+    HRESULT DiscardEdit();
+    HRESULT SetEncoderParams([in] IPropertyBag *params);
+    HRESULT DisplayName([size_is(count), in, out] LPWSTR name, UINT count);
+    HRESULT GetResolution([out] ULONG *res_x, [out] ULONG *res_y);
+    HRESULT GetEncoderParams([in] GUID *format, [out] EncoderParameters **params);
+    HRESULT RegisterAbort([in] IShellImageDataAbort *abort, [out] IShellImageDataAbort **prev);
+    HRESULT CloneFrame([out] Image **frame);
+    HRESULT ReplaceFrame([in] Image *frame);
+}
+
+[
+    object,
+    uuid(9be8ed5c-edab-4d75-90f3-bd5bdbb21c82)
+]
+interface IShellImageDataFactory : IUnknown
+{
+    HRESULT CreateIShellImageData([out] IShellImageData **data);
+    HRESULT CreateImageFromFile([in] LPCWSTR path, [out] IShellImageData **data);
+    HRESULT CreateImageFromStream([in] IStream *stream, [out] IShellImageData **data);
+    HRESULT GetDataFormatFromPath([in] LPCWSTR path, [out] GUID *format);
+}

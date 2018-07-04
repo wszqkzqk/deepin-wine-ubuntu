@@ -1,0 +1,242 @@
+/*
+ * Copyright 2017 Alistair Leslie-Hughes
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
+ */
+import "wtypes.idl";
+import "unknwn.idl";
+
+interface IUIAnimationStoryboard;
+interface IUIAnimationVariable;
+
+typedef DOUBLE UI_ANIMATION_SECONDS;
+typedef struct { int _; } *UI_ANIMATION_KEYFRAME;
+
+typedef enum
+{
+    UI_ANIMATION_MANAGER_IDLE,
+    UI_ANIMATION_MANAGER_BUSY
+} UI_ANIMATION_MANAGER_STATUS;
+
+typedef enum
+{
+    UI_ANIMATION_ROUNDING_NEAREST,
+    UI_ANIMATION_ROUNDING_FLOOR,
+    UI_ANIMATION_ROUNDING_CEILING
+} UI_ANIMATION_ROUNDING_MODE;
+
+typedef enum
+{
+    UI_ANIMATION_SCHEDULING_UNEXPECTED_FAILURE,
+    UI_ANIMATION_SCHEDULING_INSUFFICIENT_PRIORITY,
+    UI_ANIMATION_SCHEDULING_ALREADY_SCHEDULED,
+    UI_ANIMATION_SCHEDULING_SUCCEEDED,
+    UI_ANIMATION_SCHEDULING_DEFERRED
+} UI_ANIMATION_SCHEDULING_RESULT;
+
+typedef enum
+{
+    UI_ANIMATION_STORYBOARD_BUILDING,
+    UI_ANIMATION_STORYBOARD_SCHEDULED,
+    UI_ANIMATION_STORYBOARD_CANCELLED,
+    UI_ANIMATION_STORYBOARD_PLAYING,
+    UI_ANIMATION_STORYBOARD_TRUNCATED,
+    UI_ANIMATION_STORYBOARD_FINISHED,
+    UI_ANIMATION_STORYBOARD_READY,
+    UI_ANIMATION_STORYBOARD_INSUFFICIENT_PRIORITY
+} UI_ANIMATION_STORYBOARD_STATUS;
+
+[
+    local,
+    object,
+    uuid(783321ed-78a3-4366-b574-6af607a64788),
+    pointer_default(unique)
+]
+interface IUIAnimationManagerEventHandler : IUnknown
+{
+    HRESULT OnManagerStatusChanged (
+        [in] UI_ANIMATION_MANAGER_STATUS status,
+        [in] UI_ANIMATION_MANAGER_STATUS prev_status);
+}
+
+[
+    local,
+    object,
+    uuid(6358b7ba-87d2-42d5-bf71-82e919dd5862),
+    pointer_default(unique)
+]
+interface IUIAnimationVariableChangeHandler : IUnknown
+{
+    HRESULT OnValueChanged (
+        [in] IUIAnimationStoryboard *storyboard,
+        [in] IUIAnimationVariable *variable,
+        [in] DOUBLE value,
+        [in] DOUBLE prev_value);
+}
+
+[
+    local,
+    object,
+    uuid(bb3e1550-356e-44b0-99da-85ac6017865e),
+    pointer_default(unique)
+]
+interface IUIAnimationVariableIntegerChangeHandler : IUnknown
+{
+    HRESULT OnIntegerValueChanged (
+        [in] IUIAnimationStoryboard *storyboard,
+        [in] IUIAnimationVariable *variable,
+        [in] INT32 value,
+        [in] INT32 prev_value);
+}
+
+[
+    local,
+    object,
+    uuid(3d5c9008-ec7c-4364-9f8a-9af3c58cbae6),
+    pointer_default(unique)
+]
+interface IUIAnimationStoryboardEventHandler : IUnknown
+{
+    HRESULT OnStoryboardStatusChanged (
+        [in] IUIAnimationStoryboard *storyboard,
+        [in] UI_ANIMATION_STORYBOARD_STATUS status,
+        [in] UI_ANIMATION_STORYBOARD_STATUS prev_status);
+
+    HRESULT OnStoryboardUpdated ([in] IUIAnimationStoryboard *storyboard);
+}
+
+[
+    local,
+    object,
+    uuid(dc6ce252-f731-41cf-b610-614b6ca049ad),
+    pointer_default(unique)
+]
+interface IUIAnimationTransition : IUnknown
+{
+    HRESULT SetInitialValue ([in] DOUBLE value);
+
+    HRESULT SetInitialVelocity ([in] DOUBLE velocity);
+
+    HRESULT IsDurationKnown ();
+
+    HRESULT GetDuration ([out, retval] UI_ANIMATION_SECONDS *duration);
+}
+
+[
+    local,
+    object,
+    uuid(8ceeb155-2849-4ce5-9448-91ff70e1e4d9),
+    pointer_default(unique)
+]
+interface IUIAnimationVariable : IUnknown
+{
+    HRESULT GetValue ([out, retval] DOUBLE *value);
+
+    HRESULT GetFinalValue ([out, retval] DOUBLE *value);
+
+    HRESULT GetPreviousValue ([out, retval] DOUBLE *value);
+
+    HRESULT GetIntegerValue ([out, retval] INT32 *value);
+
+    HRESULT GetFinalIntegerValue ([out, retval] INT32 *value);
+
+    HRESULT GetPreviousIntegerValue ([out, retval] INT32 *value);
+
+    HRESULT GetCurrentStoryboard ([out, retval] IUIAnimationStoryboard **storyboard);
+
+    HRESULT SetLowerBound ([in] DOUBLE bound);
+
+    HRESULT SetUpperBound ([in] DOUBLE bound);
+
+    HRESULT SetRoundingMode ([in] UI_ANIMATION_ROUNDING_MODE mode);
+
+    HRESULT SetTag (
+        [in] IUnknown *object,
+        [in] UINT32 id);
+
+    HRESULT GetTag (
+        [out] IUnknown **object,
+        [out] UINT32 *id);
+
+    HRESULT SetVariableChangeHandler ([in, unique] IUIAnimationVariableChangeHandler *handler);
+
+    HRESULT SetVariableIntegerChangeHandler ([in, unique] IUIAnimationVariableIntegerChangeHandler *handler);
+}
+
+[
+    local,
+    object,
+    uuid(a8ff128f-9bf9-4af1-9e67-e5e410defb84),
+    pointer_default(unique)
+]
+interface IUIAnimationStoryboard : IUnknown
+{
+    HRESULT AddTransition (
+        [in] IUIAnimationVariable *variable,
+        [in] IUIAnimationTransition *transition);
+
+    HRESULT AddKeyframeAtOffset (
+        [in] UI_ANIMATION_KEYFRAME existingframe,
+        [in] UI_ANIMATION_SECONDS offset,
+        [out, retval] UI_ANIMATION_KEYFRAME *keyframe);
+
+    HRESULT AddKeyframeAfterTransition (
+        [in] IUIAnimationTransition *transition,
+        [out, retval] UI_ANIMATION_KEYFRAME *keyframe);
+
+    HRESULT AddTransitionAtKeyframe (
+        [in] IUIAnimationVariable *variable,
+        [in] IUIAnimationTransition *transition,
+        [in] UI_ANIMATION_KEYFRAME start_key);
+
+    HRESULT AddTransitionBetweenKeyframes (
+        [in] IUIAnimationVariable *variable,
+        [in] IUIAnimationTransition *transition,
+        [in] UI_ANIMATION_KEYFRAME start_key,
+        [in] UI_ANIMATION_KEYFRAME end_key);
+
+    HRESULT RepeatBetweenKeyframes (
+        [in] UI_ANIMATION_KEYFRAME start_key,
+        [in] UI_ANIMATION_KEYFRAME end_key,
+        [in] INT32 count);
+
+    HRESULT HoldVariable ([in] IUIAnimationVariable *variable);
+
+    HRESULT SetLongestAcceptableDelay ([in] UI_ANIMATION_SECONDS delay);
+
+    HRESULT Schedule (
+        [in] UI_ANIMATION_SECONDS now,
+        [out, defaultvalue(0)] UI_ANIMATION_SCHEDULING_RESULT *result);
+
+    HRESULT Conclude ();
+
+    HRESULT Finish ([in] UI_ANIMATION_SECONDS deadline);
+
+    HRESULT Abandon ();
+
+    HRESULT SetTag(
+        [in, unique] IUnknown *object,
+        [in] UINT32 id);
+
+    HRESULT GetTag (
+        [out] IUnknown **object,
+        [out] UINT32 *id);
+
+    HRESULT GetStatus ([out, retval] UI_ANIMATION_STORYBOARD_STATUS *status);
+
+    HRESULT GetElapsedTime ([out] UI_ANIMATION_SECONDS *elapsed);
+
+    HRESULT SetStoryboardEventHandler ([in, unique] IUIAnimationStoryboardEventHandler *handler);
+}

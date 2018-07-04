@@ -1,0 +1,81 @@
+/*
+ * Copyright (C) 2013 Nikolay Sivov
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
+ */
+
+#if 0
+#pragma makedep install
+#endif
+
+[
+    object,
+    uuid(0c733a94-2a1c-11ce-ade5-00aa0044773d),
+    pointer_default(unique)
+]
+interface IRowPosition : IUnknown
+{
+    typedef DWORD DBPOSITIONFLAGS;
+
+    enum DBPOSITIONFLAGSENUM {
+        DBPOSITION_OK,
+        DBPOSITION_NOROW,
+        DBPOSITION_BOF,
+        DBPOSITION_EOF
+    };
+
+    [local]
+    HRESULT ClearRowPosition();
+
+    [call_as(ClearRowPosition)]
+    HRESULT RemoteClearRowPosition([out] IErrorInfo **errorinfo);
+
+    [local]
+    HRESULT GetRowPosition([out] HCHAPTER *chapter,
+                           [out] HROW *row,
+                           [out] DBPOSITIONFLAGS *position_flags);
+
+    [call_as(GetRowPosition)]
+    HRESULT RemoteGetRowPosition([out] HCHAPTER *chapter,
+                                 [out] HROW *row,
+                                 [out] DBPOSITIONFLAGS *position_flags,
+                                 [out] IErrorInfo **errorinfo);
+    [local]
+    HRESULT GetRowset([in] REFIID riid,
+                      [out, iid_is(riid)] IUnknown **rowset);
+
+    [call_as(GetRowset)]
+    HRESULT RemoteGetRowset([in] REFIID riid,
+                            [out, iid_is(riid)] IUnknown **rowset,
+                            [out] IErrorInfo **errorinfo);
+
+    [local]
+    HRESULT Initialize([in] IUnknown *rowset);
+
+    [call_as(Initialize)]
+    HRESULT RemoteInitialize([in] IUnknown *rowset,
+                             [out] IErrorInfo **errorinfo);
+
+    [local]
+    HRESULT SetRowPosition([in] HCHAPTER chapter,
+                           [in] HROW row,
+                           [in] DBPOSITIONFLAGS flags);
+
+    [call_as(SetRowPosition)]
+    HRESULT RemoteSetRowPosition([in] HCHAPTER chapter,
+                                 [in] HROW row,
+                                 [in] DBPOSITIONFLAGS flags,
+                                 [out] IErrorInfo **errorinfo);
+}

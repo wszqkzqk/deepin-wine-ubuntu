@@ -1,0 +1,107 @@
+/*
+ * Copyright 2017 Owen Rudge for CodeWeavers
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
+ */
+
+import "objidl.idl";
+import "wsdxmldom.h";
+import "wsdtypes.h";
+
+interface IWSDScopeMatchingRule;
+interface IWSDiscoveryPublisherNotify;
+interface IWSDiscoveryPublisher;
+interface IWSDXMLContext;
+
+[
+uuid(fcafe424-fef5-481a-bd9f-33ce0574256f),
+object,
+local,
+restricted,
+pointer_default(unique)
+]
+interface IWSDScopeMatchingRule : IUnknown
+{
+  HRESULT GetScopeRule([out] LPCWSTR *ppszScopeMatchingRule);
+  HRESULT MatchScopes([in] LPCWSTR pszScope1, [in] LPCWSTR pszScope2, [out] BOOL *pfMatch);
+}
+
+[
+uuid(e67651b0-337a-4b3c-9758-733388568251),
+object,
+local,
+restricted,
+pointer_default(unique)
+]
+interface IWSDiscoveryPublisherNotify : IUnknown
+{
+  HRESULT ProbeHandler([in] const WSD_SOAP_MESSAGE *pSoap, [in] IWSDMessageParameters *pMessageParameters);
+  HRESULT ResolveHandler([in] const WSD_SOAP_MESSAGE *pSoap, [in] IWSDMessageParameters *pMessageParameters);
+}
+
+[
+uuid(AE01E1A8-3ff9-4148-8116-057cc616fe13),
+object,
+local,
+restricted,
+pointer_default(unique)
+]
+interface IWSDiscoveryPublisher : IUnknown
+{
+    HRESULT SetAddressFamily([in] DWORD dwAddressFamily);
+    HRESULT RegisterNotificationSink([in] IWSDiscoveryPublisherNotify *pSink);
+    HRESULT UnRegisterNotificationSink([in] IWSDiscoveryPublisherNotify *pSink);
+
+    HRESULT Publish([in] LPCWSTR pszId, [in] ULONGLONG ullMetadataVersion, [in] ULONGLONG ullInstanceId, [in] ULONGLONG ullMessageNumber,
+        [in, optional] LPCWSTR pszSessionId, [in, optional] const WSD_NAME_LIST *pTypesList, [in, optional] const WSD_URI_LIST *pScopesList,
+        [in, optional] const WSD_URI_LIST *pXAddrsList);
+
+    HRESULT UnPublish([in] LPCWSTR pszId, [in] ULONGLONG ullInstanceId, [in] ULONGLONG ullMessageNumber, [in, optional] LPCWSTR pszSessionId,
+        [in, optional] const WSDXML_ELEMENT *pAny);
+
+    HRESULT MatchProbe([in] const WSD_SOAP_MESSAGE *pProbeMessage, [in] IWSDMessageParameters *pMessageParameters, [in] LPCWSTR pszId,
+        [in] ULONGLONG ullMetadataVersion, [in] ULONGLONG ullInstanceId, [in] ULONGLONG ullMessageNumber, [in, optional] LPCWSTR pszSessionId,
+        [in, optional] const WSD_NAME_LIST *pTypesList, [in, optional] const WSD_URI_LIST *pScopesList, [in, optional] const WSD_URI_LIST *pXAddrsList);
+
+    HRESULT MatchResolve([in] const WSD_SOAP_MESSAGE *pResolveMessage, [in] IWSDMessageParameters *pMessageParameters, [in] LPCWSTR pszId,
+        [in] ULONGLONG ullMetadataVersion, [in] ULONGLONG ullInstanceId, [in] ULONGLONG ullMessageNumber, [in, optional] LPCWSTR pszSessionId,
+        [in, optional] const WSD_NAME_LIST *pTypesList, [in, optional] const WSD_URI_LIST *pScopesList, [in, optional] const WSD_URI_LIST *pXAddrsList);
+
+    HRESULT PublishEx([in] LPCWSTR pszId, [in] ULONGLONG ullMetadataVersion, [in] ULONGLONG ullInstanceId, [in] ULONGLONG ullMessageNumber,
+        [in, optional] LPCWSTR pszSessionId, [in, optional] const WSD_NAME_LIST *pTypesList, [in, optional] const WSD_URI_LIST *pScopesList,
+        [in, optional] const WSD_URI_LIST *pXAddrsList, [in, optional] const WSDXML_ELEMENT *pHeaderAny,
+        [in, optional] const WSDXML_ELEMENT *pReferenceParameterAny, [in, optional] const WSDXML_ELEMENT *pPolicyAny,
+        [in, optional] const WSDXML_ELEMENT *pEndpointReferenceAny, [in, optional] const WSDXML_ELEMENT *pAny);
+
+    HRESULT MatchProbeEx([in] const WSD_SOAP_MESSAGE *pProbeMessage, [in] IWSDMessageParameters *pMessageParameters, [in] LPCWSTR pszId,
+        [in] ULONGLONG ullMetadataVersion, [in] ULONGLONG ullInstanceId, [in] ULONGLONG ullMessageNumber, [in, optional] LPCWSTR pszSessionId,
+        [in, optional] const WSD_NAME_LIST *pTypesList, [in, optional] const WSD_URI_LIST *pScopesList, [in, optional] const WSD_URI_LIST *pXAddrsList,
+        [in, optional] const WSDXML_ELEMENT *pHeaderAny, [in, optional] const WSDXML_ELEMENT *pReferenceParameterAny,
+        [in, optional] const WSDXML_ELEMENT *pPolicyAny, [in, optional] const WSDXML_ELEMENT *pEndpointReferenceAny,
+        [in, optional] const WSDXML_ELEMENT *pAny);
+
+    HRESULT MatchResolveEx([in] const WSD_SOAP_MESSAGE *pResolveMessage, [in] IWSDMessageParameters *pMessageParameters, [in] LPCWSTR pszId,
+        [in] ULONGLONG ullMetadataVersion, [in] ULONGLONG ullInstanceId, [in] ULONGLONG ullMessageNumber, [in, optional] LPCWSTR pszSessionId,
+        [in, optional] const WSD_NAME_LIST *pTypesList, [in, optional] const WSD_URI_LIST *pScopesList, [in, optional] const WSD_URI_LIST *pXAddrsList,
+        [in, optional] const WSDXML_ELEMENT *pHeaderAny, [in, optional] const WSDXML_ELEMENT *pReferenceParameterAny,
+        [in, optional] const WSDXML_ELEMENT *pPolicyAny, [in, optional] const WSDXML_ELEMENT *pEndpointReferenceAny,
+        [in, optional] const WSDXML_ELEMENT *pAny);
+
+    HRESULT RegisterScopeMatchingRule([in] IWSDScopeMatchingRule *pScopeMatchingRule);
+    HRESULT UnRegisterScopeMatchingRule([in] IWSDScopeMatchingRule *pScopeMatchingRule);
+    HRESULT GetXMLContext([out] IWSDXMLContext **ppContext);
+}
+
+cpp_quote("HRESULT WINAPI WSDCreateDiscoveryPublisher(IWSDXMLContext* pContext, IWSDiscoveryPublisher **ppPublisher);")

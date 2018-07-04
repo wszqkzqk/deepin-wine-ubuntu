@@ -1,0 +1,10 @@
+; File generated automatically from ./dlls/dinput8/dinput8.spec; do not edit!
+
+LIBRARY dinput8.dll
+
+EXPORTS
+  DirectInput8Create@20 @1
+  DllCanUnloadNow@0 @2 PRIVATE
+  DllGetClassObject@12 @3 PRIVATE
+  DllRegisterServer@0 @4 PRIVATE
+  DllUnregisterServer@0 @5 PRIVATE

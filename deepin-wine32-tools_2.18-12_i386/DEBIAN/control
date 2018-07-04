@@ -1,0 +1,16 @@
+Package: deepin-wine32-tools
+Source: deepin-wine
+Version: 2.18-12
+Architecture: i386
+Maintainer: Debian Wine Party <pkg-wine-party@lists.alioth.debian.org>
+Installed-Size: 4916
+Depends: gcc:i386|gcc:amd64, perl:any, libc6 (>= 2.3), deepin-libwine-dev (= 2.18-12)
+Built-Using: khronos-api (= 0~svn29735-1.1), unicode-data (= 9.0-1)
+Section: libdevel
+Priority: optional
+Homepage: http://www.winehq.org/
+Description: Windows API implementation - 32-bit developer tools
+ Wine is a free MS-Windows API implementation.
+ This is still a work in progress and many applications may still not work.
+ .
+ This package provides wine's 32-bit developer tools.

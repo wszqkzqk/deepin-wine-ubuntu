@@ -1,0 +1,10 @@
+; File generated automatically from ./dlls/d3dxof/d3dxof.spec; do not edit!
+
+LIBRARY d3dxof.dll
+
+EXPORTS
+  DirectXFileCreate@4 @1
+  DllCanUnloadNow@0 @2 PRIVATE
+  DllGetClassObject@12 @3 PRIVATE
+  DllRegisterServer@0 @4 PRIVATE
+  DllUnregisterServer@0 @5 PRIVATE

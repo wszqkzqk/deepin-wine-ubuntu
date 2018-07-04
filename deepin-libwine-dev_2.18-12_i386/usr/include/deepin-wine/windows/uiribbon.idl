@@ -1,0 +1,182 @@
+/*
+ * COM Classes for uiribbon
+ *
+ * Copyright 2017 Fabian Maurer
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
+ */
+
+import "propsys.idl";
+
+#ifndef __WIDL__
+#define threading(model)
+#endif
+
+typedef enum UI_INVALIDATIONS {
+    UI_INVALIDATIONS_STATE         = 0x00000001,
+    UI_INVALIDATIONS_VALUE         = 0x00000002,
+    UI_INVALIDATIONS_PROPERTY      = 0x00000004,
+    UI_INVALIDATIONS_ALLPROPERTIES = 0x00000008,
+} UI_INVALIDATIONS;
+
+typedef enum UI_EXECUTIONVERB {
+    UI_EXECUTIONVERB_EXECUTE,
+    UI_EXECUTIONVERB_PREVIEW,
+    UI_EXECUTIONVERB_CANCELPREVIEW,
+} UI_EXECUTIONVERB;
+
+typedef enum UI_VIEWTYPE {
+    UI_VIEWTYPE_RIBBON = 1
+} UI_VIEWTYPE;
+
+typedef enum UI_VIEWVERB {
+    UI_VIEWVERB_CREATE,
+    UI_VIEWVERB_DESTROY,
+    UI_VIEWVERB_SIZE,
+    UI_VIEWVERB_ERROR,
+} UI_VIEWVERB;
+
+typedef enum UI_COMMANDTYPE {
+    UI_COMMANDTYPE_UNKNOWN,
+    UI_COMMANDTYPE_GROUP,
+    UI_COMMANDTYPE_ACTION,
+    UI_COMMANDTYPE_ANCHOR,
+    UI_COMMANDTYPE_CONTEXT,
+    UI_COMMANDTYPE_COLLECTION,
+    UI_COMMANDTYPE_COMMANDCOLLECTION,
+    UI_COMMANDTYPE_DECIMAL,
+    UI_COMMANDTYPE_BOOLEAN,
+    UI_COMMANDTYPE_FONT,
+    UI_COMMANDTYPE_RECENTITEMS,
+    UI_COMMANDTYPE_COLORANCHOR,
+    UI_COMMANDTYPE_COLORCOLLECTION,
+} UI_COMMANDTYPE;
+
+
+[
+    object,
+    uuid(c205bb48-5b1c-4219-a106-15bd0a5f24e2),
+    local,
+    pointer_default(unique)
+]
+interface IUISimplePropertySet : IUnknown
+{
+    HRESULT GetValue(
+        [in]  REFPROPERTYKEY key,
+        [out] PROPVARIANT *value
+    );
+}
+
+[
+    object,
+    uuid(75ae0a2d-dc03-4c9f-8883-069660d0beb6),
+    local,
+    pointer_default(unique)
+]
+interface IUICommandHandler : IUnknown
+{
+    HRESULT Execute(
+        [in] UINT32 commandId,
+        [in] UI_EXECUTIONVERB verb,
+        [in] const PROPERTYKEY *key,
+        [in] const PROPVARIANT *currentValue,
+        [in] IUISimplePropertySet *commandExecutionProperties
+    );
+    HRESULT UpdateProperty(
+        [in] UINT32 commandId,
+        [in] REFPROPERTYKEY key,
+        [in] const PROPVARIANT *currentValue,
+        [out] PROPVARIANT *newValue
+    );
+}
+
+[
+    object,
+    uuid(d428903c-729a-491d-910d-682a08ff2522),
+    local,
+    pointer_default(unique)
+]
+interface IUIApplication : IUnknown
+{
+    HRESULT OnViewChanged(
+        [in] UINT32      viewId,
+        [in] UI_VIEWTYPE typeID,
+        [in] IUnknown    *view,
+        [in] UI_VIEWVERB verb,
+        [in] INT32       uReasonCode
+    );
+    HRESULT OnCreateUICommand(
+        [in] UINT32 commandId,
+        [in] UI_COMMANDTYPE typeID,
+        [out] IUICommandHandler **commandHandler
+    );
+    HRESULT OnDestroyUICommand(
+        [in] UINT32 commandId,
+        [in] UI_COMMANDTYPE typeID,
+        [in] IUICommandHandler *commandHandler
+    );
+}
+
+[
+    object,
+    uuid(f4f0385d-6872-43a8-ad09-4c339cb3f5c5),
+    local,
+    pointer_default(unique)
+]
+interface IUIFramework : IUnknown
+{
+    HRESULT Initialize(
+        [in] HWND frameWnd,
+        [in] IUIApplication *application
+    );
+    HRESULT Destroy(
+    );
+    HRESULT LoadUI(
+        [in] HINSTANCE instance,
+        [in] LPCWSTR resourceName
+    );
+    HRESULT GetView(
+        [in] UINT32 viewId,
+        [in] REFIID riid,
+        [out] void **ppv
+    );
+    HRESULT GetUICommandProperty(
+        [in] UINT32 commandId,
+        [in] REFPROPERTYKEY key,
+        [out] PROPVARIANT *value
+    );
+    HRESULT SetUICommandProperty(
+        [in] UINT32 commandId,
+        [in] REFPROPERTYKEY key,
+        [in] PROPVARIANT value
+    );
+    HRESULT InvalidateUICommand(
+        [in] UINT32 commandId,
+        [in] UI_INVALIDATIONS flags,
+        [in] const PROPERTYKEY *key
+    );
+    HRESULT FlushPendingInvalidations(
+    );
+    HRESULT SetModes(
+        INT32 iModes
+    );
+}
+
+[
+    helpstring("UIRibbonFramework Object"),
+    threading(apartment),
+    uuid(926749fa-2615-4987-8845-c33e65f2b957)
+]
+coclass UIRibbonFramework { interface IUIFramework; }

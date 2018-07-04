@@ -1,0 +1,1434 @@
+/*
+ * Copyright 2014 Jacek Caban for CodeWeavers
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
+ */
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+#ifndef __WIDL__
+#define threading(model)
+#define progid(str)
+#define vi_progid(str)
+#endif
+
+[
+    helpstring("Windows Media Player"),
+    version(1.0),
+    uuid(6bf52a50-394a-11d3-b153-00c04f79Faa6)
+]
+library WMPLib {
+    importlib("stdole2.tlb");
+
+    typedef enum {
+        wmposUndefined,
+        wmposPlaylistChanging,
+        wmposPlaylistLocating,
+        wmposPlaylistConnecting,
+        wmposPlaylistLoading,
+        wmposPlaylistOpening,
+        wmposPlaylistOpenNoMedia,
+        wmposPlaylistChanged,
+        wmposMediaChanging,
+        wmposMediaLocating,
+        wmposMediaConnecting,
+        wmposMediaLoading,
+        wmposMediaOpening,
+        wmposMediaOpen,
+        wmposBeginCodecAcquisition,
+        wmposEndCodecAcquisition,
+        wmposBeginLicenseAcquisition,
+        wmposEndLicenseAcquisition,
+        wmposBeginIndividualization,
+        wmposEndIndividualization,
+        wmposMediaWaiting,
+        wmposOpeningUnknownURL
+    } WMPOpenState;
+
+    typedef enum {
+        wmppsUndefined,
+        wmppsStopped,
+        wmppsPaused,
+        wmppsPlaying,
+        wmppsScanForward,
+        wmppsScanReverse,
+        wmppsBuffering,
+        wmppsWaiting,
+        wmppsMediaEnded,
+        wmppsTransitioning,
+        wmppsReady,
+        wmppsReconnecting,
+        wmppsLast
+    } WMPPlayState;
+
+    typedef enum {
+        wmplcUnknown,
+        wmplcClear,
+        wmplcInfoChange,
+        wmplcMove,
+        wmplcDelete,
+        wmplcInsert,
+        wmplcAppend,
+        wmplcPrivate,
+        wmplcNameChange,
+        wmplcMorph,
+        wmplcSort,
+        wmplcLast
+    } WMPPlaylistChangeEventType;
+
+    typedef enum {
+        wmpdsUnknown,
+        wmpdsPartnershipExists,
+        wmpdsPartnershipDeclined,
+        wmpdsPartnershipAnother,
+        wmpdsManualDevice,
+        wmpdsNewDevice,
+        wmpdsLast
+    } WMPDeviceStatus;
+
+    typedef enum {
+        wmpssUnknown,
+        wmpssSynchronizing,
+        wmpssStopped,
+        wmpssEstimating,
+        wmpssLast
+    } WMPSyncState;
+
+    typedef enum {
+        wmprsUnknown,
+        wmprsRipping,
+        wmprsStopped
+    } WMPRipState;
+
+    typedef enum {
+        wmpbfAudioCD,
+        wmpbfDataCD
+    } WMPBurnFormat;
+
+    typedef enum {
+        wmpbsUnknown,
+        wmpbsBusy,
+        wmpbsReady,
+        wmpbsWaitingForDisc,
+        wmpbsRefreshStatusPending,
+        wmpbsPreparingToBurn,
+        wmpbsBurning,
+        wmpbsStopped,
+        wmpbsErasing,
+        wmpbsDownloading
+    } WMPBurnState;
+
+    typedef enum {
+        wmpltUnknown,
+        wmpltAll,
+        wmpltLocal,
+        wmpltRemote,
+        wmpltDisc,
+        wmpltPortableDevice
+    } WMPLibraryType;
+
+    typedef enum {
+        wmpfssUnknown,
+        wmpfssScanning,
+        wmpfssUpdating,
+        wmpfssStopped
+    } WMPFolderScanState;
+
+    typedef enum {
+        wmpsccetUnknown,
+        wmpsccetInsert,
+        wmpsccetChange,
+        wmpsccetDelete,
+        wmpsccetClear,
+        wmpsccetBeginUpdates,
+        wmpsccetEndUpdates
+    } WMPStringCollectionChangeEventType;
+
+    interface IWMPMedia;
+
+    [
+        odl,
+        uuid(d5f0f4f1-130c-11d3-b14e-00c04f79Faa6),
+        dual,
+        oleautomation
+    ]
+    interface IWMPPlaylist : IDispatch
+    {
+        [id(0x00c9), propget]
+        HRESULT count([out, retval] long *plCount);
+
+        [id(0x00ca), propget]
+        HRESULT name([out, retval] BSTR *pbstrName);
+        [id(0x00ca), propput]
+        HRESULT name([in] BSTR pbstrName);
+
+        [id(0x00d2), propget]
+        HRESULT attributeCount([out, retval] long *plCount);
+
+        [id(0x00d3), propget]
+        HRESULT attributeName(
+            [in] long lIndex,
+            [out, retval] BSTR *pbstrAttributeName);
+
+        [id(0x00d4), propget]
+        HRESULT Item(
+            [in] long lIndex,
+            [out, retval] IWMPMedia** ppIWMPMedia);
+
+        [id(0x00cb)]
+        HRESULT getItemInfo(
+            [in] BSTR bstrName,
+            [out, retval] BSTR *pbstrVal);
+
+        [id(0x00cc)]
+        HRESULT setItemInfo(
+            [in] BSTR bstrName,
+            [in] BSTR bstrValue);
+
+        [id(0x00d5), propget]
+        HRESULT isIdentical(
+            [in] IWMPPlaylist *pIWMPPlaylist,
+            [out, retval] VARIANT_BOOL *pvbool);
+
+        [id(0x00cd)]
+        HRESULT clear();
+
+        [id(0x00ce)]
+        HRESULT insertItem(
+            [in] long lIndex,
+            [in] IWMPMedia *pIWMPMedia);
+
+        [id(0x00cf)]
+        HRESULT appendItem([in] IWMPMedia *pIWMPMedia);
+
+        [id(0x00d0)]
+        HRESULT removeItem([in] IWMPMedia *pIWMPMedia);
+
+        [id(0x00d1)]
+        HRESULT moveItem(
+            long lIndexOld,
+            long lIndexNew);
+    }
+
+    [
+        odl,
+        uuid(94d55e95-3Fac-11d3-b155-00c04f79faa6),
+        dual,
+        oleautomation
+    ]
+    interface IWMPMedia : IDispatch
+    {
+        [id(0x02fb), propget]
+        HRESULT isIdentical(
+            [in] IWMPMedia *pIWMPMedia,
+            [out, retval] VARIANT_BOOL *pvbool);
+
+        [id(0x02ef), propget]
+        HRESULT sourceURL([out, retval] BSTR *pbstrSourceURL);
+
+        [id(0x02fc), propget]
+        HRESULT name([out, retval] BSTR *pbstrName);
+        [id(0x02fc), propput]
+        HRESULT name([in] BSTR pbstrName);
+
+        [id(0x02f0), propget]
+        HRESULT imageSourceWidth([out, retval] long *pWidth);
+
+        [id(0x02f1), propget]
+        HRESULT imageSourceHeight([out, retval] long *pHeight);
+
+        [id(0x02f2), propget]
+        HRESULT markerCount([out, retval] long *pMarkerCount);
+
+        [id(0x02f3)]
+        HRESULT getMarkerTime(
+            [in] long MarkerNum,
+            [out, retval] double *pMarkerTime);
+
+        [id(0x02f4)]
+        HRESULT getMarkerName(
+            [in] long MarkerNum,
+            [out, retval] BSTR *pbstrMarkerName);
+
+        [id(0x02f5), propget]
+        HRESULT duration([out, retval] double *pDuration);
+
+        [id(0x02f6), propget]
+        HRESULT durationString([out, retval] BSTR *pbstrDuration);
+
+        [id(0x02f7), propget]
+        HRESULT attributeCount([out, retval] long *plCount);
+
+        [id(0x02f8)]
+        HRESULT getAttributeName(
+            [in] long lIndex,
+            [out, retval] BSTR *pbstrItemName);
+
+        [id(0x02f9)]
+        HRESULT getItemInfo(
+            [in] BSTR bstrItemName,
+            [out, retval] BSTR *pbstrVal);
+
+        [id(0x02fa)]
+        HRESULT setItemInfo(
+            [in] BSTR bstrItemName,
+            [in] BSTR bstrVal);
+
+        [id(0x02fd)]
+        HRESULT getItemInfoByAtom(
+            [in] long lAtom,
+            [out, retval] BSTR *pbstrVal);
+
+        [id(0x02fe)]
+        HRESULT isMemberOf(
+            [in] IWMPPlaylist *pPlaylist,
+            [out, retval] VARIANT_BOOL *pvarfIsMemberOf);
+
+        [id(0x02ff)]
+        HRESULT isReadOnlyItem(
+            [in] BSTR bstrItemName,
+            [out, retval] VARIANT_BOOL *pvarfIsReadOnly);
+    }
+
+    [
+        odl,
+        uuid(74c09E02-f828-11d2-a74b-00a0c905f36e),
+        dual,
+        oleautomation
+    ]
+    interface IWMPControls : IDispatch {
+        [id(0x003e), propget]
+        HRESULT isAvailable(
+            [in] BSTR bstrItem,
+            [out, retval] VARIANT_BOOL *pIsAvailable);
+
+        [id(0x0033)]
+        HRESULT play();
+
+        [id(0x0034)]
+        HRESULT stop();
+
+        [id(0x0035)]
+        HRESULT pause();
+
+        [id(0x0036)]
+        HRESULT fastForward();
+
+        [id(0x0037)]
+        HRESULT fastReverse();
+
+        [id(0x0038), propget]
+        HRESULT currentPosition([out, retval] double *pdCurrentPosition);
+        [id(0x0038), propput]
+        HRESULT currentPosition([in] double pdCurrentPosition);
+
+        [id(0x0039), propget]
+        HRESULT currentPositionString([out, retval] BSTR *pbstrCurrentPosition);
+
+        [id(0x003a)]
+        HRESULT next();
+
+        [id(0x003b)]
+        HRESULT previous();
+
+        [id(0x003c)]
+        HRESULT currentItem([out, retval] IWMPMedia **ppIWMPMedia);
+
+        [id(0x003c), propput]
+        HRESULT currentItem([in] IWMPMedia *ppIWMPMedia);
+
+        [id(0x003d), propget]
+        HRESULT currentMarker([out, retval] long *plMarker);
+
+        [id(0x003d), propput]
+        HRESULT currentMarker([in] long plMarker);
+
+        [id(0x003f)]
+        HRESULT playItem([in] IWMPMedia *pIWMPMedia);
+    }
+
+    [
+        odl,
+        uuid(9104d1ab-80c9-4fed-abf0-2e6417a6df14),
+        dual,
+        oleautomation
+    ]
+    interface IWMPSettings : IDispatch
+    {
+        [id(0x0071), propget]
+        HRESULT isAvailable(
+            [in] BSTR bstrItem,
+            [out, retval] VARIANT_BOOL *pIsAvailable);
+
+        [id(0x0065), propget]
+        HRESULT autoStart([out, retval] VARIANT_BOOL *pfAutoStart);
+        [id(0x0065), propput]
+        HRESULT autoStart([in] VARIANT_BOOL pfAutoStart);
+
+        [id(0x006c), propget]
+        HRESULT baseURL([out, retval] BSTR *pbstrBaseURL);
+        [id(0x006c), propput]
+        HRESULT baseURL([in] BSTR pbstrBaseURL);
+
+        [id(0x006d), propget]
+        HRESULT defaultFrame([out, retval] BSTR *pbstrDefaultFrame);
+        [id(0x006d), propput]
+        HRESULT defaultFrame([in] BSTR pbstrDefaultFrame);
+
+        [id(0x0067), propget]
+        HRESULT invokeURLs([out, retval] VARIANT_BOOL *pfInvokeURLs);
+        [id(0x0067), propput]
+        HRESULT invokeURLs([in] VARIANT_BOOL pfInvokeURLs);
+
+        [id(0x0068), propget]
+        HRESULT mute([out, retval] VARIANT_BOOL *pfMute);
+        [id(0x0068), propput]
+        HRESULT mute([in] VARIANT_BOOL pfMute);
+
+        [id(0x0069), propget]
+        HRESULT playCount([out, retval] long *plCount);
+        [id(0x0069), propput]
+        HRESULT playCount([in] long plCount);
+
+        [id(0x006a), propget]
+        HRESULT rate([out, retval] double *pdRate);
+        [id(0x006a), propput]
+        HRESULT rate([in] double pdRate);
+
+        [id(0x0066), propget]
+        HRESULT balance([out, retval] long *plBalance);
+        [id(0x0066), propput]
+        HRESULT balance([in] long plBalance);
+
+        [id(0x006b), propget]
+        HRESULT volume([out, retval] long *plVolume);
+        [id(0x006b), propput]
+        HRESULT volume([in] long plVolume);
+
+        [id(0x006e)]
+        HRESULT getMode(
+            [in] BSTR bstrMode,
+            [out, retval] VARIANT_BOOL *pvarfMode);
+
+        [id(0x006f)]
+        HRESULT setMode(
+            [in] BSTR bstrMode,
+            [in] VARIANT_BOOL varfMode);
+
+        [id(0x0070), propget]
+        HRESULT enableErrorDialogs([out, retval] VARIANT_BOOL *pfEnableErrorDialogs);
+
+        [id(0x0070), propput]
+        HRESULT enableErrorDialogs([in] VARIANT_BOOL pfEnableErrorDialogs);
+    }
+
+    [
+        odl,
+        uuid(4a976298-8c0d-11d3-b389-00c04f68574b),
+        dual,
+        oleautomation
+    ]
+    interface IWMPStringCollection : IDispatch
+    {
+        [id(0x0191), propget]
+        HRESULT count([out, retval] long *plCount);
+
+        [id(0x0192)]
+        HRESULT Item(
+            [in] long lIndex,
+            [out, retval] BSTR *pbstrString);
+    }
+
+    [
+        odl,
+        uuid(8363bc22-b4b4-4b19-989d-1cd765749dd1),
+        dual,
+        oleautomation
+    ]
+    interface IWMPMediaCollection : IDispatch
+    {
+        [id(0x01c4)]
+        HRESULT add(
+            [in] BSTR bstrURL,
+            [out, retval] IWMPMedia **ppItem);
+
+        [id(0x01c5)]
+        HRESULT getAll([out, retval] IWMPPlaylist **ppMediaItems);
+
+        [id(0x01c6)]
+        HRESULT getByName(
+            [in] BSTR bstrName,
+            [out, retval] IWMPPlaylist **ppMediaItems);
+
+        [id(0x01c7)]
+        HRESULT getByGenre(
+            [in] BSTR bstrGenre,
+            [out, retval] IWMPPlaylist **ppMediaItems);
+
+        [id(0x01c8)]
+        HRESULT getByAuthor(
+            [in] BSTR bstrAuthor,
+            [out, retval] IWMPPlaylist **ppMediaItems);
+
+        [id(0x01c9)]
+        HRESULT getByAlbum(
+            [in] BSTR bstrAlbum,
+            [out, retval] IWMPPlaylist **ppMediaItems);
+
+        [id(0x01ca)]
+        HRESULT getByAttribute(
+            [in] BSTR bstrAttribute,
+            [in] BSTR bstrValue,
+            [out, retval] IWMPPlaylist **ppMediaItems);
+
+        [id(0x01cb)]
+        HRESULT remove(
+            [in] IWMPMedia *pItem,
+            [in] VARIANT_BOOL varfDeleteFile);
+
+        [id(0x01cd)]
+        HRESULT getAttributeStringCollection(
+            [in] BSTR bstrAttribute,
+            [in] BSTR bstrMediaType,
+            [out, retval] IWMPStringCollection **ppStringCollection);
+
+        [id(0x01d6)]
+        HRESULT getMediaAtom(
+            [in] BSTR bstrItemName,
+            [out, retval] long *plAtom);
+
+        [id(0x01d7)]
+        HRESULT setDeleted(
+            [in] IWMPMedia *pItem,
+            [in] VARIANT_BOOL varfIsDeleted);
+
+        [id(0x01d8)]
+        HRESULT isDeleted(
+            [in] IWMPMedia *pItem,
+            [out, retval] VARIANT_BOOL *pvarfIsDeleted);
+    }
+
+    [
+        odl,
+        uuid(679409c0-99f7-11d3-9fb7-00105aa620bb),
+        dual,
+        oleautomation
+    ]
+    interface IWMPPlaylistArray : IDispatch
+    {
+        [id(0x01f5), propget]
+        HRESULT count([out, retval] long *plCount);
+
+        [id(0x01f6)]
+        HRESULT Item(
+            [in] long lIndex,
+            [out, retval] IWMPPlaylist **ppItem);
+    }
+
+    [
+        odl,
+        uuid(10a13217-23a7-439b-b1c0-d847c79b7774),
+        dual,
+        oleautomation
+    ]
+    interface IWMPPlaylistCollection : IDispatch
+    {
+        [id(0x0228)]
+        HRESULT newPlaylist(
+            [in] BSTR bstrName,
+            [out, retval] IWMPPlaylist **ppItem);
+
+        [id(0x0229)]
+        HRESULT getAll([out, retval] IWMPPlaylistArray **ppPlaylistArray);
+
+        [id(0x022a)]
+        HRESULT getByName(
+            [in] BSTR bstrName,
+            [out, retval] IWMPPlaylistArray **ppPlaylistArray);
+
+        [id(0x022c)]
+        HRESULT remove([in] IWMPPlaylist *pItem);
+
+        [id(0x0230)]
+        HRESULT setDeleted(
+            [in] IWMPPlaylist *pItem,
+            [in] VARIANT_BOOL varfIsDeleted);
+
+        [id(0x0231)]
+        HRESULT isDeleted(
+            [in] IWMPPlaylist *pItem,
+            [out, retval] VARIANT_BOOL *pvarfIsDeleted);
+
+        [id(0x0232)]
+        HRESULT importPlaylist(
+            [in] IWMPPlaylist *pItem,
+            [out, retval] IWMPPlaylist **ppImportedItem);
+    }
+
+    [
+        odl,
+        uuid(ec21b779-edef-462d-bba4-ad9dde2b29a7),
+        dual,
+        oleautomation
+    ]
+    interface IWMPNetwork : IDispatch
+    {
+        [id(0x0321), propget]
+        HRESULT bandWidth([out, retval] long *plBandwidth);
+
+        [id(0x0322), propget]
+        HRESULT recoveredPackets([out, retval] long *plRecoveredPackets);
+
+        [id(0x0323), propget]
+        HRESULT sourceProtocol([out, retval] BSTR *pbstrSourceProtocol);
+
+        [id(0x0324), propget]
+        HRESULT receivedPackets([out, retval] long *plReceivedPackets);
+
+        [id(0x0325), propget]
+        HRESULT lostPackets([out, retval] long *plLostPackets);
+
+        [id(0x0326), propget]
+        HRESULT receptionQuality([out, retval] long *plReceptionQuality);
+
+        [id(0x0327), propget]
+        HRESULT bufferingCount([out, retval] long *plBufferingCount);
+
+        [id(0x0328), propget]
+        HRESULT bufferingProgress([out, retval] long *plBufferingProgress);
+
+        [id(0x0329), propget]
+        HRESULT bufferingTime([out, retval] long *plBufferingTime);
+
+        [id(0x0329), propput]
+        HRESULT bufferingTime([in] long plBufferingTime);
+
+        [id(0x032a), propget]
+        HRESULT frameRate([out, retval] long *plFrameRate);
+
+        [id(0x032b), propget]
+        HRESULT maxBitRate([out, retval] long *plBitRate);
+
+        [id(0x032c), propget]
+        HRESULT bitRate([out, retval] long *plBitRate);
+
+        [id(0x032d)]
+        HRESULT getProxySettings(
+            [in] BSTR bstrProtocol,
+            [out, retval] long *plProxySetting);
+
+        [id(0x032e)]
+        HRESULT setProxySettings(
+            [in] BSTR bstrProtocol,
+            [in] long lProxySetting);
+
+        [id(0x032f)]
+        HRESULT getProxyName(
+            [in] BSTR bstrProtocol,
+            [out, retval] BSTR *pbstrProxyName);
+
+        [id(0x0330)]
+        HRESULT setProxyName(
+            [in] BSTR bstrProtocol,
+            [in] BSTR bstrProxyName);
+
+        [id(0x0331)]
+        HRESULT getProxyPort(
+            [in] BSTR bstrProtocol,
+            [out, retval] long *lProxyPort);
+
+        [id(0x0332)]
+        HRESULT setProxyPort(
+            [in] BSTR bstrProtocol,
+            [in] long lProxyPort);
+
+        [id(0x0333)]
+        HRESULT getProxyExceptionList(
+            [in] BSTR bstrProtocol,
+            [out, retval] BSTR *pbstrExceptionList);
+
+        [id(0x0334)]
+        HRESULT setProxyExceptionList(
+            [in] BSTR bstrProtocol,
+            [in] BSTR pbstrExceptionList);
+
+        [id(0x0335)]
+        HRESULT getProxyBypassForLocal(
+            [in] BSTR bstrProtocol,
+            [out, retval] VARIANT_BOOL *pfBypassForLocal);
+
+        [id(0x0336)]
+        HRESULT setProxyBypassForLocal(
+            [in] BSTR bstrProtocol,
+            [in] VARIANT_BOOL fBypassForLocal);
+
+        [id(0x0337), propget]
+        HRESULT maxBandwidth([out, retval] long *lMaxBandwidth);
+        [id(0x0337), propput]
+        HRESULT maxBandwidth([in] long lMaxBandwidth);
+
+        [id(0x0338), propget]
+        HRESULT downloadProgress([out, retval] long *plDownloadProgress);
+
+        [id(0x0339), propget]
+        HRESULT encodedFrameRate([out, retval] long *plFrameRate);
+
+        [id(0x033a), propget]
+        HRESULT framesSkipped([out, retval] long *plFrames);
+    }
+
+    [
+        odl,
+        uuid(cfab6e98-8730-11d3-b388-00c04f68574b),
+        dual,
+        oleautomation
+    ]
+    interface IWMPCdrom : IDispatch
+    {
+        [id(0x00fb), propget]
+        HRESULT driveSpecifier([out, retval] BSTR *pbstrDrive);
+
+        [id(0x00fc), propget]
+        HRESULT Playlist([out, retval] IWMPPlaylist **ppPlaylist);
+
+        [id(0x00fd)]
+        HRESULT eject();
+    }
+
+    [
+        odl,
+        uuid(ee4c8fe2-34b2-11d3-a3bf-006097c9b344),
+        dual,
+        oleautomation
+    ]
+    interface IWMPCdromCollection : IDispatch
+    {
+        [id(0x012d), propget]
+        HRESULT count([out, retval] long *plCount);
+
+        [id(0x012e)]
+        HRESULT Item(
+            [in] long lIndex,
+            [out, retval] IWMPCdrom **ppItem);
+
+        [id(0x012f)]
+        HRESULT getByDriveSpecifier(
+            [in] BSTR bstrDriveSpecifier,
+            [out, retval] IWMPCdrom **ppCdrom);
+    }
+
+    [
+        odl,
+        uuid(8da61686-4668-4a5c-ae5d-803193293dbe),
+        dual,
+        oleautomation
+    ]
+    interface IWMPDVD : IDispatch
+    {
+        [id(0x03e9), propget]
+        HRESULT isAvailable(
+            [in] BSTR bstrItem,
+            [out, retval] VARIANT_BOOL *pIsAvailable);
+
+        [id(0x03ea), propget]
+        HRESULT domain([out, retval] BSTR *strDomain);
+
+        [id(0x03eb)]
+        HRESULT topMenu();
+
+        [id(0x03ec)]
+        HRESULT titleMenu();
+
+        [id(0x03ed)]
+        HRESULT back();
+
+        [id(0x03ee)]
+        HRESULT resume();
+    }
+
+    [
+        odl,
+        uuid(4f2df574-c588-11d3-9ed0-00c04fb6e937),
+        dual,
+        oleautomation
+    ]
+    interface IWMPClosedCaption : IDispatch
+    {
+        [id(0x03b7), propget]
+        HRESULT SAMIStyle([out, retval] BSTR *pbstrSAMIStyle);
+        [id(0x03b7), propput]
+        HRESULT SAMIStyle([in] BSTR pbstrSAMIStyle);
+
+        [id(0x03b8), propget]
+        HRESULT SAMILang([out, retval] BSTR *pbstrSAMILang);
+
+        [id(0x03b8), propput]
+        HRESULT SAMILang([in] BSTR pbstrSAMILang);
+
+        [id(0x03b9), propget]
+        HRESULT SAMIFileName([out, retval] BSTR *pbstrSAMIFileName);
+
+        [id(0x03b9), propput]
+        HRESULT SAMIFileName([in] BSTR pbstrSAMIFileName);
+
+        [id(0x03ba), propget]
+        HRESULT captioningId([out, retval] BSTR *pbstrCaptioningID);
+
+        [id(0x03ba), propput]
+        HRESULT captioningId([in] BSTR pbstrCaptioningID);
+    }
+
+    [
+        odl,
+        uuid(3614c646-3b3b-4de7-a81e-930e3f2127b3),
+        dual,
+        oleautomation
+    ]
+    interface IWMPErrorItem : IDispatch
+    {
+        [id(0x0385), propget]
+        HRESULT errorCode([out, retval] long *phr);
+
+        [id(0x0386), propget]
+        HRESULT errorDescription([out, retval] BSTR *pbstrDescription);
+
+        [id(0x0387), propget]
+        HRESULT errorContext([out, retval] VARIANT *pvarContext);
+
+        [id(0x0388), propget]
+        HRESULT remedy([out, retval] long *plRemedy);
+
+        [id(0x0389), propget]
+        HRESULT customUrl([out, retval] BSTR *pbstrCustomUrl);
+    }
+
+    [
+        odl,
+        uuid(a12dcf7d-14ab-4c1b-a8cd-63909f06025b),
+        dual,
+        oleautomation
+    ]
+    interface IWMPError : IDispatch
+    {
+        [id(0x0353)]
+        HRESULT clearErrorQueue();
+
+        [id(0x0354), propget]
+        HRESULT errorCount([out, retval] long *plNumErrors);
+
+        [id(0x0355), propget]
+        HRESULT Item(
+            [in] long dwIndex,
+            [out, retval] IWMPErrorItem **ppErrorItem);
+
+        [id(0x0356)]
+        HRESULT webHelp();
+    }
+
+    [
+        odl,
+        uuid(40897764-ceab-47be-ad4a-8e28537f9bbf),
+        dual,
+        oleautomation
+    ]
+    interface IWMPPlayerApplication : IDispatch
+    {
+        [id(0x044d)]
+        HRESULT switchToPlayerApplication();
+
+        [id(0x044e)]
+        HRESULT switchToControl();
+
+        [id(0x044f), propget]
+        HRESULT playerDocked([out, retval] VARIANT_BOOL* pbPlayerDocked);
+
+        [id(0x0450), propget]
+        HRESULT hasDisplay([out, retval] VARIANT_BOOL *pbHasDisplay);
+    }
+
+    [
+        odl,
+        uuid(d84cca99-cce2-11d2-9ecc-0000f8085981),
+        dual,
+        oleautomation
+    ]
+    interface IWMPCore : IDispatch
+    {
+        [id(0x0003)]
+        HRESULT close();
+
+        [id(0x0001), propget]
+        HRESULT URL([out, retval] BSTR *pbstrURL);
+        [id(0x0001), propput]
+        HRESULT URL([in] BSTR pbstrURL);
+
+        [id(0x0002), propget]
+        HRESULT openState([out, retval] WMPOpenState *pwmpos);
+
+        [id(0x000a), propget]
+        HRESULT playState([out, retval] WMPPlayState *pwmpps);
+
+        [id(0x0004), propget]
+        HRESULT controls([out, retval] IWMPControls **ppControl);
+
+        [id(0x0005), propget]
+        HRESULT settings([out, retval] IWMPSettings **ppSettings);
+
+        [id(0x0006), propget]
+        HRESULT currentMedia([out, retval] IWMPMedia **ppMedia);
+        [id(0x0006), propput]
+        HRESULT currentMedia([in] IWMPMedia *ppMedia);
+
+        [id(0x0008), propget]
+        HRESULT mediaCollection([out, retval] IWMPMediaCollection **ppMediaCollection);
+
+        [id(0x0009), propget]
+        HRESULT playlistCollection([out, retval] IWMPPlaylistCollection **ppPlaylistCollection);
+
+        [id(0x000b), propget]
+        HRESULT versionInfo([out, retval] BSTR *pbstrVersionInfo);
+
+        [id(0x000c)]
+        HRESULT launchURL([in] BSTR bstrURL);
+
+        [id(0x0007), propget]
+        HRESULT network([out, retval] IWMPNetwork **ppQNI);
+
+        [id(0x000d), propget]
+        HRESULT currentPlaylist([out, retval] IWMPPlaylist **ppPL);
+        [id(0x000d), propput]
+        HRESULT currentPlaylist([in] IWMPPlaylist *ppPL);
+
+        [id(0x000e), propget]
+        HRESULT cdromCollection([out, retval] IWMPCdromCollection **ppCdromCollection);
+
+        [id(0x000f), propget]
+        HRESULT closedCaption([out, retval] IWMPClosedCaption **ppClosedCaption);
+
+        [id(0x0010), propget]
+        HRESULT isOnline([out, retval] VARIANT_BOOL *pfOnline);
+
+        [id(0x0011), propget]
+        HRESULT Error([out, retval] IWMPError **ppError);
+
+        [id(0x0012), propget]
+        HRESULT status([out, retval] BSTR *pbstrStatus);
+    }
+
+    [
+        odl,
+        uuid(bc17e5B7-7561-4c18-bb90-17d485775659),
+        dual,
+        oleautomation
+    ]
+    interface IWMPCore2 : IWMPCore {
+        [id(0x0028), propget]
+        HRESULT dvd([out, retval] IWMPDVD **ppDVD);
+    }
+
+    [
+        odl,
+        uuid(7587c667-628f-499f-88e7-6A6f4e888464),
+        dual,
+        oleautomation
+    ]
+    interface IWMPCore3 : IWMPCore2
+    {
+        [id(0x0029)]
+        HRESULT newPlaylist(
+            [in] BSTR bstrName,
+            [in] BSTR bstrURL,
+            [out, retval] IWMPPlaylist **ppPlaylist);
+
+        [id(0x002a)]
+        HRESULT newMedia(
+            [in] BSTR bstrURL,
+            [out, retval] IWMPMedia **ppMedia);
+    }
+
+    [
+        odl,
+        uuid(6c497d62-8919-413c-82db-e935fb3ec584),
+        dual,
+        oleautomation
+    ]
+    interface IWMPPlayer4 : IWMPCore3
+    {
+        [id(0x0013), propget]
+        HRESULT enabled([out, retval] VARIANT_BOOL *pbEnabled);
+        [id(0x0013), propput]
+        HRESULT enabled([in] VARIANT_BOOL pbEnabled);
+
+        [id(0x0015), propget]
+        HRESULT fullScreen([out, retval] VARIANT_BOOL *pbFullScreen);
+        [id(0x0015), propput]
+        HRESULT fullScreen(VARIANT_BOOL pbFullScreen);
+
+        [id(0x0016), propget]
+        HRESULT enableContextMenu([out, retval] VARIANT_BOOL *pbEnableContextMenu);
+        [id(0x0016), propput]
+        HRESULT enableContextMenu(VARIANT_BOOL pbEnableContextMenu);
+
+        [id(0x0017), propput]
+        HRESULT uiMode([in] BSTR pbstrMode);
+        [id(0x0017), propget]
+        HRESULT uiMode([out, retval] BSTR *pbstrMode);
+
+        [id(0x0018), propget]
+        HRESULT stretchToFit([out, retval] VARIANT_BOOL *pbEnabled);
+        [id(0x0018), propput]
+        HRESULT stretchToFit([in] VARIANT_BOOL pbEnabled);
+
+        [id(0x0019), propget]
+        HRESULT windowlessVideo([out, retval] VARIANT_BOOL *pbEnabled);
+        [id(0x0019), propput]
+        HRESULT windowlessVideo([in] VARIANT_BOOL pbEnabled);
+
+        [id(0x001a), propget]
+        HRESULT isRemote([out, retval] VARIANT_BOOL *pvarfIsRemote);
+
+        [id(0x001b), propget]
+        HRESULT playerApplication([out, retval] IWMPPlayerApplication **ppIWMPPlayerApplication);
+
+        [id(0x001c)]
+        HRESULT openPlayer([in] BSTR bstrURL);
+    }
+
+    [
+        odl,
+        uuid(82a2986c-0293-4fd0-b279-b21b86c058be),
+        oleautomation
+    ]
+    interface IWMPSyncDevice : IUnknown
+    {
+        [propget]
+        HRESULT friendlyName([out, retval] BSTR *name);
+
+        [propput]
+        HRESULT friendlyName([in] BSTR name);
+
+        [propget]
+        HRESULT deviceName([out, retval] BSTR *name);
+
+        [propget]
+        HRESULT deviceId([out, retval] BSTR *device);
+
+        [propget]
+        HRESULT partnershipIndex([out, retval] long *index);
+
+        [propget]
+        HRESULT connected([out, retval] VARIANT_BOOL *connected);
+
+        [propget]
+        HRESULT status([out, retval] WMPDeviceStatus *status);
+
+        [propget]
+        HRESULT syncState([out, retval] WMPSyncState *state);
+
+        [propget]
+        HRESULT progress([out, retval] long *progress);
+
+        HRESULT getItemInfo(
+            [in] BSTR name,
+            [out, retval] BSTR *val);
+
+        HRESULT createPartnership([in] VARIANT_BOOL showui);
+
+        HRESULT deletePartnership();
+
+        HRESULT start();
+
+        HRESULT stop();
+
+        HRESULT showSettings();
+
+        HRESULT isIdentical(
+            [in] IWMPSyncDevice *device,
+            [out, retval] VARIANT_BOOL *ret);
+    }
+
+    [
+        odl,
+        uuid(88afb4b2-140a-44d2-91e6-4543da467cd1),
+        oleautomation
+    ]
+    interface IWMPSyncDevice2 : IWMPSyncDevice
+    {
+        HRESULT setItemInfo(
+            [in] BSTR name,
+            [in] BSTR val);
+    }
+
+    [
+      odl,
+      uuid(56e2294f-69ed-4629-a869-aea72c0dcc2c),
+      oleautomation
+    ]
+    interface IWMPCdromRip : IUnknown
+    {
+        [propget]
+        HRESULT ripState([out, retval] WMPRipState *state);
+
+        [propget]
+        HRESULT ripProgress([out, retval] long *progress);
+
+        HRESULT startRip();
+
+        HRESULT stopRip();
+    }
+
+    [
+        odl,
+        uuid(bd94dbeb-417f-4928-aa06-087d56ed9b59),
+        oleautomation
+    ]
+    interface IWMPCdromBurn : IUnknown
+    {
+        HRESULT isAvailable(
+            [in] BSTR item,
+            [out, retval] VARIANT_BOOL *available);
+
+        HRESULT getItemInfo(
+            [in] BSTR item,
+            [out, retval] BSTR *val);
+
+        [propget]
+        HRESULT label([out, retval] BSTR *label);
+
+        [propput]
+        HRESULT label([in] BSTR label);
+
+        [propget]
+        HRESULT burnFormat([out, retval] WMPBurnFormat *format);
+
+        [propput]
+        HRESULT burnFormat([in] WMPBurnFormat format);
+
+        [propget]
+        HRESULT burnPlaylist([out, retval] IWMPPlaylist **playlist);
+
+        [propput]
+        HRESULT burnPlaylist([in] IWMPPlaylist *playlist);
+
+        HRESULT refreshStatus();
+
+        [propget]
+        HRESULT burnState([out, retval] WMPBurnState *state);
+
+        [propget]
+        HRESULT burnProgress([out, retval] long *progress);
+
+        HRESULT startBurn();
+
+        HRESULT stopBurn();
+
+        HRESULT erase();
+    }
+
+    [
+        odl,
+        uuid(3df47861-7df1-4c1f-a81b-4c26f0f7a7c6),
+        oleautomation
+    ]
+    interface IWMPLibrary : IUnknown
+    {
+        [propget]
+        HRESULT name([out, retval] BSTR *name);
+
+        [propget]
+        HRESULT type([out, retval] WMPLibraryType *type);
+
+        [propget]
+        HRESULT mediaCollection([out, retval] IWMPMediaCollection **collection);
+
+        HRESULT isIdentical(
+            [in] IWMPLibrary *wmplibrary,
+            [out, retval] VARIANT_BOOL *ret);
+    }
+
+    [
+        uuid(19a6627b-da9e-47c1-bb23-00b5e668236a),
+        odl
+    ]
+    interface IWMPEvents : IUnknown
+    {
+        void OpenStateChange([in] long state);
+
+        void PlayStateChange([in] long state);
+
+        void AudioLanguageChange([in] long lang);
+
+        void StatusChange();
+
+        void ScriptCommand(
+            [in] BSTR type,
+            [in] BSTR param);
+
+        void NewStream();
+
+        void Disconnect([in] long result);
+
+        void Buffering([in] VARIANT_BOOL start);
+
+        void Error();
+
+        void Warning(
+            [in] long warning,
+            [in] long param,
+            [in] BSTR description);
+
+        void EndOfStream([in] long result);
+
+        void PositionChange(
+            [in] double old_position,
+            [in] double new_position);
+
+        void MarkerHit([in] long marker);
+
+        void DurationUnitChange([in] long duration);
+
+        void CdromMediaChange([in] long num);
+
+        void PlaylistChange(
+            [in] IDispatch *playlist,
+            [in] WMPPlaylistChangeEventType change);
+
+        void CurrentPlaylistChange([in] WMPPlaylistChangeEventType change);
+
+        void CurrentPlaylistItemAvailable([in] BSTR item);
+
+        void MediaChange([in] IDispatch *item);
+
+        void CurrentMediaItemAvailable([in] BSTR name);
+
+        void CurrentItemChange([in] IDispatch *media);
+
+        void MediaCollectionChange();
+
+        void MediaCollectionAttributeStringAdded(
+            [in] BSTR name,
+            [in] BSTR val);
+
+        void MediaCollectionAttributeStringRemoved(
+            [in] BSTR name,
+            [in] BSTR val);
+
+        void MediaCollectionAttributeStringChanged(
+            [in] BSTR name,
+            [in] BSTR old_val,
+            [in] BSTR new_val);
+
+        void PlaylistCollectionChange();
+
+        void PlaylistCollectionPlaylistAdded([in] BSTR name);
+
+        void PlaylistCollectionPlaylistRemoved([in] BSTR name);
+
+        void PlaylistCollectionPlaylistSetAsDeleted(
+            [in] BSTR name,
+            [in] VARIANT_BOOL deleted);
+
+        void ModeChange(
+            [in] BSTR ModeName,
+            [in] VARIANT_BOOL value);
+
+        void MediaError([in] IDispatch *media);
+
+        void OpenPlaylistSwitch([in] IDispatch *item);
+
+        void DomainChange([in] BSTR domain);
+
+        void SwitchedToPlayerApplication();
+
+        void SwitchedToControl();
+
+        void PlayerDockedStateChange();
+
+        void PlayerReconnect();
+
+        void Click(
+            [in] short button,
+            [in] short shift_state,
+            [in] long x,
+            [in] long y);
+
+        void DoubleClick(
+            [in] short button,
+            [in] short shift_state,
+            [in] long fX,
+            [in] long fY);
+
+        void KeyDown(
+            [in] short keycode,
+            [in] short shift_state);
+
+        void KeyPress([in] short ascii);
+
+        void KeyUp(
+            [in] short keycode,
+            [in] short shift_state);
+
+        void MouseDown(
+            [in] short button,
+            [in] short nShiftState,
+            [in] long x,
+            [in] long y);
+
+        void MouseMove(
+            [in] short button,
+            [in] short shift_state,
+            [in] long x,
+            [in] long y);
+
+        void MouseUp(
+            [in] short button,
+            [in] short shift_state,
+            [in] long x,
+            [in] long y);
+    }
+
+    [
+        uuid(1e7601fa-47ea-4107-9ea9-9004ed9684ff),
+        odl
+    ]
+    interface IWMPEvents2 : IWMPEvents
+    {
+        void DeviceConnect([in] IWMPSyncDevice *device);
+
+        void DeviceDisconnect([in] IWMPSyncDevice *device);
+
+        void DeviceStatusChange(
+            [in] IWMPSyncDevice *device,
+            [in] WMPDeviceStatus status);
+
+        void DeviceSyncStateChange(
+            [in] IWMPSyncDevice *device,
+            [in] WMPSyncState state);
+
+        void DeviceSyncError(
+            [in] IWMPSyncDevice *device,
+            [in] IDispatch *media);
+
+        void CreatePartnershipComplete(
+            [in] IWMPSyncDevice *device,
+            [in] HRESULT result);
+    }
+
+    [
+        uuid(1f504270-a66b-4223-8e96-26a06c63d69f),
+        odl
+    ]
+    interface IWMPEvents3 : IWMPEvents2
+    {
+        void CdromRipStateChange(
+            [in] IWMPCdromRip *rip,
+            [in] WMPRipState state);
+
+        void CdromRipMediaError(
+            [in] IWMPCdromRip *rip,
+            [in] IDispatch *media);
+
+        void CdromBurnStateChange(
+            [in] IWMPCdromBurn *burn,
+            [in] WMPBurnState state);
+
+        void CdromBurnMediaError(
+            [in] IWMPCdromBurn *burn,
+            [in] IDispatch *media);
+
+        void CdromBurnError(
+            [in] IWMPCdromBurn *burn,
+            [in] HRESULT error);
+
+        void LibraryConnect(
+            [in] IWMPLibrary *wmplibrary);
+
+        void LibraryDisconnect(
+            [in] IWMPLibrary *wmplibrary);
+
+        void FolderScanStateChange(
+            [in] WMPFolderScanState state);
+
+        void StringCollectionChange(
+            [in] IDispatch *collection,
+            [in] WMPStringCollectionChangeEventType change,
+            [in] long index);
+
+        void MediaCollectionMediaAdded(
+            [in] IDispatch *media);
+
+        void MediaCollectionMediaRemoved(
+            [in] IDispatch *media);
+    }
+
+    [
+        uuid(26dabcfa-306b-404d-9a6f-630a8405048d),
+        odl
+    ]
+    interface IWMPEvents4 : IWMPEvents3
+    {
+        void DeviceEstimation(
+            [in] IWMPSyncDevice *device,
+            [in] HRESULT result,
+            [in] LONGLONG used_space,
+            [in] LONGLONG estimated_space);
+    }
+
+    [
+        hidden,
+        uuid(6bf52a51-394a-11d3-b153-00c04f79faa6)
+    ]
+    interface _WMPOCXEvents : IDispatch
+    {}
+
+    [
+        helpstring("Windows Media Player"),
+        threading(apartment),
+        progid("WMPlayer.OCX.7"),
+        vi_progid("WMPlayer.OCX"),
+        uuid(6bf52a52-394a-11d3-b153-00c04f79faa6)
+     ]
+     coclass WindowsMediaPlayer
+     {
+        [default] interface IWMPPlayer4;
+        /* interface IWMPPlayer3; */
+        /* interface IWMPPlayer2; */
+        /* interface IWMPPlayer; */
+        interface IWMPControls;
+        interface IWMPSettings;
+        interface IWMPPlaylist;
+        interface IWMPMedia;
+        interface IWMPMediaCollection;
+        interface IWMPPlaylistCollection;
+        interface IWMPCdromCollection;
+        interface IWMPError;
+        interface IWMPErrorItem;
+        /* interface IWMPErrorItem2; */
+        interface IWMPClosedCaption;
+        interface IWMPDVD;
+        /* interface IWMPControls2; */
+        /* interface IWMPMedia2; */
+        /* interface IWMPMedia3; */
+        /* interface IWMPMetadataPicture; */
+        /* interface IWMPMetadataText; */
+        /* interface IWMPSettings2; */
+        /* interface IWMPControls3; */
+        /* interface IWMPClosedCaption2; */
+        /* interface IWMPMediaCollection2; */
+        /* interface IWMPStringCollection2; */
+        [default, source] dispinterface _WMPOCXEvents;
+     }
+}

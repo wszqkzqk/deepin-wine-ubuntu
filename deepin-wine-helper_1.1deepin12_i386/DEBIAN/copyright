@@ -1,0 +1,8 @@
+Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: deepin-crossover
+Source: not available
+
+Files: *
+Copyright: 2015 Wuhan Deepin Technology Co., Ltd.
+License: 
+All rights reserved by Wuhan Deepin Technology Co., Ltd.

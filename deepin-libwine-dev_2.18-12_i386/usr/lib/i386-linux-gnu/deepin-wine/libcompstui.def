@@ -1,0 +1,9 @@
+; File generated automatically from ./dlls/compstui/compstui.spec; do not edit!
+
+LIBRARY compstui.dll
+
+EXPORTS
+  CommonPropertySheetUIA@16 @1
+  CommonPropertySheetUIW@16 @2
+  GetCPSUIUserData@4 @3
+  SetCPSUIUserData@8 @4

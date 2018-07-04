@@ -1,0 +1,11 @@
+; File generated automatically from ./dlls/hhctrl.ocx/hhctrl.ocx.spec; do not edit!
+
+LIBRARY hhctrl.ocx
+
+EXPORTS
+  doWinMain@8 @13
+  HtmlHelpA@16 @14
+  HtmlHelpW@16 @15
+  DllGetClassObject@12 @16 PRIVATE
+  DllRegisterServer@0 @17 PRIVATE
+  DllUnregisterServer@0 @18 PRIVATE

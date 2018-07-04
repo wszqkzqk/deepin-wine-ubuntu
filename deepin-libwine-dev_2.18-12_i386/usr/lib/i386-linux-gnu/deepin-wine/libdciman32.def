@@ -1,0 +1,9 @@
+; File generated automatically from ./dlls/dciman32/dciman32.spec; do not edit!
+
+LIBRARY dciman32.dll
+
+EXPORTS
+  DCICloseProvider@4 @2
+  DCICreatePrimary@8 @5
+  DCIOpenProvider@0 @10
+  DllEntryPoint@12=DllMain@12 @14 PRIVATE

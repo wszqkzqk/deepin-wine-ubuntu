@@ -1,0 +1,10 @@
+; File generated automatically from ./dlls/dpnet/dpnet.spec; do not edit!
+
+LIBRARY dpnet.dll
+
+EXPORTS
+  DirectPlay8Create@12 @1
+  DllCanUnloadNow@0 @2 PRIVATE
+  DllGetClassObject@12 @3 PRIVATE
+  DllRegisterServer@0 @4 PRIVATE
+  DllUnregisterServer@0 @5 PRIVATE

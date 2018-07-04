@@ -1,0 +1,13 @@
+ab77907e65a41fc231ba79707ab84bf9  usr/local/bin/udcli
+fa5f168d9ff8408748abb3707f8f53b9  usr/local/include/libudis86/extern.h
+2a45cab320db3521ac36fe3ff67c0841  usr/local/include/libudis86/itab.h
+06d0d616b8c9becd33393b8a235127af  usr/local/include/libudis86/types.h
+ce8c555c9a93a8a5968cbe5050cab32e  usr/local/include/udis86.h
+50201cd6fb639c618a733231ad04b32f  usr/local/lib/libudis86.la
+66b61448a4acbbc35770d4288ddeb3ea  usr/local/lib/libudis86.so.0.0.0
+1a69dd93992070399d3598efaca40d18  usr/local/share/doc/udis86/x86/optable.xml
+4b385dadca12b0f9b89e607350e5b231  usr/local/share/doc/udis86/x86/optable.xsl
+66a254982c8974e4228ac9056aeb8ea2  usr/share/doc/udis86/README.Debian
+349d8a19369658564a07d76192295190  usr/share/doc/udis86/changelog.Debian.gz
+2fb88508fcc3b333e1ec274c687fa246  usr/share/doc/udis86/changelog.gz
+760d1910f91665dac0e4672c40fdc41e  usr/share/doc/udis86/copyright

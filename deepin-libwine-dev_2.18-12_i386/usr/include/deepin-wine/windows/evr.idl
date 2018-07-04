@@ -1,0 +1,98 @@
+/*
+ * COM Classes for evr
+ *
+ * Copyright 2017 Fabian Maurer
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
+ */
+
+import "unknwn.idl";
+import "propidl.idl";
+import "mfidl.idl";
+import "mftransform.idl";
+import "mediaobj.idl";
+import "strmif.idl";
+
+typedef enum _MFVP_MESSAGE_TYPE {
+    MFVP_MESSAGE_FLUSH,
+    MFVP_MESSAGE_INVALIDATEMEDIATYPE,
+    MFVP_MESSAGE_PROCESSINPUTNOTIFY,
+    MFVP_MESSAGE_BEGINSTREAMING,
+    MFVP_MESSAGE_ENDSTREAMING,
+    MFVP_MESSAGE_ENDOFSTREAM,
+    MFVP_MESSAGE_STEP,
+    MFVP_MESSAGE_CANCELSTEP,
+} MFVP_MESSAGE_TYPE;
+
+[
+    object,
+    uuid(29aff080-182a-4a5d-af3b-448f3a6346cb),
+    local
+]
+interface IMFVideoPresenter : IMFClockStateSink
+{
+    HRESULT ProcessMessage(
+        [in] MFVP_MESSAGE_TYPE eMessage,
+        [in] ULONG_PTR ulParam
+    );
+    HRESULT GetCurrentMediaType(
+        [out] IMFVideoMediaType **ppMediaType
+    );
+}
+
+[
+    object,
+    uuid(83e91e85-82c1-4ea7-801d-85dc50b75086),
+    local
+]
+interface IEVRFilterConfig : IUnknown
+{
+    HRESULT SetNumberOfStreams(
+        [in] DWORD dwMaxStreams
+    );
+    HRESULT GetNumberOfStreams(
+        [out] DWORD *pdwMaxStreams
+    );
+}
+
+[
+    object,
+    uuid(1f6a9f17-e70b-4e24-8ae4-0b2c3ba7a4ae),
+    local
+]
+interface IMFVideoPositionMapper : IUnknown
+{
+    HRESULT MapOutputCoordinateToInputStream(
+        [in] float xOut,
+        [in] float yOut,
+        [in] DWORD dwOutputStreamIndex,
+        [in] DWORD dwInputStreamIndex,
+        [out] float *pxIn,
+        [out] float *pyIn
+    );
+}
+
+[
+    object,
+    uuid(dfdfd197-a9ca-43d8-b341-6af3503792cd),
+    local
+]
+interface IMFVideoRenderer : IUnknown
+{
+    HRESULT InitializeRenderer(
+        [in] IMFTransform *pVideoMixer,
+        [in] IMFVideoPresenter *pVideoPresenter
+    );
+}

@@ -1,0 +1,120 @@
+/*
+ * Copyright 2011 Jacek Caban for CodeWeavers
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
+ */
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+    object,
+    uuid(7e8bc44d-aeff-11d1-89c2-00c04fb6bfc4),
+    dual,
+    pointer_default(unique)
+ ]
+interface IClientCaps : IDispatch
+{
+    [propget, id(1)]
+    HRESULT javaEnabled([out, retval] VARIANT_BOOL *pVal);
+
+    [propget, id(2)]
+    HRESULT cookieEnabled([out, retval] VARIANT_BOOL *pVal);
+
+    [propget, id(3)]
+    HRESULT cpuClass([out, retval] BSTR *p);
+
+    [propget, id(4)]
+    HRESULT systemLanguage([out, retval] BSTR *p);
+
+    [propget, id(6)]
+    HRESULT userLanguage([out, retval] BSTR *p);
+
+    [propget, id(7)]
+    HRESULT platform([out, retval] BSTR *p);
+
+    [propget, id(9)]
+    HRESULT connectionSpeed([out, retval] long *p);
+
+    [propget, id(10)]
+    HRESULT onLine([out, retval] VARIANT_BOOL *p);
+
+    [propget, id(11)]
+    HRESULT colorDepth([out, retval] long *p);
+
+    [propget, id(12)]
+    HRESULT bufferDepth([out, retval] long *p);
+
+    [propget, id(13)]
+    HRESULT width([out, retval] long *p);
+
+    [propget, id(14)]
+    HRESULT height([out, retval] long *p);
+
+    [propget, id(15)]
+    HRESULT availHeight([out, retval] long *p);
+
+    [propget, id(16)]
+    HRESULT availWidth([out, retval] long *p);
+
+    [propget, id(17)]
+    HRESULT connectionType([out, retval] BSTR *p);
+
+    [id(18)]
+    HRESULT isComponentInstalled(
+            [in] BSTR bstrName,
+            [in] BSTR bstrType,
+            [in, defaultvalue("")] BSTR bStrVer,
+            [out, retval] VARIANT_BOOL *p);
+
+    [id(19)]
+    HRESULT getComponentVersion(
+            [in] BSTR bstrName,
+            [in] BSTR bstrType,
+            [out, retval] BSTR *pbstrVer);
+
+    [id(20)]
+    HRESULT compareVersions(
+            [in] BSTR bstrVer1,
+            [in] BSTR bstrVer2,
+            [out, retval] long *p);
+
+    [id(21)]
+    HRESULT addComponentRequest(
+            [in] BSTR bstrName,
+            [in] BSTR bstrType,
+            [in, defaultvalue("")] BSTR bstrVer);
+
+    [id(22)]
+    HRESULT doComponentRequest([out, retval] VARIANT_BOOL *p);
+
+    [id(23)]
+    HRESULT clearComponentRequest();
+}
+
+[
+    uuid(7e8bc440-aeff-11d1-89c2-00c04fb6bfc4),
+    version(1.0)
+]
+library IEXTagLib
+{
+    [
+        uuid(7e8bc44e-aeff-11d1-89c2-00C04fb6bfc4)
+    ]
+    coclass ClientCaps
+    {
+        [default] interface IClientCaps;
+    }
+}

@@ -1,0 +1,5 @@
+; File generated automatically from ./dlls/resutils/resutils.spec; do not edit!
+
+LIBRARY resutils.dll
+
+EXPORTS

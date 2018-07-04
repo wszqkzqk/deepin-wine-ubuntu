@@ -1,0 +1,18 @@
+; File generated automatically from ./dlls/wsdapi/wsdapi.spec; do not edit!
+
+LIBRARY wsdapi.dll
+
+EXPORTS
+  WSDAllocateLinkedMemory@8 @7
+  WSDAttachLinkedMemory@8 @8
+  WSDCreateDiscoveryPublisher@8 @20
+  WSDCreateUdpAddress@4 @26
+  WSDCreateUdpMessageParameters@4 @27
+  WSDDetachLinkedMemory@4 @29
+  WSDFreeLinkedMemory@4 @30
+  WSDXMLAddChild@8 @39
+  WSDXMLAddSibling@8 @40
+  WSDXMLBuildAnyForSingleElement@12 @41
+  WSDXMLCleanupElement@4 @42
+  WSDXMLCreateContext@4 @43
+  WSDXMLGetValueFromAny@16 @45

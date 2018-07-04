@@ -1,0 +1,6 @@
+; File generated automatically from ./dlls/rasdlg/rasdlg.spec; do not edit!
+
+LIBRARY rasdlg.dll
+
+EXPORTS
+  RasEntryDlgW@12 @10

@@ -1,0 +1,54 @@
+; File generated automatically from ./dlls/atl/atl.spec; do not edit!
+
+LIBRARY atl.dll
+
+EXPORTS
+  DllCanUnloadNow@0 @1 PRIVATE
+  DllGetClassObject@12 @2 PRIVATE
+  DllRegisterServer@0 @3 PRIVATE
+  DllUnregisterServer@0 @4 PRIVATE
+  AtlAdvise@16 @10
+  AtlUnadvise@12 @11
+  AtlFreeMarshalStream@4 @12
+  AtlMarshalPtrInProc@12 @13
+  AtlUnmarshalPtr@12 @14
+  AtlModuleGetClassObject@16 @15
+  AtlModuleInit@12 @16
+  AtlModuleRegisterClassObjects@12 @17
+  AtlModuleRegisterServer@12 @18
+  AtlModuleRegisterTypeLib@8 @19
+  AtlModuleRevokeClassObjects@4 @20
+  AtlModuleTerm@4 @21
+  AtlModuleUnregisterServer@8 @22
+  AtlModuleUpdateRegistryFromResourceD@20 @23
+  AtlWaitWithMessageLoop@4 @24
+  AtlCreateTargetDC@8 @26
+  AtlHiMetricToPixel@8 @27
+  AtlPixelToHiMetric@8 @28
+  AtlComPtrAssign@8 @30
+  AtlComQIPtrAssign@12 @31
+  AtlInternalQueryInterface@16 @32
+  AtlGetVersion@4 @34
+  AtlAxDialogBoxW@20 @35
+  AtlAxDialogBoxA@20 @36
+  AtlAxCreateDialogW@20 @37
+  AtlAxCreateDialogA@20 @38
+  AtlAxCreateControl@16 @39
+  AtlAxCreateControlEx@28 @40
+  AtlAxAttachControl@12 @41
+  AtlAxWinInit@0 @42
+  AtlModuleAddCreateWndData@12 @43
+  AtlModuleExtractCreateWndData@4 @44
+  AtlModuleRegisterWndClassInfoW@12 @45
+  AtlModuleRegisterWndClassInfoA@12 @46
+  AtlAxGetControl@8 @47
+  AtlAxGetHost@8 @48
+  AtlRegisterClassCategoriesHelper@12 @49
+  AtlIPersistStreamInit_Load@16 @50
+  AtlIPersistStreamInit_Save@20 @51
+  AtlIPersistPropertyBag_Load@20 @52
+  AtlIPersistPropertyBag_Save@24 @53
+  AtlGetObjectSourceInterface@20 @54
+  AtlModuleLoadTypeLib@16 @56
+  AtlModuleUnregisterServerEx@12 @57
+  AtlModuleAddTermFunc@12 @58

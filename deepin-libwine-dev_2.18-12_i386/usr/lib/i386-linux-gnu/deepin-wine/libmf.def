@@ -1,0 +1,8 @@
+; File generated automatically from ./dlls/mf/mf.spec; do not edit!
+
+LIBRARY mf.dll
+
+EXPORTS
+  MFCreateMediaSession@8 @42
+  MFCreateSourceResolver@4=mfplat.MFCreateSourceResolver @60
+  MFCreateTopology@4 @63

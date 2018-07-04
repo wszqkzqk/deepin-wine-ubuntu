@@ -1,0 +1,10 @@
+Source: deepin-wine-plugin
+Package: deepin-wine-plugin
+Version: 1.0deepin2
+Architecture: amd64
+Maintainer: Deepin Packages Builder <xiewei@deepin.com>
+Depends: libgtk2.0-0
+Section: non-free/otherosfs
+Priority: extra
+Multi-Arch: foreign
+Description: Deepin Wine plugin

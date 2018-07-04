@@ -1,0 +1,13 @@
+; File generated automatically from ./dlls/wlanapi/wlanapi.spec; do not edit!
+
+LIBRARY wlanapi.dll
+
+EXPORTS
+  WlanAllocateMemory@4 @1
+  WlanCloseHandle@8 @2
+  WlanEnumInterfaces@12 @6
+  WlanFreeMemory@4 @8
+  WlanGetAvailableNetworkList@20 @9
+  WlanOpenHandle@16 @18
+  WlanRegisterNotification@28 @22
+  WlanScan@20 @25

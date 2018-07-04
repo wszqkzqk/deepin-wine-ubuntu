@@ -1,0 +1,7 @@
+# debhelper bug causes these
+postinst-has-useless-call-to-ldconfig
+postrm-has-useless-call-to-ldconfig
+# unfortunately wine doesn't doesn't do fortify hardening
+hardening-no-fortify-functions
+# incorrectly flagged
+spelling-error-in-binary

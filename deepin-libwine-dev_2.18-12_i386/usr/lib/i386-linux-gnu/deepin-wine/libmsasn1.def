@@ -1,0 +1,5 @@
+; File generated automatically from ./dlls/msasn1/msasn1.spec; do not edit!
+
+LIBRARY msasn1.dll
+
+EXPORTS

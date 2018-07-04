@@ -1,0 +1,14 @@
+; File generated automatically from ./dlls/olesvr32/olesvr32.spec; do not edit!
+
+LIBRARY olesvr32.dll
+
+EXPORTS
+  OleRegisterServer@20 @2
+  OleRevokeServer@4 @3
+  OleBlockServer@4 @4
+  OleUnblockServer@8 @5
+  OleRegisterServerDoc@16 @6
+  OleRevokeServerDoc@4 @7
+  OleRenameServerDoc@8 @8
+  OleRevertServerDoc@4 @9
+  OleSavedServerDoc@4 @10

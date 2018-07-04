@@ -1,0 +1,49 @@
+; File generated automatically from ./dlls/wintab32/wintab32.spec; do not edit!
+
+LIBRARY wintab32.dll
+
+EXPORTS
+  WTInfoA@12 @20
+  WTOpenA@12 @21
+  WTClose@4 @22
+  WTPacketsGet@12 @23
+  WTPacket@12 @24
+  WTEnable@8 @40
+  WTOverlap@8 @41
+  WTConfig@8 @60
+  WTGetA@8 @61
+  WTSetA@8 @62
+  WTExtGet@12 @63
+  WTExtSet@12 @64
+  WTSave@8 @65
+  WTRestore@12 @66
+  WTPacketsPeek@12 @80
+  WTDataGet@24 @81
+  WTDataPeek@24 @82
+  WTQueueSizeGet@4 @84
+  WTQueueSizeSet@8 @85
+  WTMgrOpen@8 @100
+  WTMgrClose@4 @101
+  WTMgrContextEnum@12 @120
+  WTMgrContextOwner@8 @121
+  WTMgrDefContext@8 @122
+  WTMgrDeviceConfig@12 @140
+  WTMgrExt@12 @180
+  WTMgrCsrEnable@12 @181
+  WTMgrCsrButtonMap@16 @182
+  WTMgrCsrPressureBtnMarks@16 @183
+  WTMgrCsrPressureResponse@16 @184
+  WTMgrCsrExt@16 @185
+  WTQueuePacketsEx@12 @200
+  WTMgrCsrPressureBtnMarksEx@16 @201
+  WTMgrConfigReplaceExA@16 @202
+  WTMgrPacketHookExA@16 @203
+  WTMgrPacketUnhook@4 @204
+  WTMgrPacketHookNext@16 @205
+  WTMgrDefContextEx@12 @206
+  WTInfoW@12 @1020
+  WTOpenW@12 @1021
+  WTGetW@8 @1061
+  WTSetW@8 @1062
+  WTMgrConfigReplaceExW@16 @1202
+  WTMgrPacketHookExW@16 @1203

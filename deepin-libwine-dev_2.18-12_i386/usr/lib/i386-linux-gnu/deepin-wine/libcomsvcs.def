@@ -1,0 +1,9 @@
+; File generated automatically from ./dlls/comsvcs/comsvcs.spec; do not edit!
+
+LIBRARY comsvcs.dll
+
+EXPORTS
+  DllCanUnloadNow@0 @13 PRIVATE
+  DllGetClassObject@12 @14 PRIVATE
+  DllRegisterServer@0 @15 PRIVATE
+  DllUnregisterServer@0 @16 PRIVATE

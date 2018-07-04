@@ -1,0 +1,12 @@
+; File generated automatically from ./dlls/clusapi/clusapi.spec; do not edit!
+
+LIBRARY clusapi.dll
+
+EXPORTS
+  CloseCluster@4 @6
+  ClusterCloseEnum@4 @13
+  ClusterEnum@20 @15
+  ClusterOpenEnum@8 @33
+  GetClusterInformation@16 @73
+  GetNodeClusterState@8 @90
+  OpenCluster@4 @96

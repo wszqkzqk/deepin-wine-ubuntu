@@ -1,0 +1,10 @@
+Package: udis86
+Version: 1.72-2
+Architecture: i386
+Maintainer: Deepin Packages Builder <packages@linuxdeepin.com>
+Installed-Size: 418
+Depends: libc6 (>= 2.7)
+Section: utils
+Priority: optional
+Homepage: http://udis86.sourceforge.net/
+Description: Disassembler Library for x86 and x86-64

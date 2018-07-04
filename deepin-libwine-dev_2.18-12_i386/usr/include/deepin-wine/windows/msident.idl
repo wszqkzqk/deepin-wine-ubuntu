@@ -1,0 +1,94 @@
+/*
+ * Copyright 2012 Jacek Caban for CodeWeavers
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
+ */
+
+#ifndef DO_NO_IMPORTS
+import "unknwn.idl";
+import "ocidl.idl";
+import "oleidl.idl";
+import "oaidl.idl";
+#endif
+
+cpp_quote("#define E_IDENTITIES_DISABLED       _HRESULT_TYPEDEF_(0x80007110)")
+cpp_quote("#define S_IDENTITIES_DISABLED       _HRESULT_TYPEDEF_(0x00007110)")
+cpp_quote("#define E_NO_CURRENT_IDENTITY       _HRESULT_TYPEDEF_(0x80007111)")
+cpp_quote("#define E_USER_CANCELLED            _HRESULT_TYPEDEF_(0x80007112)")
+cpp_quote("#define E_PROCESS_CANCELLED_SWITCH  _HRESULT_TYPEDEF_(0x80007113)")
+cpp_quote("#define E_IDENTITY_NOT_FOUND        _HRESULT_TYPEDEF_(0x80007114)")
+cpp_quote("#define E_IDENTITY_EXISTS           _HRESULT_TYPEDEF_(0x80007115)")
+cpp_quote("#define E_IDENTITY_CHANGING         _HRESULT_TYPEDEF_(0x80007116)")
+
+[
+    uuid(a9ae6c8e-1d1b-11d2-b21a-00c04fa357fa),
+]
+interface IUserIdentity : IUnknown
+{
+    HRESULT GetCookie([out] GUID *puidCookie);
+
+    HRESULT GetName(
+            [in] WCHAR *pszName,
+            [in] ULONG ulBuffSize);
+
+    [local]
+    HRESULT OpenIdentityRegKey(
+            [in]DWORD dwDesiredAccess,
+            [out] HKEY *phKey);
+
+    HRESULT GetIdentityFolder(
+            [in] DWORD dwFlags,
+            [in] WCHAR *pszPath,
+            [in] ULONG ulBuffSize);
+
+cpp_quote("#define GIF_ROAMING_FOLDER     0x0001")
+cpp_quote("#define GIF_NON_ROAMING_FOLDER 0x0002")
+}
+
+[
+    uuid(a9ae6c8f-1d1b-11d2-b21a-00c04fa357fa),
+    odl
+]
+interface IEnumUserIdentity : IUnknown
+{
+    HRESULT Next(
+            [in] ULONG celt,
+            [out, size_is(celt), length_is(*pceltFetched)] IUnknown **rgelt,
+            [out] ULONG *pceltFetched);
+
+    HRESULT Skip([in] ULONG celt);
+    HRESULT Reset();
+    HRESULT Clone([out] IEnumUserIdentity **ppenum);
+    HRESULT GetCount([out] ULONG *pnCount);
+}
+
+[
+    uuid(a9ae6c90-1d1b-11d2-b21a-00c04fa357fa)
+]
+interface IUserIdentityManager : IUnknown
+{
+    HRESULT EnumIdentities([out] IEnumUserIdentity **ppEnumUser);
+    HRESULT ManageIdentities([in] HWND hwndParent, [in] DWORD dwFlags);
+
+cpp_quote("#define UIMI_CREATE_NEW_IDENTITY 0x0001")
+    HRESULT Logon([in] HWND hwndParent, [in] DWORD dwFlags, [out] IUserIdentity **ppIdentity);
+
+cpp_quote("#define UIL_FORCE_UI 0x80000001")
+    HRESULT Logoff([in] HWND hwndParent);
+
+    HRESULT GetIdentityByCookie([in] GUID *uidCookie, [out] IUserIdentity **ppIdentity);
+}
+
+cpp_quote("DEFINE_GUID(CLSID_UserIdentityManager, 0xa9ae6c91,0x1d1b,0x11d2,0xb2,0x1a,0x00,0xc0,0x4f,0xa3,0x57,0xfa);")

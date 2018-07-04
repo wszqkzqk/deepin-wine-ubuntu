@@ -1,0 +1,147 @@
+/*
+ * Copyright (c) 2015 Andrew Eikum for CodeWeavers
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
+ */
+
+import "unknwn.idl";
+
+#define XAPO_REGISTRATION_STRING_LENGTH 256
+
+cpp_quote("#if 0")
+typedef struct WAVEFORMATEX
+{
+    WORD wFormatTag;
+    WORD nChannels;
+    DWORD nSamplesPerSec;
+    DWORD nAvgBytesPerSec;
+    WORD nBlockAlign;
+    WORD wBitsPerSample;
+    WORD cbSize;
+} WAVEFORMATEX;
+
+typedef struct {
+    WAVEFORMATEX    Format;
+    union {
+        WORD        wValidBitsPerSample;
+        WORD        wSamplesPerBlock;
+        WORD        wReserved;
+    } Samples;
+    DWORD           dwChannelMask;
+    GUID            SubFormat;
+} WAVEFORMATEXTENSIBLE, *PWAVEFORMATEXTENSIBLE;
+cpp_quote("#else")
+cpp_quote("#include <mmreg.h>")
+cpp_quote("#endif")
+
+typedef struct XAPO_REGISTRATION_PROPERTIES
+{
+    CLSID clsid;
+    WCHAR FriendlyName[XAPO_REGISTRATION_STRING_LENGTH];
+    WCHAR CopyrightInfo[XAPO_REGISTRATION_STRING_LENGTH];
+    UINT32 MajorVersion;
+    UINT32 MinorVersion;
+    UINT32 Flags;
+    UINT32 MinInputBufferCount;
+    UINT32 MaxInputBufferCount;
+    UINT32 MinOutputBufferCount;
+    UINT32 MaxOutputBufferCount;
+} XAPO_REGISTRATION_PROPERTIES;
+
+typedef struct XAPO20_REGISTRATION_PROPERTIES
+{
+    CLSID clsid;
+    WCHAR FriendlyName[XAPO_REGISTRATION_STRING_LENGTH];
+    WCHAR CopyrightInfo[XAPO_REGISTRATION_STRING_LENGTH];
+    UINT32 MajorVersion;
+    UINT32 MinorVersion;
+    UINT32 Flags;
+    UINT32 MinInputBufferCount;
+    UINT32 MaxInputBufferCount;
+    UINT32 MinOutputBufferCount;
+    UINT32 MaxOutputBufferCount;
+    UINT32 InterfaceCount;
+    IID InterfaceArray[1];
+} XAPO20_REGISTRATION_PROPERTIES;
+
+typedef struct XAPO_LOCKFORPROCESS_BUFFER_PARAMETERS {
+    const WAVEFORMATEX *pFormat;
+    UINT32 MaxFrameCount;
+} XAPO_LOCKFORPROCESS_BUFFER_PARAMETERS;
+
+typedef enum XAPO_BUFFER_FLAGS {
+    XAPO_BUFFER_SILENT,
+    XAPO_BUFFER_VALID
+} XAPO_BUFFER_FLAGS;
+
+typedef struct XAPO_PROCESS_BUFFER_PARAMETERS {
+    void *pBuffer;
+    XAPO_BUFFER_FLAGS BufferFlags;
+    UINT32 ValidFrameCount;
+} XAPO_PROCESS_BUFFER_PARAMETERS;
+
+/* XAudio2 2.8 version of IXAPO */
+[
+    object,
+    local,
+    uuid(a410b984-9839-4819-a0be-2856ae6b3adb)
+]
+interface IXAPO : IUnknown
+{
+    HRESULT GetRegistrationProperties([out] XAPO_REGISTRATION_PROPERTIES **props);
+
+    HRESULT IsInputFormatSupported(const WAVEFORMATEX *output_fmt,
+        const WAVEFORMATEX *input_fmt, WAVEFORMATEX **supported_fmt);
+
+    HRESULT IsOutputFormatSupported(const WAVEFORMATEX *input_fmt,
+        const WAVEFORMATEX *output_fmt, WAVEFORMATEX **supported_fmt);
+
+    HRESULT Initialize(const void *data, UINT32 data_len);
+
+    HRESULT Reset(void);
+
+    HRESULT LockForProcess(UINT32 in_params_count, const XAPO_LOCKFORPROCESS_BUFFER_PARAMETERS *in_params,
+        UINT32 out_params_count, const XAPO_LOCKFORPROCESS_BUFFER_PARAMETERS *out_params);
+
+    void UnlockForProcess(void);
+
+    void Process(UINT32 in_params_count, const XAPO_PROCESS_BUFFER_PARAMETERS *in_params,
+        UINT32 out_params_count, const XAPO_PROCESS_BUFFER_PARAMETERS *out_params,
+        BOOL enabled);
+
+    UINT32 CalcInputFrames(UINT32 output_frames);
+
+    UINT32 CalcOutputFrames(UINT32 input_frames);
+}
+
+/* XAudio2 2.7 version of IXAPO is identical to 2.8 */
+cpp_quote("DEFINE_GUID(IID_IXAPO27, 0xa90bc001, 0xe897, 0xe897, 0x55, 0xe4, 0x9e, 0x47, 0x00, 0x00, 0x00, 0x00);")
+
+
+/* XAudio2 2.8 version of IXAPOParameters */
+[
+    object,
+    local,
+    uuid(26d95c66-80f2-499a-ad54-5ae7f01c6d98)
+]
+interface IXAPOParameters : IUnknown
+{
+    void SetParameters(const void *params, UINT32 params_len);
+
+    void GetParameters(void *params, UINT32 params_len);
+}
+
+/* XAudio2 2.7 version of IXAPOParameters is identical to 2.8 */
+cpp_quote("DEFINE_GUID(IID_IXAPO27Parameters, 0xa90bc001, 0xe897, 0xe897, 0x55, 0xe4, 0x9e, 0x47, 0x00, 0x00, 0x00, 0x01);")

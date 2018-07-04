@@ -1,0 +1,6 @@
+; File generated automatically from ./dlls/dwrite/dwrite.spec; do not edit!
+
+LIBRARY dwrite.dll
+
+EXPORTS
+  DWriteCreateFactory@12 @1

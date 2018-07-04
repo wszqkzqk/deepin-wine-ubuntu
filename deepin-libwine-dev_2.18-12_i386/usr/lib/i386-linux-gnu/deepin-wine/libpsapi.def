@@ -1,0 +1,31 @@
+; File generated automatically from ./dlls/psapi/psapi.spec; do not edit!
+
+LIBRARY psapi.dll
+
+EXPORTS
+  EmptyWorkingSet@4=kernel32.K32EmptyWorkingSet @1
+  EnumDeviceDrivers@12=kernel32.K32EnumDeviceDrivers @2
+  EnumPageFilesA@8=kernel32.K32EnumPageFilesA @3
+  EnumPageFilesW@8=kernel32.K32EnumPageFilesW @4
+  EnumProcessModules@16=kernel32.K32EnumProcessModules @5
+  EnumProcessModulesEx@20=kernel32.K32EnumProcessModulesEx @6
+  EnumProcesses@12=kernel32.K32EnumProcesses @7
+  GetDeviceDriverBaseNameA@12=kernel32.K32GetDeviceDriverBaseNameA @8
+  GetDeviceDriverBaseNameW@12=kernel32.K32GetDeviceDriverBaseNameW @9
+  GetDeviceDriverFileNameA@12=kernel32.K32GetDeviceDriverFileNameA @10
+  GetDeviceDriverFileNameW@12=kernel32.K32GetDeviceDriverFileNameW @11
+  GetMappedFileNameA@16=kernel32.K32GetMappedFileNameA @12
+  GetMappedFileNameW@16=kernel32.K32GetMappedFileNameW @13
+  GetModuleBaseNameA@16=kernel32.K32GetModuleBaseNameA @14
+  GetModuleBaseNameW@16=kernel32.K32GetModuleBaseNameW @15
+  GetModuleFileNameExA@16=kernel32.K32GetModuleFileNameExA @16
+  GetModuleFileNameExW@16=kernel32.K32GetModuleFileNameExW @17
+  GetModuleInformation@16=kernel32.K32GetModuleInformation @18
+  GetPerformanceInfo@8=kernel32.K32GetPerformanceInfo @19
+  GetProcessImageFileNameA@12=kernel32.K32GetProcessImageFileNameA @20
+  GetProcessImageFileNameW@12=kernel32.K32GetProcessImageFileNameW @21
+  GetProcessMemoryInfo@12=kernel32.K32GetProcessMemoryInfo @22
+  GetWsChanges@12=kernel32.K32GetWsChanges @23
+  InitializeProcessForWsWatch@4=kernel32.K32InitializeProcessForWsWatch @24
+  QueryWorkingSet@12=kernel32.K32QueryWorkingSet @25
+  QueryWorkingSetEx@12=kernel32.K32QueryWorkingSetEx @26

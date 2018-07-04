@@ -1,0 +1,213 @@
+/*
+ * Speech API (SAPI) IDL file.
+ *
+ * Copyright (C) 2017 Huw Davies
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
+ */
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+#ifndef __WIDL__
+#define threading(model)
+#define progid(str)
+#define vi_progid(str)
+#endif
+
+typedef [hidden] enum SPDATAKEYLOCATION
+{
+    SPDKL_DefaultLocation = 0,
+    SPDKL_CurrentUser     = 1,
+    SPDKL_LocalMachine    = 2,
+    SPDKL_CurrentConfig   = 5
+} SPDATAKEYLOCATION;
+
+cpp_quote("#if defined(__GNUC__)")
+
+cpp_quote("#define SPCAT_AUDIOOUT (const WCHAR []){ 'H','K','E','Y','_','L','O','C','A','L','_','M','A','C','H','I','N','E','\\\\','S','O','F','T','W','A','R','E','\\\\','M','i','c','r','o','s','o','f','t','\\\\','S','p','e','e','c','h','\\\\','A','u','d','i','o','O','u','t','p','u','t',0 }")
+cpp_quote("#define SPCAT_AUDIOIN (const WCHAR []){ 'H','K','E','Y','_','L','O','C','A','L','_','M','A','C','H','I','N','E','\\\\','S','O','F','T','W','A','R','E','\\\\','M','i','c','r','o','s','o','f','t','\\\\','S','p','e','e','c','h','\\\\','A','u','d','i','o','I','n','p','u','t',0 }")
+cpp_quote("#define SPCAT_VOICES (const WCHAR []){ 'H','K','E','Y','_','L','O','C','A','L','_','M','A','C','H','I','N','E','\\\\','S','O','F','T','W','A','R','E','\\\\','M','i','c','r','o','s','o','f','t','\\\\','S','p','e','e','c','h','\\\\','V','o','i','c','e','s',0 }")
+
+cpp_quote("#elif defined(_MSC_VER)")
+
+cpp_quote("#define SPCAT_AUDIOOUT L\"HKEY_LOCAL_MACHINE\\\\SOFTWARE\\\\Microsoft\\\\Speech\\\\AudioOutput\"")
+cpp_quote("#define SPCAT_AUDIOIN L\"HKEY_LOCAL_MACHINE\\\\SOFTWARE\\\\Microsoft\\\\Speech\\\\AudioInput\"")
+cpp_quote("#define SPCAT_VOICES L\"HKEY_LOCAL_MACHINE\\\\SOFTWARE\\\\Microsoft\\\\Speech\\\\Voices\"")
+
+cpp_quote("#else")
+
+cpp_quote("static const WCHAR SPCAT_AUDIOOUT[] = {'H','K','E','Y','_','L','O','C','A','L','_','M','A','C','H','I','N','E','\\\\','S','O','F','T','W','A','R','E','\\\\','M','i','c','r','o','s','o','f','t','\\\\','S','p','e','e','c','h','\\\\','A','u','d','i','o','O','u','t','p','u','t',0};")
+cpp_quote("static const WCHAR SPCAT_AUDIOIN[] = {'H','K','E','Y','_','L','O','C','A','L','_','M','A','C','H','I','N','E','\\\\','S','O','F','T','W','A','R','E','\\\\','M','i','c','r','o','s','o','f','t','\\\\','S','p','e','e','c','h','\\\\','A','u','d','i','o','I','n','p','u','t',0};")
+cpp_quote("static const WCHAR SPCAT_VOICES[] = {'H','K','E','Y','_','L','O','C','A','L','_','M','A','C','H','I','N','E','\\\\','S','O','F','T','W','A','R','E','\\\\','M','i','c','r','o','s','o','f','t','\\\\','S','p','e','e','c','h','\\\\','V','o','i','c','e','s',0};")
+
+cpp_quote("#endif")
+
+interface IEnumSpObjectTokens;
+
+[
+    object,
+    uuid(14056581-e16c-11d2-bb90-00c04f8ee6c0),
+    helpstring("ISpDataKey"),
+    pointer_default(unique),
+    local,
+    restricted
+]
+interface ISpDataKey : IUnknown
+{
+    HRESULT SetData([in] LPCWSTR pszValueName,
+                    [in] ULONG cbData,
+                    [in] const BYTE *pData);
+    HRESULT GetData([in] LPCWSTR pszValueName,
+                    [in] ULONG *pcbData,
+                    [out] BYTE *pData);
+    HRESULT SetStringValue([in] LPCWSTR pszValueName,
+                           [in] LPCWSTR pszValue);
+    HRESULT GetStringValue([in] LPCWSTR pszValueName,
+                           [out] LPWSTR *ppszValue);
+    HRESULT SetDWORD([in] LPCWSTR pszValueName,
+                     [in] DWORD dwValue);
+    HRESULT GetDWORD([in] LPCWSTR pszValueName,
+                     [out] DWORD *pdwValue);
+    HRESULT OpenKey([in] LPCWSTR pszSubKeyName,
+                    [out] ISpDataKey **ppSubKey);
+    HRESULT CreateKey([in] LPCWSTR pszSubKey,
+                      [out] ISpDataKey **ppSubKey);
+    HRESULT DeleteKey([in] LPCWSTR pszSubKey);
+    HRESULT DeleteValue([in] LPCWSTR pszValueName);
+    HRESULT EnumKeys([in] ULONG Index,
+                     [out] LPWSTR *ppszSubKeyName);
+    HRESULT EnumValues([in] ULONG Index,
+                       [out] LPWSTR *ppszValueName);
+}
+[
+    object,
+    uuid(92a66e2b-c830-4149-83df-6fc2ba1e7a5b),
+    helpstring("ISpRegDataKey"),
+    pointer_default(unique),
+    restricted
+]
+interface ISpRegDataKey : ISpDataKey
+{
+    [local] HRESULT SetKey([in] HKEY hkey, [in] BOOL fReadOnly);
+}
+
+[
+    object,
+    uuid(2d3d3845-39af-4850-bbf9-40b49780011d),
+    helpstring("ISpObjectTokenCategory"),
+    pointer_default(unique),
+    local,
+    restricted
+]
+interface ISpObjectTokenCategory : ISpDataKey
+{
+    HRESULT SetId([in] LPCWSTR pszCategoryId,
+                  [in] BOOL fCreateIfNotExist);
+    HRESULT GetId([out] LPWSTR *ppszCoMemCategoryId);
+    HRESULT GetDataKey([in] SPDATAKEYLOCATION spdkl,
+                       [out] ISpDataKey **ppDataKey);
+    HRESULT EnumTokens([in, string] LPCWSTR pszReqAttribs,
+                       [in, string] LPCWSTR pszOptAttribs,
+                       [out] IEnumSpObjectTokens **ppEnum);
+    HRESULT SetDefaultTokenId([in] LPCWSTR pszTokenId);
+    HRESULT GetDefaultTokenId([out] LPWSTR *ppszCoMemTokenId);
+}
+
+[
+    object,
+    uuid(14056589-e16c-11d2-bb90-00c04f8ee6c0),
+    helpstring("ISpObjectToken"),
+    pointer_default(unique),
+    local,
+    restricted
+]
+interface ISpObjectToken : ISpDataKey
+{
+    HRESULT SetId(/*[in]*/ LPCWSTR pszCategoryId,
+                  [in] LPCWSTR pszTokenId,
+                  [in] BOOL fCreateIfNotExist);
+    HRESULT GetId([out] LPWSTR *ppszCoMemTokenId);
+    HRESULT GetCategory([out] ISpObjectTokenCategory **ppTokenCategory);
+    HRESULT CreateInstance([in] IUnknown *pUnkOuter,
+                           [in] DWORD dwClsContext,
+                           [in] REFIID riid,
+                           [out, iid_is(riid)] void **ppvObject);
+    HRESULT GetStorageFileName([in] REFCLSID clsidCaller,
+                               [in] LPCWSTR pszValueName,
+                               [in, string] LPCWSTR pszFileNameSpecifier,
+                               [in] ULONG nFolder,
+                               [out] LPWSTR *ppszFilePath);
+    HRESULT RemoveStorageFileName([in] REFCLSID clsidCaller,
+                                  [in] LPCWSTR pszKeyName,
+                                  [in] BOOL fDeleteFile);
+    HRESULT Remove(/*[in]*/ const CLSID *pclsidCaller);
+    [local] HRESULT IsUISupported([in] LPCWSTR pszTypeOfUI,
+                                  [in] void *pvExtraData,
+                                  [in] ULONG cbExtraData,
+                                  [in] IUnknown *punkObject,
+                                  [out] BOOL *pfSupported);
+    [local] HRESULT DisplayUI([in] HWND hwndParent,
+                              [in] LPCWSTR pszTitle,
+                              [in] LPCWSTR pszTypeOfUI,
+                              [in] void *pvExtraData,
+                              [in] ULONG cbExtraData,
+                              [in] IUnknown *punkObject);
+    HRESULT MatchesAttributes([in] LPCWSTR pszAttributes,
+                              [out] BOOL *pfMatches);
+}
+
+[
+    object,
+    uuid(06b64f9e-7fda-11d2-b4f2-00c04f797396),
+    helpstring("IEnumSpObjectTokens"),
+    pointer_default(unique),
+    local,
+    restricted
+]
+interface IEnumSpObjectTokens : IUnknown
+{
+    HRESULT Next([in] ULONG celt,
+                 [out, size_is(celt), length_is(*pceltFetched)] ISpObjectToken **pelt,
+                 [out] ULONG *pceltFetched);
+    HRESULT Skip([in] ULONG celt);
+    HRESULT Reset(void);
+    HRESULT Clone([out] IEnumSpObjectTokens **ppEnum);
+    HRESULT Item([in] ULONG Index,
+                 [out] ISpObjectToken **ppToken);
+    HRESULT GetCount([out] ULONG *pCount);
+}
+
+[
+    helpstring("Speech Object Library"),
+    uuid(c866ca3a-32f7-11d2-9602-00c04f8ee628),
+    version(5.4)
+]
+library SpeechLib
+{
+    importlib("stdole2.tlb");
+
+    [
+        uuid(a910187f-0c7a-45ac-92cc-59edafb77b53),
+        helpstring("SpObjectTokenCategory Class"),
+        progid("SAPI.SpObjectTokenCategory.1"),
+        vi_progid("SAPI.SpObjectTokenCategory"),
+        threading(both)
+    ]
+    coclass SpObjectTokenCategory
+    {
+        interface ISpObjectTokenCategory;
+    }
+}

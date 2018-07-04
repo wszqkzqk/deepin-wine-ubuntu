@@ -1,0 +1,33 @@
+; File generated automatically from ./dlls/propsys/propsys.spec; do not edit!
+
+LIBRARY propsys.dll
+
+EXPORTS
+  DllCanUnloadNow@0 @6 PRIVATE
+  DllGetClassObject@12 @7 PRIVATE
+  DllRegisterServer@0 @8 PRIVATE
+  DllUnregisterServer@0 @9 PRIVATE
+  InitPropVariantFromBuffer@12 @11
+  InitPropVariantFromGUIDAsString@8 @16
+  InitVariantFromBuffer@12 @30
+  InitVariantFromGUIDAsString@8 @34
+  PSGetPropertyDescription@12 @62
+  PSGetPropertyDescriptionListFromString@12 @64
+  PSGetPropertySystem@8 @67
+  PSPropertyKeyFromString@8 @70
+  PSRefreshPropertySchema@0 @71
+  PSRegisterPropertySchema@4 @72
+  PSStringFromPropertyKey@12 @74
+  PSUnregisterPropertySchema@4 @75
+  PropVariantChangeType@16 @76
+  PropVariantCompareEx@16 @77
+  PropVariantToBoolean@8 @90
+  PropVariantToGUID@8 @102
+  PropVariantToInt16@8 @103
+  PropVariantToInt32@8 @107
+  PropVariantToInt64@8 @111
+  PropVariantToStringAlloc@8 @117
+  PropVariantToUInt16@8 @121
+  PropVariantToUInt32@8 @125
+  PropVariantToUInt64@8 @129
+  VariantToGUID@8 @158

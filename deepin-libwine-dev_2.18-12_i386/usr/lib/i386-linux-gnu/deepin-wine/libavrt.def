@@ -1,0 +1,10 @@
+; File generated automatically from ./dlls/avrt/avrt.spec; do not edit!
+
+LIBRARY avrt.dll
+
+EXPORTS
+  AvQuerySystemResponsiveness@8 @1
+  AvRevertMmThreadCharacteristics@4 @2
+  AvSetMmThreadCharacteristicsA@8 @12
+  AvSetMmThreadCharacteristicsW@8 @13
+  AvSetMmThreadPriority@8 @14

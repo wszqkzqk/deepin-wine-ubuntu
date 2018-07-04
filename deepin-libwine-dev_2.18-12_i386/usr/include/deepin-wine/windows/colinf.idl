@@ -1,0 +1,57 @@
+/*
+ * Copyright (C) 2016 Alistair Leslie-Hughes
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
+ */
+
+#if 0
+#pragma makedep install
+#endif
+
+[
+    object,
+    uuid(0c733a11-2a1c-11ce-ade5-00aa0044773d),
+    pointer_default(unique)
+]
+interface IColumnsInfo : IUnknown
+{
+    [local]
+    HRESULT GetColumnInfo(
+        [in, out] DBORDINAL *columns,
+        [out, size_is(,(ULONG)*columns)] DBCOLUMNINFO **colinfo,
+        [out] OLECHAR **stringsbuffer);
+
+    [call_as(GetColumnInfo)]
+    HRESULT RemoteGetColumnInfo([in, out] DBORDINAL *columns,
+        [out, size_is(,(ULONG)*columns)] DBCOLUMNINFO **colinfo,
+        [out, size_is(,(ULONG)*columns)] DBBYTEOFFSET **name_offsets,
+        [out, size_is(,(ULONG)*columns)] DBBYTEOFFSET **columnid_offsets,
+        [in, out] DBLENGTH *string_len,
+        [in, out, unique, size_is(,(ULONG)*string_len)] OLECHAR **stringsbuffer,
+        [out] IErrorInfo **errorinfo);
+
+    [local]
+    HRESULT MapColumnIDs(
+        [in] DBORDINAL column_ids,
+        [in, size_is((ULONG)column_ids)] const DBID *dbids,
+        [out, size_is((ULONG)column_ids)] DBORDINAL *columns);
+
+    [call_as(MapColumnIDs)]
+    HRESULT RemoteMapColumnIDs(
+        [in] DBORDINAL column_ids,
+        [in, size_is((ULONG)column_ids)] const DBID *dbids,
+        [out, size_is((ULONG)column_ids)] DBORDINAL *columns,
+        [out] IErrorInfo **errorinfo);
+}

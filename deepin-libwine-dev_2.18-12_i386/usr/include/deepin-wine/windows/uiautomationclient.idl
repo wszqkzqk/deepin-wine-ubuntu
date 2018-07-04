@@ -1,0 +1,149 @@
+/*
+ * Copyright 2012 Jacek Caban for CodeWeavers
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
+ */
+
+#define DO_NO_IMPORTS
+import "uiautomationcore.idl";
+
+[
+    uuid(944de083-8fb8-45cf-bcb7-c477acb2f897),
+    lcid(0),
+    version(1.0)
+]
+library UIAutomationClient {
+    importlib ("stdole2.tlb");
+
+    /* FIXME: Uncomment when properly supported in widl
+    [dllname("<no entry points>")]
+    module UIA_PropertyIds
+    {
+    */
+        const long UIA_RuntimeIdPropertyId              = 30000;
+        const long UIA_BoundingRectanglePropertyId      = 30001;
+        const long UIA_ProcessIdPropertyId              = 30002;
+        const long UIA_ControlTypePropertyId            = 30003;
+        const long UIA_LocalizedControlTypePropertyId   = 30004;
+        const long UIA_NamePropertyId                   = 30005;
+        const long UIA_AcceleratorKeyPropertyId         = 30006;
+        const long UIA_AccessKeyPropertyId              = 30007;
+        const long UIA_HasKeyboardFocusPropertyId       = 30008;
+        const long UIA_IsKeyboardFocusablePropertyId    = 30009;
+        const long UIA_IsEnabledPropertyId              = 30010;
+        const long UIA_AutomationIdPropertyId           = 30011;
+        const long UIA_ClassNamePropertyId              = 30012;
+        const long UIA_HelpTextPropertyId               = 30013;
+        const long UIA_ClickablePointPropertyId         = 30014;
+        const long UIA_CulturePropertyId                = 30015;
+        const long UIA_IsControlElementPropertyId       = 30016;
+        const long UIA_IsContentElementPropertyId       = 30017;
+        const long UIA_LabeledByPropertyId              = 30018;
+        const long UIA_IsPasswordPropertyId             = 30019;
+        const long UIA_NativeWindowHandlePropertyId     = 30020;
+        const long UIA_ItemTypePropertyId               = 30021;
+        const long UIA_IsOffscreenPropertyId            = 30022;
+        const long UIA_OrientationPropertyId            = 30023;
+        const long UIA_FrameworkIdPropertyId            = 30024;
+        const long UIA_IsRequiredForFormPropertyId      = 30025;
+        const long UIA_ItemStatusPropertyId             = 30026;
+        const long UIA_IsDockPatternAvailablePropertyId = 30027;
+        const long UIA_IsExpandCollapsePatternAvailablePropertyId = 30028;
+        const long UIA_IsGridItemPatternAvailablePropertyId       = 30029;
+        const long UIA_IsGridPatternAvailablePropertyId           = 30030;
+        const long UIA_IsInvokePatternAvailablePropertyId         = 30031;
+        const long UIA_IsMultipleViewPatternAvailablePropertyId   = 30032;
+        const long UIA_IsRangeValuePatternAvailablePropertyId     = 30033;
+        const long UIA_IsScrollPatternAvailablePropertyId         = 30034;
+        const long UIA_IsScrollItemPatternAvailablePropertyId     = 30035;
+        const long UIA_IsSelectionItemPatternAvailablePropertyId  = 30036;
+        const long UIA_IsSelectionPatternAvailablePropertyId      = 30037;
+        const long UIA_IsTablePatternAvailablePropertyId          = 30038;
+        const long UIA_IsTableItemPatternAvailablePropertyId      = 30039;
+        const long UIA_IsTextPatternAvailablePropertyId           = 30040;
+        const long UIA_IsTogglePatternAvailablePropertyId         = 30041;
+        const long UIA_IsTransformPatternAvailablePropertyId      = 30042;
+        const long UIA_IsValuePatternAvailablePropertyId          = 30043;
+        const long UIA_IsWindowPatternAvailablePropertyId         = 30044;
+        const long UIA_ValueValuePropertyId             = 30045;
+        const long UIA_ValueIsReadOnlyPropertyId        = 30046;
+        const long UIA_RangeValueValuePropertyId        = 30047;
+        const long UIA_RangeValueIsReadOnlyPropertyId   = 30048;
+        const long UIA_RangeValueMinimumPropertyId      = 30049;
+        const long UIA_RangeValueMaximumPropertyId      = 30050;
+        const long UIA_RangeValueLargeChangePropertyId  = 30051;
+        const long UIA_RangeValueSmallChangePropertyId  = 30052;
+        const long UIA_ScrollHorizontalScrollPercentPropertyId    = 30053;
+        const long UIA_ScrollHorizontalViewSizePropertyId         = 30054;
+        const long UIA_ScrollVerticalScrollPercentPropertyId      = 30055;
+        const long UIA_ScrollVerticalViewSizePropertyId           = 30056;
+        const long UIA_ScrollHorizontallyScrollablePropertyId     = 30057;
+        const long UIA_ScrollVerticallyScrollablePropertyId       = 30058;
+        const long UIA_SelectionSelectionPropertyId               = 30059;
+        const long UIA_SelectionCanSelectMultiplePropertyId       = 30060;
+        const long UIA_SelectionIsSelectionRequiredPropertyId     = 30061;
+        const long UIA_GridRowCountPropertyId           = 30062;
+        const long UIA_GridColumnCountPropertyId        = 30063;
+        const long UIA_GridItemRowPropertyId            = 30064;
+        const long UIA_GridItemColumnPropertyId         = 30065;
+        const long UIA_GridItemRowSpanPropertyId        = 30066;
+        const long UIA_GridItemColumnSpanPropertyId     = 30067;
+        const long UIA_GridItemContainingGridPropertyId = 30068;
+        const long UIA_DockDockPositionPropertyId       = 30069;
+        const long UIA_ExpandCollapseExpandCollapseStatePropertyId = 30070;
+        const long UIA_MultipleViewCurrentViewPropertyId           = 30071;
+        const long UIA_MultipleViewSupportedViewsPropertyId        = 30072;
+        const long UIA_WindowCanMaximizePropertyId                 = 30073;
+        const long UIA_WindowCanMinimizePropertyId                 = 30074;
+        const long UIA_WindowWindowVisualStatePropertyId           = 30075;
+        const long UIA_WindowWindowInteractionStatePropertyId      = 30076;
+        const long UIA_WindowIsModalPropertyId                     = 30077;
+        const long UIA_WindowIsTopmostPropertyId                   = 30078;
+        const long UIA_SelectionItemIsSelectedPropertyId           = 30079;
+        const long UIA_SelectionItemSelectionContainerPropertyId   = 30080;
+        const long UIA_TableRowHeadersPropertyId                   = 30081;
+        const long UIA_TableColumnHeadersPropertyId                = 30082;
+        const long UIA_TableRowOrColumnMajorPropertyId             = 30083;
+        const long UIA_TableItemRowHeaderItemsPropertyId           = 30084;
+        const long UIA_TableItemColumnHeaderItemsPropertyId        = 30085;
+        const long UIA_ToggleToggleStatePropertyId                 = 30086;
+        const long UIA_TransformCanMovePropertyId                  = 30087;
+        const long UIA_TransformCanResizePropertyId                = 30088;
+        const long UIA_TransformCanRotatePropertyId                = 30089;
+        const long UIA_IsLegacyIAccessiblePatternAvailablePropertyId  = 30090;
+        const long UIA_LegacyIAccessibleChildIdPropertyId          = 30091;
+        const long UIA_LegacyIAccessibleNamePropertyId             = 30092;
+        const long UIA_LegacyIAccessibleValuePropertyId            = 30093;
+        const long UIA_LegacyIAccessibleDescriptionPropertyId      = 30094;
+        const long UIA_LegacyIAccessibleRolePropertyId             = 30095;
+        const long UIA_LegacyIAccessibleStatePropertyId            = 30096;
+        const long UIA_LegacyIAccessibleHelpPropertyId             = 30097;
+        const long UIA_LegacyIAccessibleKeyboardShortcutPropertyId = 30098;
+        const long UIA_LegacyIAccessibleSelectionPropertyId        = 30099;
+        const long UIA_LegacyIAccessibleDefaultActionPropertyId    = 30100;
+        const long UIA_AriaRolePropertyId                          = 30101;
+        const long UIA_AriaPropertiesPropertyId                    = 30102;
+        const long UIA_IsDataValidForFormPropertyId                = 30103;
+        const long UIA_ControllerForPropertyId                     = 30104;
+        const long UIA_DescribedByPropertyId                       = 30105;
+        const long UIA_FlowsToPropertyId                           = 30106;
+        const long UIA_ProviderDescriptionPropertyId               = 30107;
+        const long UIA_IsItemContainerPatternAvailablePropertyId   = 30108;
+        const long UIA_IsVirtualizedItemPatternAvailablePropertyId = 30109;
+        const long UIA_IsSynchronizedInputPatternAvailablePropertyId  = 30110;
+    /*
+    }
+    */
+}

@@ -1,0 +1,14 @@
+98c42510bb9dd91a6b80235838a44163  usr/bin/deepin-winegcc32
+aa2d10b68d51dc1d9a6b4e5bba2dff96  usr/lib/i386-linux-gnu/deepin-wine/winebuild
+9c7855c25bc498258bb88079936472d8  usr/lib/i386-linux-gnu/deepin-wine/winedump
+7756a51c2d8c720de4935eef2cc2c636  usr/lib/i386-linux-gnu/deepin-wine/winegcc
+736938cf4d94e6ef793a16f938bcc048  usr/lib/i386-linux-gnu/deepin-wine/winemaker
+ee4790c27396341543c858c3ca7099e2  usr/lib/i386-linux-gnu/deepin-wine/wmc
+9be5b8f5111d08692023282d8db5f047  usr/lib/i386-linux-gnu/deepin-wine/wrc
+0968ea0d39ccaddd2febb0d9e143abe2  usr/share/bug/deepin-wine32-tools/control
+f6546409554dc77ec5a847c0653b9d57  usr/share/doc/deepin-wine32-tools/README.winedump.gz
+fdf9aa97154cd8df38bf4e1ace6ae0d5  usr/share/doc/deepin-wine32-tools/changelog.Debian.gz
+eb7c252e870dbb4334d38644f1b07463  usr/share/doc/deepin-wine32-tools/changelog.gz
+b5ff054c53edb3bb9ebf7bc718d69692  usr/share/doc/deepin-wine32-tools/copyright
+d2db05e80798ca2180a45ecfb25f2a03  usr/share/lintian/overrides/deepin-wine32-tools
+b2ae688eab18bc03d186a1101e3eee96  usr/share/man/man1/deepin-winegcc32.1.gz

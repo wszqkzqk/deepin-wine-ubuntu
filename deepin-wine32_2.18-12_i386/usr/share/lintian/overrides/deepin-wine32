@@ -1,0 +1,2 @@
+# unfortunately wine doesn't doesn't do fortify hardening
+hardening-no-fortify-functions

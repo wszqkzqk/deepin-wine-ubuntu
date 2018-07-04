@@ -1,0 +1,21 @@
+; File generated automatically from ./dlls/version/version.spec; do not edit!
+
+LIBRARY version.dll
+
+EXPORTS
+  GetFileVersionInfoA@16 @1
+  GetFileVersionInfoExA@20 @2
+  GetFileVersionInfoExW@20 @3
+  GetFileVersionInfoSizeA@8 @4
+  GetFileVersionInfoSizeExA@12 @5
+  GetFileVersionInfoSizeExW@12 @6
+  GetFileVersionInfoSizeW@8 @7
+  GetFileVersionInfoW@16 @8
+  VerFindFileA@32 @9
+  VerFindFileW@32 @10
+  VerInstallFileA@32 @11
+  VerInstallFileW@32 @12
+  VerLanguageNameA@12=kernel32.VerLanguageNameA @13
+  VerLanguageNameW@12=kernel32.VerLanguageNameW @14
+  VerQueryValueA@16 @15
+  VerQueryValueW@16 @16

@@ -1,0 +1,6 @@
+c87dae0ad066ffe6c7ad5bf07f06fd5a  usr/lib/deepin-wine/wine
+0968ea0d39ccaddd2febb0d9e143abe2  usr/share/bug/deepin-wine32/control
+fdf9aa97154cd8df38bf4e1ace6ae0d5  usr/share/doc/deepin-wine32/changelog.Debian.gz
+eb7c252e870dbb4334d38644f1b07463  usr/share/doc/deepin-wine32/changelog.gz
+b5ff054c53edb3bb9ebf7bc718d69692  usr/share/doc/deepin-wine32/copyright
+76f074c1b6a2db9628bd5ff4da8f645f  usr/share/lintian/overrides/deepin-wine32

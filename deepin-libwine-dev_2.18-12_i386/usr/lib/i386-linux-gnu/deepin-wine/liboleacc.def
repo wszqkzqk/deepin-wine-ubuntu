@@ -1,0 +1,24 @@
+; File generated automatically from ./dlls/oleacc/oleacc.spec; do not edit!
+
+LIBRARY oleacc.dll
+
+EXPORTS
+  AccessibleChildren@20 @1
+  AccessibleObjectFromPoint@16 @3
+  AccessibleObjectFromWindow@16 @4
+  CreateStdAccessibleObject@16 @5
+  DllGetClassObject@12 @8 PRIVATE
+  DllRegisterServer@0 @9 PRIVATE
+  DllUnregisterServer@0 @10 PRIVATE
+  GetOleaccVersionInfo@8 @11
+  GetProcessHandleFromHwnd@4 @12
+  GetRoleTextA@12 @13
+  GetRoleTextW@12 @14
+  GetStateTextA@12 @15
+  GetStateTextW@12 @16
+  IID_IAccessible @17 DATA
+  IID_IAccessibleHandler @18 DATA
+  LIBID_Accessibility @19 DATA
+  LresultFromObject@12 @20
+  ObjectFromLresult@16 @21
+  WindowFromAccessibleObject@8 @22

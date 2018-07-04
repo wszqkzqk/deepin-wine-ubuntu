@@ -1,0 +1,18 @@
+; File generated automatically from ./dlls/mlang/mlang.spec; do not edit!
+
+LIBRARY mlang.dll
+
+EXPORTS
+  IsConvertINetStringAvailable@8 @110
+  ConvertINetString@28 @111
+  ConvertINetUnicodeToMultiByte@24 @112
+  ConvertINetMultiByteToUnicode@24 @113
+  LcidToRfc1766A@12 @120
+  LcidToRfc1766W@12 @121
+  Rfc1766ToLcidA@8 @122
+  Rfc1766ToLcidW@8 @123
+  DllCanUnloadNow@0 @115 PRIVATE
+  DllGetClassObject@12 @116 PRIVATE
+  DllRegisterServer@0 @117 PRIVATE
+  DllUnregisterServer@0 @118 PRIVATE
+  GetGlobalFontLinkObject@4 @119

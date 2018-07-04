@@ -1,0 +1,99 @@
+/*
+ * Copyright (C) 2017 Alistair Leslie-Hughes
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
+ */
+import "unknwn.idl";
+import "objidl.idl";
+import "oaidl.idl";
+
+#ifndef __WIDL__
+#define threading(model)
+#endif
+
+typedef DWORD_PTR INSTID;
+typedef DWORD_PTR RESID;
+typedef DWORD     RESOURCERATING;
+typedef DWORD_PTR RESTYPID;
+typedef LPOLESTR  SRESID;
+typedef long      TIMEINSECS;
+typedef DWORD_PTR TRANSID;
+
+[
+    uuid(2a005c00-a5de-11cf-9e66-00aa00a3f464),
+    version(1.0)
+]
+library COMSVCSLib
+{
+    [
+        object,
+        hidden,
+        local,
+        uuid(bf6a1850-2b45-11cf-be10-00aa00a2fa25),
+        pointer_default(unique)
+    ]
+    interface IHolder : IUnknown
+    {
+        HRESULT AllocResource([in] const RESTYPID typeid, [out] RESID *resid);
+        HRESULT FreeResource([in] const RESID _resid);
+        HRESULT TrackResource([in] const RESID resid);
+        HRESULT TrackResourceS([in] const SRESID resid);
+        HRESULT UntrackResource([in] const RESID resid, [in] const BOOL value);
+        HRESULT UntrackResourceS([in] const SRESID resid, [in] const BOOL value);
+        HRESULT Close(void);
+        HRESULT RequestDestroyResource([in] const RESID resid);
+    };
+
+    [
+        object,
+        hidden,
+        local,
+        uuid(208b3651-2b48-11cf-be10-00aa00a2fa25),
+        pointer_default(unique)
+    ]
+    interface IDispenserDriver : IUnknown
+    {
+        HRESULT CreateResource([in] const RESTYPID restypid, [out] RESID *resid, [out] TIMEINSECS *destroy);
+        HRESULT RateResource([in] const RESTYPID restypid, [in] const RESID resid,
+                [in] const BOOL requires, [out] RESOURCERATING *rating);
+        HRESULT EnlistResource([in] const RESID resid, [in] const TRANSID transid);
+        HRESULT ResetResource([in] const RESID resid);
+        HRESULT DestroyResource([in] const RESID resid);
+        HRESULT DestroyResourceS([in] const SRESID resid);
+    };
+
+    [
+        object,
+        hidden,
+        local,
+        uuid(5cb31e10-2b5f-11cf-be10-00aa00a2fa25),
+        pointer_default(unique)
+    ]
+    interface IDispenserManager : IUnknown
+    {
+         HRESULT RegisterDispenser([in] IDispenserDriver *driver, [in] LPCOLESTR name, [out] IHolder **dispenser);
+         HRESULT GetContext([out] INSTID *id, [out] TRANSID *transid);
+    };
+
+    [
+        uuid(ecabb0c0-7f19-11d2-978e-0000f8757e2a),
+        hidden,
+        threading(both)
+    ]
+    coclass DispenserManager
+    {
+        [default] interface IDispenserManager;
+    };
+};

@@ -1,0 +1,58 @@
+; File generated automatically from ./dlls/glu32/glu32.spec; do not edit!
+
+LIBRARY glu32.dll
+
+EXPORTS
+  gluBeginCurve@4=wine_gluBeginCurve@4 @1
+  gluBeginPolygon@4 @2
+  gluBeginSurface@4=wine_gluBeginSurface@4 @3
+  gluBeginTrim@4=wine_gluBeginTrim@4 @4
+  gluBuild1DMipmaps@24 @5
+  gluBuild2DMipmaps@28 @6
+  gluCheckExtension@8=wine_gluCheckExtension@8 @7
+  gluCylinder@36 @8
+  gluDeleteNurbsRenderer@4=wine_gluDeleteNurbsRenderer@4 @9
+  gluDeleteQuadric@4 @10
+  gluDeleteTess@4 @11
+  gluDisk@28 @12
+  gluEndCurve@4=wine_gluEndCurve@4 @13
+  gluEndPolygon@4 @14
+  gluEndSurface@4=wine_gluEndSurface@4 @15
+  gluEndTrim@4=wine_gluEndTrim@4 @16
+  gluErrorString@4=wine_gluErrorString@4 @17
+  gluErrorUnicodeStringEXT@4=wine_gluErrorUnicodeStringEXT@4 @18
+  gluGetNurbsProperty@12=wine_gluGetNurbsProperty@12 @19
+  gluGetString@4=wine_gluGetString@4 @20
+  gluGetTessProperty@12 @21
+  gluLoadSamplingMatrices@16=wine_gluLoadSamplingMatrices@16 @22
+  gluLookAt@72 @23
+  gluNewNurbsRenderer@0=wine_gluNewNurbsRenderer@0 @24
+  gluNewQuadric@0 @25
+  gluNewTess@0 @26
+  gluNextContour@8 @27
+  gluNurbsCallback@12=wine_gluNurbsCallback@12 @28
+  gluNurbsCurve@28=wine_gluNurbsCurve@28 @29
+  gluNurbsProperty@12=wine_gluNurbsProperty@12 @30
+  gluNurbsSurface@44=wine_gluNurbsSurface@44 @31
+  gluOrtho2D@32 @32
+  gluPartialDisk@44 @33
+  gluPerspective@32 @34
+  gluPickMatrix@36 @35
+  gluProject@48 @36
+  gluPwlCurve@20=wine_gluPwlCurve@20 @37
+  gluQuadricCallback@12 @38
+  gluQuadricDrawStyle@8 @39
+  gluQuadricNormals@8 @40
+  gluQuadricOrientation@8 @41
+  gluQuadricTexture@8 @42
+  gluScaleImage@36 @43
+  gluSphere@20 @44
+  gluTessBeginContour@4 @45
+  gluTessBeginPolygon@8 @46
+  gluTessCallback@12 @47
+  gluTessEndContour@4 @48
+  gluTessEndPolygon@4 @49
+  gluTessNormal@28 @50
+  gluTessProperty@16 @51
+  gluTessVertex@12 @52
+  gluUnProject@48 @53

@@ -1,0 +1,10 @@
+Source: deepin-wine-plugin-virtual
+Package: deepin-wine-plugin-virtual
+Version: 1.0deepin1
+Architecture: all
+Maintainer: Deepin Packages Builder <xiewei@deepin.com>
+Depends: deepin-wine-plugin, p7zip-full, python-dbus, python-gobject
+Section: non-free/otherosfs
+Priority: extra
+Multi-Arch: foreign
+Description: Deepin Wine plugin virtual package

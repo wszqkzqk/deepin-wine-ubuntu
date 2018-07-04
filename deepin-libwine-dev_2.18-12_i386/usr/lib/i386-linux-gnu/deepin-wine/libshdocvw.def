@@ -1,0 +1,33 @@
+; File generated automatically from ./dlls/shdocvw/shdocvw.spec; do not edit!
+
+LIBRARY shdocvw.dll
+
+EXPORTS
+  IEWinMain@8 @101 NONAME
+  WhichPlatformFORWARD@0 @104 NONAME
+  WinList_Init@0 @110 NONAME
+  ShellDDEInit@4 @118 NONAME
+  StopWatchModeFORWARD@0 @121 NONAME
+  StopWatchFlushFORWARD@0 @122 NONAME
+  StopWatchAFORWARD@20 @123 NONAME
+  StopWatchWFORWARD@20 @124 NONAME
+  RunInstallUninstallStubs@0 @125 NONAME
+  RunInstallUninstallStubs2@4 @130 NONAME
+  URLSubRegQueryA@24 @151 NONAME
+  SHRestricted2A@12 @158 NONAME
+  SHRestricted2W@12 @159 NONAME
+  ResetProfileSharing@4 @164 NONAME
+  ParseURLFromOutsideSourceA@16 @169 NONAME
+  ParseURLFromOutsideSourceW@16 @170 NONAME
+  IEParseDisplayNameWithBCW@16 @218 NONAME
+  DllCanUnloadNow@0 @109 PRIVATE
+  DllGetClassObject@12 @112 PRIVATE
+  DllGetVersion@4 @113 PRIVATE
+  DllInstall@8 @114 PRIVATE
+  DllRegisterServer@0 @126 PRIVATE
+  DllUnregisterServer@0 @128 PRIVATE
+  DoFileDownload@4 @133
+  ImportPrivacySettings@12 @182
+  InstallReg_RunDLL@16 @184
+  OpenURL@16=ieframe.OpenURL @186
+  SetQueryNetSessionCount@4 @201

@@ -1,0 +1,133 @@
+/*
+ *
+ * Copyright 2014 Alistair Leslie-Hughes
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
+ */
+
+import "unknwn.idl";
+import "wtypes.idl";
+
+#ifndef __WIDL__
+#define threading(model)
+#define progid(str)
+#define vi_progid(str)
+#endif
+
+cpp_quote("#define NETCFG_E_ALREADY_INITIALIZED  MAKE_HRESULT(SEVERITY_ERROR, FACILITY_ITF, 0xA020)")
+cpp_quote("#define NETCFG_E_NO_WRITE_LOCK        MAKE_HRESULT(SEVERITY_ERROR, FACILITY_ITF, 0xA024)")
+
+[
+    local,
+    object,
+    uuid(c0e8ae99-306e-11d1-aacf-00805fc1270e),
+    pointer_default(unique)
+]
+interface INetCfgComponent : IUnknown
+{
+    typedef enum tagCOMPONENT_CHARACTERISTICS
+    {
+        NCF_VIRTUAL                     = 0x00000001,
+        NCF_SOFTWARE_ENUMERATED         = 0x00000002,
+        NCF_PHYSICAL                    = 0x00000004,
+        NCF_HIDDEN                      = 0x00000008,
+        NCF_NO_SERVICE                  = 0x00000010,
+        NCF_NOT_USER_REMOVABLE          = 0x00000020,
+        NCF_MULTIPORT_INSTANCED_ADAPTER = 0x00000040,
+        NCF_HAS_UI                      = 0x00000080,
+        NCF_SINGLE_INSTANCE             = 0x00000100,
+        NCF_FILTER                      = 0x00000400,
+        NCF_DONTEXPOSELOWER             = 0x00001000,
+        NCF_HIDE_BINDING                = 0x00002000,
+        NCF_NDIS_PROTOCOL               = 0x00004000,
+        NCF_FIXED_BINDING               = 0x00020000,
+        NCF_LW_FILTER                   = 0x00040000
+    } COMPONENT_CHARACTERISTICS;
+
+    typedef enum tagNCRP_FLAGS
+    {
+        NCRP_QUERY_PROPERTY_UI          = 0x00000001,
+        NCRP_SHOW_PROPERTY_UI           = 0x00000002
+    } NCRP_FLAGS;
+
+    HRESULT GetDisplayName ([out] LPWSTR* ppszwDisplayName);
+    HRESULT SetDisplayName ([in] LPCWSTR pszwDisplayName);
+    HRESULT GetHelpText ([out] LPWSTR* pszwHelpText);
+    HRESULT GetId ([out] LPWSTR* ppszwId);
+    HRESULT GetCharacteristics ([out] LPDWORD pdwCharacteristics);
+    HRESULT GetInstanceGuid ([out] GUID* pGuid);
+    HRESULT GetPnpDevNodeId ([out] LPWSTR* ppszwDevNodeId);
+    HRESULT GetClassGuid ([out] GUID* pGuid);
+    HRESULT GetBindName ([out] LPWSTR* ppszwBindName);
+    HRESULT GetDeviceStatus ([out] ULONG* pulStatus);
+    HRESULT OpenParamKey ([out] HKEY* phkey);
+    HRESULT RaisePropertyUi ([in] HWND hwndParent, [in] DWORD dwFlags, [in] IUnknown* punkContext);
+};
+
+
+[
+    local,
+    object,
+    uuid(c0e8ae92-306e-11d1-aacf-00805fc1270e),
+    pointer_default(unique)
+]
+interface IEnumNetCfgComponent : IUnknown
+{
+    HRESULT Next ([in] ULONG celt, [out] INetCfgComponent** rgelt, [out] ULONG *pceltFetched);
+    HRESULT Skip ([in] ULONG celt);
+    HRESULT Reset ();
+    HRESULT Clone ([out] IEnumNetCfgComponent** ppenum);
+};
+
+[
+    local,
+    object,
+    uuid(c0e8ae9f-306e-11d1-aacf-00805fc1270e),
+    pointer_default(unique)
+]
+interface INetCfgLock : IUnknown
+{
+    HRESULT AcquireWriteLock ([in] DWORD cmsTimeout, [in]  LPCWSTR pszwClientDescription,
+                              [out] LPWSTR* ppszwClientDescription);
+    HRESULT ReleaseWriteLock ();
+    HRESULT IsWriteLocked ([out] LPWSTR* ppszwClientDescription);
+};
+
+[
+    local,
+    object,
+    uuid(c0e8ae93-306e-11d1-aacf-00805fc1270e),
+    pointer_default(unique)
+]
+interface INetCfg : IUnknown
+{
+    HRESULT Initialize ([in] PVOID pvReserved);
+    HRESULT Uninitialize ();
+    HRESULT Apply ();
+    HRESULT Cancel ();
+    HRESULT EnumComponents ([in] const GUID* pguidClass, [out] IEnumNetCfgComponent** ppenumComponent);
+    HRESULT FindComponent ([in] LPCWSTR pszwInfId, [out] INetCfgComponent** pComponent);
+    HRESULT QueryNetCfgClass ([in] const GUID* pguidClass, [in] REFIID riid,[out] void** ppvObject);
+};
+
+[
+    helpstring("Network Configuration Component Object"),
+    threading(both),
+    uuid(5b035261-40f9-11d1-aaec-00805fc1270e)
+]
+coclass CNetCfg
+{
+    [default] interface INetCfg;
+}

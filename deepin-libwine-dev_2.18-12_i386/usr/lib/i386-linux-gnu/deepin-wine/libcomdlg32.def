@@ -1,0 +1,29 @@
+; File generated automatically from ./dlls/comdlg32/comdlg32.spec; do not edit!
+
+LIBRARY comdlg32.dll
+
+EXPORTS
+  ChooseColorA@4 @1
+  ChooseColorW@4 @2
+  ChooseFontA@4 @3
+  ChooseFontW@4 @4
+  CommDlgExtendedError@0 @5
+  DllGetClassObject@12 @6 PRIVATE
+  DllRegisterServer@0 @7 PRIVATE
+  DllUnregisterServer@0 @8 PRIVATE
+  FindTextA@4 @9
+  FindTextW@4 @10
+  GetFileTitleA@12 @11
+  GetFileTitleW@12 @12
+  GetOpenFileNameA@4 @13
+  GetOpenFileNameW@4 @14
+  GetSaveFileNameA@4 @15
+  GetSaveFileNameW@4 @16
+  PageSetupDlgA@4 @18
+  PageSetupDlgW@4 @19
+  PrintDlgA@4 @20
+  PrintDlgExA@4 @21
+  PrintDlgExW@4 @22
+  PrintDlgW@4 @23
+  ReplaceTextA@4 @24
+  ReplaceTextW@4 @25

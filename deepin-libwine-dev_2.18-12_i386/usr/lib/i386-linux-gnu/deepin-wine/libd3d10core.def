@@ -1,0 +1,7 @@
+; File generated automatically from ./dlls/d3d10core/d3d10core.spec; do not edit!
+
+LIBRARY d3d10core.dll
+
+EXPORTS
+  D3D10CoreCreateDevice@20 @1
+  D3D10CoreRegisterLayers@0 @2

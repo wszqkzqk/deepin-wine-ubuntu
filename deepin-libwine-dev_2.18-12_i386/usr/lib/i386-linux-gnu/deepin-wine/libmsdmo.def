@@ -1,0 +1,16 @@
+; File generated automatically from ./dlls/msdmo/msdmo.spec; do not edit!
+
+LIBRARY msdmo.dll
+
+EXPORTS
+  DMOEnum@28 @1
+  DMOGetName@8 @2
+  DMOGetTypes@28 @3
+  DMORegister@32 @6
+  DMOUnregister@8 @9
+  MoCopyMediaType@8 @10
+  MoCreateMediaType@8 @11
+  MoDeleteMediaType@4 @12
+  MoDuplicateMediaType@8 @13
+  MoFreeMediaType@4 @14
+  MoInitMediaType@8 @15

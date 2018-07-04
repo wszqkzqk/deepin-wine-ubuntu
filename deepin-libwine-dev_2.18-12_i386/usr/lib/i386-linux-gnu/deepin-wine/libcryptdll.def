@@ -1,0 +1,8 @@
+; File generated automatically from ./dlls/cryptdll/cryptdll.spec; do not edit!
+
+LIBRARY cryptdll.dll
+
+EXPORTS
+  MD5Final@4=advapi32.MD5Final @12
+  MD5Init@4=advapi32.MD5Init @13
+  MD5Update@12=advapi32.MD5Update @14

@@ -1,0 +1,17 @@
+; File generated automatically from ./dlls/cabinet/cabinet.spec; do not edit!
+
+LIBRARY cabinet.dll
+
+EXPORTS
+  DllGetVersion@4 @2 PRIVATE
+  Extract@8 @3
+  FCICreate @10
+  FCIAddFile @11
+  FCIFlushFolder @12
+  FCIFlushCabinet @13
+  FCIDestroy @14
+  FDICreate @20
+  FDIIsCabinet @21
+  FDICopy @22
+  FDIDestroy @23
+  FDITruncateCabinet @24

@@ -1,0 +1,29 @@
+; File generated automatically from ./dlls/snmpapi/snmpapi.spec; do not edit!
+
+LIBRARY snmpapi.dll
+
+EXPORTS
+  SnmpSvcGetUptime@0 @14
+  SnmpUtilAsnAnyCpy@8 @21
+  SnmpUtilAsnAnyFree@4 @22
+  SnmpUtilDbgPrint @23
+  SnmpUtilIdsToA@8 @24
+  SnmpUtilMemAlloc@4 @25
+  SnmpUtilMemFree@4 @26
+  SnmpUtilMemReAlloc@8 @27
+  SnmpUtilOctetsCmp@8 @28
+  SnmpUtilOctetsCpy@8 @29
+  SnmpUtilOctetsFree@4 @30
+  SnmpUtilOctetsNCmp@12 @31
+  SnmpUtilOidAppend@8 @32
+  SnmpUtilOidCmp@8 @33
+  SnmpUtilOidCpy@8 @34
+  SnmpUtilOidFree@4 @35
+  SnmpUtilOidNCmp@12 @36
+  SnmpUtilOidToA@4 @37
+  SnmpUtilPrintAsnAny@4 @38
+  SnmpUtilPrintOid@4 @39
+  SnmpUtilVarBindCpy@8 @42
+  SnmpUtilVarBindFree@4 @43
+  SnmpUtilVarBindListCpy@8 @44
+  SnmpUtilVarBindListFree@4 @45

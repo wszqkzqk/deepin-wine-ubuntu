@@ -1,0 +1,19 @@
+; File generated automatically from ./dlls/dsound/dsound.spec; do not edit!
+
+LIBRARY dsound.dll
+
+EXPORTS
+  DirectSoundCreate@12 @1
+  DirectSoundEnumerateA@8 @2
+  DirectSoundEnumerateW@8 @3
+  DirectSoundCaptureCreate@12 @6
+  DirectSoundCaptureEnumerateA@8 @7
+  DirectSoundCaptureEnumerateW@8 @8
+  GetDeviceID@8 @9
+  DirectSoundFullDuplexCreate@40 @10
+  DirectSoundCreate8@12 @11
+  DirectSoundCaptureCreate8@12 @12
+  DllCanUnloadNow@0 @4 PRIVATE
+  DllGetClassObject@12 @5 PRIVATE
+  DllRegisterServer@0 @13 PRIVATE
+  DllUnregisterServer@0 @14 PRIVATE

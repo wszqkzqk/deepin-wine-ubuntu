@@ -1,0 +1,7 @@
+; File generated automatically from ./dlls/vdmdbg/vdmdbg.spec; do not edit!
+
+LIBRARY vdmdbg.dll
+
+EXPORTS
+  VDMEnumProcessWOW@8 @3
+  VDMEnumTaskWOW@12 @4

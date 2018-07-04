@@ -1,0 +1,50 @@
+; File generated automatically from ./dlls/atl100/atl100.spec; do not edit!
+
+LIBRARY atl100.dll
+
+EXPORTS
+  AtlAdvise@16 @10
+  AtlUnadvise@12 @11
+  AtlFreeMarshalStream@4 @12
+  AtlMarshalPtrInProc@12 @13
+  AtlUnmarshalPtr@12 @14
+  AtlComModuleGetClassObject@16 @15
+  AtlComModuleRegisterClassObjects@12 @17
+  AtlComModuleRevokeClassObjects@4 @20
+  AtlComModuleUnregisterServer@12 @22
+  AtlUpdateRegistryFromResourceD@20 @23
+  AtlWaitWithMessageLoop@4 @24
+  AtlCreateTargetDC@8 @26
+  AtlHiMetricToPixel@8 @27
+  AtlPixelToHiMetric@8 @28
+  AtlComPtrAssign@8 @30
+  AtlComQIPtrAssign@12 @31
+  AtlInternalQueryInterface@16 @32
+  AtlGetVersion@4 @34
+  AtlAxDialogBoxW@20 @35
+  AtlAxDialogBoxA@20 @36
+  AtlAxCreateDialogW@20 @37
+  AtlAxCreateDialogA@20 @38
+  AtlAxCreateControl@16 @39
+  AtlAxCreateControlEx@28 @40
+  AtlAxAttachControl@12 @41
+  AtlAxWinInit@0 @42
+  AtlWinModuleAddCreateWndData@12 @43
+  AtlWinModuleExtractCreateWndData@4 @44
+  AtlAxGetControl@8 @47
+  AtlAxGetHost@8 @48
+  AtlRegisterClassCategoriesHelper@12 @49
+  AtlIPersistStreamInit_Load@16 @50
+  AtlIPersistStreamInit_Save@20 @51
+  AtlIPersistPropertyBag_Load@20 @52
+  AtlIPersistPropertyBag_Save@24 @53
+  AtlGetObjectSourceInterface@20 @54
+  AtlLoadTypeLib@16 @56
+  AtlModuleAddTermFunc@12 @58
+  AtlAxCreateControlLic@20 @59
+  AtlAxCreateControlLicEx@32 @60
+  AtlCreateRegistrar@4 @61
+  AtlCallTermFunc@4 @64
+  AtlWinModuleInit@4 @65
+  AtlSetPerUserRegistration@4 @67
+  AtlGetPerUserRegistration@4 @68

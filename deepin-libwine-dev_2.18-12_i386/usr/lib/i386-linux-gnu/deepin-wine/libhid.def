@@ -1,0 +1,38 @@
+; File generated automatically from ./dlls/hid/hid.spec; do not edit!
+
+LIBRARY hid.dll
+
+EXPORTS
+  HidD_FlushQueue@4 @1
+  HidD_FreePreparsedData@4 @2
+  HidD_GetAttributes@8 @3
+  HidD_GetConfiguration@12 @4
+  HidD_GetFeature@12 @5
+  HidD_GetHidGuid@4 @6
+  HidD_GetIndexedString@16 @7
+  HidD_GetInputReport@12 @8
+  HidD_GetManufacturerString@12 @9
+  HidD_GetMsGenreDescriptor@12 @10
+  HidD_GetNumInputBuffers@8 @11
+  HidD_GetPhysicalDescriptor@12 @12
+  HidD_GetPreparsedData@8 @13
+  HidD_GetProductString@12 @14
+  HidD_GetSerialNumberString@12 @15
+  HidD_SetConfiguration@12 @17
+  HidD_SetFeature@12 @18
+  HidD_SetNumInputBuffers@8 @19
+  HidD_SetOutputReport@12 @20
+  HidP_GetButtonCaps@16 @21
+  HidP_GetCaps@8 @22
+  HidP_GetData@24 @23
+  HidP_GetScaledUsageValue@32 @26
+  HidP_GetSpecificButtonCaps@28 @27
+  HidP_GetSpecificValueCaps@28 @28
+  HidP_GetUsageValue@32 @29
+  HidP_GetUsages@32 @31
+  HidP_GetUsagesEx@28 @32
+  HidP_GetValueCaps@16 @33
+  HidP_InitializeReportForID@20 @34
+  HidP_MaxDataListLength@8 @35
+  HidP_MaxUsageListLength@12 @36
+  HidP_TranslateUsagesToI8042ScanCodes@24 @42

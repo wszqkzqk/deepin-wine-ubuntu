@@ -1,0 +1,70 @@
+/*
+ * Copyright 2015 Nikolay Sivov for CodeWeavers
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
+ */
+
+import "unknwn.idl";
+
+cpp_quote("#define IMGCHG_SIZE     0x0001")
+cpp_quote("#define IMGCHG_VIEW     0x0002")
+cpp_quote("#define IMGCHG_COMPLETE 0x0004")
+cpp_quote("#define IMGCHG_ANIMATE  0x0008")
+cpp_quote("#define IMGCHG_MASK     0x000f")
+
+cpp_quote("#define IMGLOAD_NOTLOADED 0x00100000")
+cpp_quote("#define IMGLOAD_LOADING   0x00200000")
+cpp_quote("#define IMGLOAD_STOPPED   0x00400000")
+cpp_quote("#define IMGLOAD_ERROR     0x00800000")
+cpp_quote("#define IMGLOAD_COMPLETE  0x01000000")
+cpp_quote("#define IMGLOAD_MASK      0x01f00000")
+
+cpp_quote("#define IMGBITS_NONE      0x02000000")
+cpp_quote("#define IMGBITS_PARTIAL   0x04000000")
+cpp_quote("#define IMGBITS_TOTAL     0x08000000")
+cpp_quote("#define IMGBITS_MASK      0x0e000000")
+
+cpp_quote("#define IMGANIM_ANIMATED  0x10000000")
+cpp_quote("#define IMGANIM_MASK      0x10000000")
+
+cpp_quote("#define IMGTRANS_OPAQUE   0x20000000")
+cpp_quote("#define IMGTRANS_MASK     0x20000000")
+
+cpp_quote("#define DWN_COLORMODE     0x0000003f")
+cpp_quote("#define DWN_DOWNLOADONLY  0x00000040")
+cpp_quote("#define DWN_FORCEDITHER   0x00000080")
+cpp_quote("#define DWN_RAWIMAGE      0x00000100")
+cpp_quote("#define DWN_MIRRORIMAGE   0x00000200")
+
+typedef void (__stdcall *PFNIMGCTXCALLBACK)(void *, void *);
+
+[
+    local,
+    object,
+    uuid(3050f3d7-98b5-11cf-bb82-00aa00bdce0b)
+]
+interface IImgCtx : IUnknown
+{
+    HRESULT Load(LPCWSTR url, DWORD flags);
+    HRESULT SelectChanges(ULONG changeon, ULONG changeoff, BOOL signal);
+    HRESULT SetCallback(PFNIMGCTXCALLBACK fn, void *priv);
+    HRESULT Disconnect();
+    HRESULT GetUpdateRects(RECT *rect, RECT *img, LONG *pcrc);
+    HRESULT GetStateInfo(ULONG *state, SIZE *size, BOOL clear_changes);
+    HRESULT GetPalette(HPALETTE *hpal);
+    HRESULT Draw(HDC hdc, RECT *bounds);
+    HRESULT Tile(HDC hdc, POINT *backorg, RECT *clip, SIZE *size);
+    HRESULT StretchBlt(HDC hdc, int dstX, int dstY, int dstXE, int dstYE, int srcX, int srcY, int srcXE, int srcYE, DWORD rop);
+}

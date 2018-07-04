@@ -1,0 +1,144 @@
+/*
+ * Copyright (C) 2012 Alistair Leslie-Hughes
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
+ */
+
+import "oaidl.idl";
+import "ocidl.idl";
+import "oledb.idl";
+
+#if !defined(progid) && !defined(__WIDL__)
+#define threading(model)
+#define progid(str)
+#define vi_progid(str)
+#endif
+
+typedef LONG_PTR COMPATIBLE_LONG;
+
+[
+    uuid(2206CEB0-19C1-11D1-89E0-00C04FD7A829),
+    version(1.0)
+]
+library MSDASC
+{
+    importlib("stdole2.tlb");
+
+    typedef DWORD DBPROMPTOPTIONS;
+
+    typedef enum tagDBPROMPTOPTIONSENUM
+    {
+        DBPROMPTOPTIONS_NONE                        = 0x00,
+        DBPROMPTOPTIONS_WIZARDSHEET                 = 0x01,
+        DBPROMPTOPTIONS_PROPERTYSHEET               = 0x02,
+        DBPROMPTOPTIONS_BROWSEONLY                  = 0x08,
+        DBPROMPTOPTIONS_DISABLE_PROVIDER_SELECTION  = 0x10,
+        DBPROMPTOPTIONS_DISABLESAVEPASSWORD         = 0x20
+    } DBPROMPTOPTIONSENUM;
+
+    [
+      odl,
+      uuid(2206CCB2-19C1-11D1-89E0-00C04FD7A829),
+      helpstring("OLE DB Service Component Automation Interface"),
+      dual,
+      oleautomation
+    ]
+    interface IDataSourceLocator : IDispatch
+    {
+        [id(0x60020000), propget]
+        HRESULT hWnd([out, retval] COMPATIBLE_LONG* phwndParent);
+
+        [id(0x60020000), propput]
+        HRESULT hWnd([in] COMPATIBLE_LONG hwndParent);
+
+        [id(0x60020002), helpstring("PromptNew")]
+        HRESULT PromptNew([out, retval] IDispatch** ppADOConnection);
+
+        [id(0x60020003), helpstring("PromptEdit")]
+        HRESULT PromptEdit([in, out] IDispatch** ppADOConnection, [out, retval] VARIANT_BOOL* pbSuccess);
+    }
+
+    [
+      odl,
+      uuid(2206CCB0-19C1-11D1-89E0-00C04FD7A829),
+      restricted
+    ]
+    interface IDBPromptInitialize : IUnknown
+    {
+        HRESULT _stdcall PromptDataSource([in] IUnknown* pUnkOuter, [in] HWND hWndParent,
+            [in] DBPROMPTOPTIONS dwPromptOptions, [in] ULONG cSourceTypeFilter,
+            [in] DBSOURCETYPE* rgSourceTypeFilter, [in] LPWSTR pwszszzProviderFilter,
+            [in] GUID* riid, [in, out] IUnknown** ppDataSource);
+
+        HRESULT _stdcall PromptFileName([in] HWND hWndParent, [in] ULONG dwPromptOptions,
+            [in] LPWSTR pwszInitialDirectory, [in] LPWSTR pwszInitialFile, [out] LPWSTR* ppwszSelectedFile);
+    }
+
+    [
+      uuid(2206CCB1-19C1-11D1-89E0-00C04FD7A829),
+    ]
+    interface IDataInitialize : IUnknown
+    {
+        HRESULT GetDataSource([in] IUnknown* pUnkOuter, [in]  DWORD dwClsCtx,
+                        [in] LPWSTR pwszInitializationString, [in] REFIID riid,
+                        [in, out] IUnknown** ppDataSource);
+
+        HRESULT GetInitializationString([in] IUnknown* pDataSource, [in] boolean fIncludePassword,
+                        [out] LPWSTR* ppwszInitString);
+
+        HRESULT CreateDBInstance([in] REFCLSID clsidProvider, [in] IUnknown* pUnkOuter,
+                        [in] DWORD dwClsCtx, [in] LPWSTR pwszReserved,
+                        [in] REFIID riid, [out] IUnknown** ppDataSource);
+
+        [local]
+        HRESULT CreateDBInstanceEx([in] REFCLSID clsidProvider,  [in] IUnknown* pUnkOuter,
+                        [in] DWORD dwClsCtx, [in] LPWSTR pwszReserved,  [in] COSERVERINFO* pServerInfo,
+                        [in] DWORD cmq,  [in, out, size_is(cmq)] MULTI_QI *results);
+
+        [call_as(CreateDBInstanceEx)]
+        HRESULT RemoteCreateDBInstanceEx([in] REFCLSID clsidProvider,  [in] IUnknown* pUnkOuter,
+                        [in] DWORD dwClsCtx, [in] LPWSTR pwszReserved,  [in] COSERVERINFO* pServerInfo,
+                        [in] DWORD cmq,  [in, size_is(cmq)] const IID **iids, [out, size_is(cmq)] IUnknown **ifs,
+                        [out, size_is(cmq)] HRESULT *hr);
+
+        HRESULT LoadStringFromStorage([in] LPWSTR pwszFileName, [out] LPWSTR* ppwszInitializationString);
+
+        HRESULT WriteStringToStorage([in] LPWSTR pwszFileName,  [in] LPWSTR pwszInitializationString,
+                        [in] DWORD dwCreationDisposition);
+    }
+
+    [
+      uuid(2206CDB0-19C1-11D1-89E0-00C04FD7A829),
+      threading(both),
+      progid("MSDASC.MSDAINITIALIZE.1"),
+      vi_progid("MSDASC.MSDAINITIALIZE"),
+    ]
+    coclass MSDAINITIALIZE
+    {
+        [default] interface IDataInitialize;
+    }
+
+    [
+      uuid(2206CDB2-19C1-11D1-89E0-00C04FD7A829),
+      threading(both),
+      progid("DataLinks")
+    ]
+    coclass DataLinks
+    {
+        [default] interface IDataSourceLocator;
+        interface IDBPromptInitialize;
+        interface IDataInitialize;
+    }
+}

@@ -1,0 +1,7 @@
+; File generated automatically from ./dlls/sxs/sxs.spec; do not edit!
+
+LIBRARY sxs.dll
+
+EXPORTS
+  CreateAssemblyCache@8 @1
+  CreateAssemblyNameObject@16 @2

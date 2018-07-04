@@ -1,0 +1,131 @@
+/*
+ * Copyright (c) 2015 Andrew Eikum
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
+ */
+
+import "unknwn.idl";
+
+[
+    uuid(c0c56f46-29b1-44e9-9939-a32ce86867e2)
+]
+coclass AudioVolumeMeter20 {
+    interface IUnknown;
+}
+
+[
+    uuid(c1e3f122-a2ea-442c-854f-20d98f8357a1)
+]
+coclass AudioVolumeMeter21 {
+    interface IUnknown;
+}
+
+[
+    uuid(f5ca7b34-8055-42c0-b836-216129eb7e30)
+]
+coclass AudioVolumeMeter22 {
+    interface IUnknown;
+}
+
+[
+    uuid(e180344b-ac83-4483-959e-18a5c56a5e19)
+]
+coclass AudioVolumeMeter23 {
+    interface IUnknown;
+}
+
+[
+    uuid(c7338b95-52b8-4542-aa79-42eb016c8c1c)
+]
+coclass AudioVolumeMeter24 {
+    interface IUnknown;
+}
+
+[
+    uuid(2139e6da-c341-4774-9ac3-b4e026347f64)
+]
+coclass AudioVolumeMeter25 {
+    interface IUnknown;
+}
+
+[
+    uuid(e48c5a3f-93ef-43bb-a092-2c7ceb946f27)
+]
+coclass AudioVolumeMeter26 {
+    interface IUnknown;
+}
+
+[
+    uuid(cac1105f-619b-4d04-831a-44e1cbf12d57)
+]
+coclass AudioVolumeMeter27 {
+    interface IUnknown;
+}
+
+[
+    uuid(6f6ea3a9-2cf5-41cf-91c1-2170b1540063)
+]
+coclass AudioReverb20 {
+    interface IUnknown;
+}
+
+[
+    uuid(f4769300-b949-4df9-b333-00d33932e9a6)
+]
+coclass AudioReverb21 {
+    interface IUnknown;
+}
+
+[
+    uuid(629cf0de-3ecc-41e7-9926-f7e43eebec51)
+]
+coclass AudioReverb22 {
+    interface IUnknown;
+}
+
+[
+    uuid(9cab402c-1d37-44b4-886d-fa4f36170a4c)
+]
+coclass AudioReverb23 {
+    interface IUnknown;
+}
+
+[
+    uuid(8bb7778b-645b-4475-9a73-1de3170bd3af)
+]
+coclass AudioReverb24 {
+    interface IUnknown;
+}
+
+[
+    uuid(d06df0d0-8518-441e-822f-5451d5c595b8)
+]
+coclass AudioReverb25 {
+    interface IUnknown;
+}
+
+[
+    uuid(cecec95a-d894-491a-bee3-5e106fb59f2d)
+]
+coclass AudioReverb26 {
+    interface IUnknown;
+}
+
+[
+    uuid(6a93130e-1d53-41d1-a9cf-e758800bb179)
+]
+coclass AudioReverb27 {
+    interface IUnknown;
+}

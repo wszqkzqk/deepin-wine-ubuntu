@@ -1,0 +1,114 @@
+/*
+ * Copyright 2015 Jacek Caban for CodeWeavers
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
+ */
+
+#ifdef __WIDL__
+#pragma winrt ns_prefix
+#endif
+
+import "inspectable.idl";
+/* import "asyncinfo.idl"; */
+/* import "eventtoken.idl"; */
+/* import "ivectorchangedeventargs.idl"; */
+
+namespace Windows {
+    namespace Foundation {
+        [version(0x06020000)]
+        enum PropertyType {
+            Empty       = 0,
+            UInt8       = 1,
+            Int16       = 2,
+            UInt16      = 3,
+            Int32       = 4,
+            UInt32      = 5,
+            Int64       = 6,
+            UInt64      = 7,
+            Single      = 8,
+            Double      = 9,
+            Char16      = 10,
+            Boolean     = 11,
+            String      = 12,
+            Inspectable = 13,
+            DateTime    = 14,
+            TimeSpan    = 15,
+            Guid        = 16,
+            Point       = 17,
+            Size        = 18,
+            Rect        = 19,
+            OtherType   = 20,
+            UInt8Array       = 1025,
+            Int16Array       = 1026,
+            UInt16Array      = 1027,
+            Int32Array       = 1028,
+            UInt32Array      = 1029,
+            Int64Array       = 1030,
+            UInt64Array      = 1031,
+            SingleArray      = 1032,
+            DoubleArray      = 1033,
+            Char16Array      = 1034,
+            BooleanArray     = 1035,
+            StringArray      = 1036,
+            InspectableArray = 1037,
+            DateTimeArray    = 1038,
+            TimeSpanArray    = 1039,
+            GuidArray        = 1040,
+            PointArray       = 1041,
+            SizeArray        = 1042,
+            RectArray        = 1043,
+            OtherTypeArray   = 1044
+        };
+
+        [version(0x06020000)]
+        struct Point {
+            FLOAT X;
+            FLOAT Y;
+        };
+
+        [version(0x06020000)]
+        struct Size {
+            FLOAT Width;
+            FLOAT Height;
+        };
+
+        [version(0x06020000)]
+        struct Rect {
+            FLOAT X;
+            FLOAT Y;
+            FLOAT Width;
+            FLOAT Height;
+        };
+
+        [version(0x06020000)]
+        struct DateTime {
+            INT64 UniversalTime;
+        };
+
+        [version(0x06020000)]
+        struct TimeSpan {
+            INT64 Duration;
+        };
+
+        [
+            version(0x06030000),
+            uuid(96369f54-8eb6-48f0-abce-c1b211e627c3)
+        ]
+        interface IStringable : IInspectable
+        {
+            HRESULT ToString([out, retval] HSTRING *value);
+        }
+    }
+}

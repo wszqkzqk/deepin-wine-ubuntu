@@ -1,0 +1,16 @@
+; File generated automatically from ./dlls/t2embed/t2embed.spec; do not edit!
+
+LIBRARY t2embed.dll
+
+EXPORTS
+  TTDeleteEmbeddedFont@12 @2
+  TTEmbedFont@44 @3
+  TTGetEmbeddingType@8 @7
+  TTIsEmbeddingEnabled@8 @8
+  TTIsEmbeddingEnabledForFacename@8 @9
+  TTLoadEmbeddedFont@40 @10
+  _TTEmbedFont@44@44=TTEmbedFont@44 @14
+  _TTGetEmbeddingType@8@8=TTGetEmbeddingType@8 @18
+  _TTIsEmbeddingEnabled@8@8=TTIsEmbeddingEnabled@8 @19
+  _TTIsEmbeddingEnabledForFacename@8@8=TTIsEmbeddingEnabledForFacename@8 @20
+  _TTLoadEmbeddedFont@40@40=TTLoadEmbeddedFont@40 @21

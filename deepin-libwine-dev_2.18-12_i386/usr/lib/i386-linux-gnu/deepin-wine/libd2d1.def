@@ -1,0 +1,7 @@
+; File generated automatically from ./dlls/d2d1/d2d1.spec; do not edit!
+
+LIBRARY d2d1.dll
+
+EXPORTS
+  D2D1CreateFactory@16 @1
+  D2D1MakeRotateMatrix@16 @2

@@ -1,0 +1,6 @@
+7bab82a11efae25004674223c1943fea  usr/lib/deepin-wine/wine-preloader
+0968ea0d39ccaddd2febb0d9e143abe2  usr/share/bug/deepin-wine32-preloader/control
+fdf9aa97154cd8df38bf4e1ace6ae0d5  usr/share/doc/deepin-wine32-preloader/changelog.Debian.gz
+eb7c252e870dbb4334d38644f1b07463  usr/share/doc/deepin-wine32-preloader/changelog.gz
+b5ff054c53edb3bb9ebf7bc718d69692  usr/share/doc/deepin-wine32-preloader/copyright
+299b2054ed7aef9d1fa75084c6c23a8e  usr/share/lintian/overrides/deepin-wine32-preloader

@@ -1,0 +1,35 @@
+; File generated automatically from ./dlls/spoolss/spoolss.spec; do not edit!
+
+LIBRARY spoolss.dll
+
+EXPORTS
+  AddMonitorW@12 @4
+  AddPrinterDriverExW@16 @11
+  AllocSplStr@4 @15
+  BuildOtherNamesFromMachineName@8 @17
+  ClosePrinter@4 @20
+  DeleteMonitorW@12 @28
+  DllAllocSplMem@4 @41
+  DllFreeSplMem@4 @42
+  DllFreeSplStr@4 @43
+  EndDocPrinter@4 @44
+  EnumMonitorsW@24 @48
+  EnumPortsW@24 @50
+  GetPrinterDataW@24 @70
+  GetPrinterDriverDirectoryW@24 @71
+  GetPrinterDriverW@24 @73
+  GetPrinterW@20 @74
+  ImpersonatePrinterClient@4 @75
+  InitializeRouter@0 @76
+  IsLocalCall@0 @77
+  OpenPrinterW@12 @88
+  ReadPrinter@16 @96
+  RevertToPrinterSelf@0 @104
+  SetPrinterDataW@20 @118
+  SplInitializeWinSpoolDrv@4 @124
+  SplIsUpgrade@0 @125
+  SpoolerHasInitialized@0 @135
+  SpoolerInit@0 @136
+  StartDocPrinterW@12 @137
+  WaitForSpoolerInitialization@0 @145
+  WritePrinter@16 @146

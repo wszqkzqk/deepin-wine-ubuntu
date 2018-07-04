@@ -1,0 +1,6 @@
+; File generated automatically from ./dlls/hidclass.sys/hidclass.sys.spec; do not edit!
+
+LIBRARY hidclass.sys
+
+EXPORTS
+  HidRegisterMinidriver@4 @1

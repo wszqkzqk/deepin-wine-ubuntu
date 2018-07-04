@@ -1,0 +1,80 @@
+; File generated automatically from ./dlls/uxtheme/uxtheme.spec; do not edit!
+
+LIBRARY uxtheme.dll
+
+EXPORTS
+  QueryThemeServices@0 @1 NONAME
+  OpenThemeFile@20 @2 NONAME
+  CloseThemeFile@4 @3 NONAME
+  ApplyTheme@12 @4 NONAME
+  GetThemeDefaults@20 @7 NONAME
+  EnumThemes@12 @8 NONAME
+  EnumThemeColors@16 @9 NONAME
+  EnumThemeSizes@16 @10 NONAME
+  ParseThemeIniFile@16 @11 NONAME
+  CheckThemeSignature@4 @29 NONAME
+  OpenThemeDataEx@12 @61
+  BeginBufferedAnimation@32 @5
+  BeginBufferedPaint@20 @6
+  BufferedPaintClear@8 @12
+  BufferedPaintInit@0 @37
+  BufferedPaintRenderAnimation@8 @38
+  BufferedPaintSetAlpha@12 @39
+  BufferedPaintStopAllAnimations@4 @40
+  BufferedPaintUnInit@0 @41
+  CloseThemeData@4 @42
+  DrawThemeBackground@24 @47
+  DrawThemeBackgroundEx@24 @49
+  DrawThemeEdge@32 @50
+  DrawThemeIcon@28 @51
+  DrawThemeParentBackground@12 @52
+  DrawThemeText@36 @53
+  DrawThemeTextEx@36 @54
+  EnableThemeDialogTexture@8 @55
+  EnableTheming@4 @56
+  EndBufferedAnimation@8 @57
+  EndBufferedPaint@8 @58
+  GetBufferedPaintBits@12 @59
+  GetBufferedPaintDC@4 @64
+  GetBufferedPaintTargetDC@4 @65
+  GetBufferedPaintTargetRect@8 @66
+  GetCurrentThemeName@24 @67
+  GetThemeAppProperties@0 @68
+  GetThemeBackgroundContentRect@24 @69
+  GetThemeBackgroundExtent@24 @70
+  GetThemeBackgroundRegion@24 @71
+  GetThemeBool@20 @72
+  GetThemeColor@20 @73
+  GetThemeDocumentationProperty@16 @74
+  GetThemeEnumValue@20 @75
+  GetThemeFilename@24 @76
+  GetThemeFont@24 @77
+  GetThemeInt@20 @78
+  GetThemeIntList@20 @79
+  GetThemeMargins@28 @80
+  GetThemeMetric@24 @81
+  GetThemePartSize@28 @82
+  GetThemePosition@20 @83
+  GetThemePropertyOrigin@20 @84
+  GetThemeRect@20 @85
+  GetThemeString@24 @86
+  GetThemeSysBool@8 @87
+  GetThemeSysColor@8 @88
+  GetThemeSysColorBrush@8 @89
+  GetThemeSysFont@12 @90
+  GetThemeSysInt@12 @91
+  GetThemeSysSize@8 @92
+  GetThemeSysString@16 @93
+  GetThemeTextExtent@36 @94
+  GetThemeTextMetrics@20 @95
+  GetThemeTransitionDuration@24 @96
+  GetWindowTheme@4 @97
+  HitTestThemeBackground@40 @98
+  IsAppThemed@0 @99
+  IsThemeActive@0 @100
+  IsThemeBackgroundPartiallyTransparent@12 @101
+  IsThemeDialogTextureEnabled@4 @102
+  IsThemePartDefined@12 @103
+  OpenThemeData@8 @104
+  SetThemeAppProperties@4 @105
+  SetWindowTheme@12 @106

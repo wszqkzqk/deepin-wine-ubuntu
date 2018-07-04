@@ -1,0 +1,89 @@
+/*
+ * Copyright 2017 Zebediah Figura for CodeWeavers
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
+ */
+
+import "oaidl.idl";
+
+#ifndef __WIDL__
+#define threading(model)
+#define progid(str)
+#define vi_progid(str)
+#endif
+
+[
+    object,
+    uuid(1a3114b8-a62e-11d0-a6c5-00a0c906af45),
+    local
+]
+interface IPersistQuery : IPersist
+{
+    HRESULT WriteString([in] LPCWSTR section, [in] LPCWSTR name, [in] LPCWSTR value);
+
+    HRESULT ReadString([in] LPCWSTR section, [in] LPCWSTR name, [out, size_is(buflen)] LPWSTR buffer, [in] INT buflen);
+
+    HRESULT WriteInt([in] LPCWSTR section, [in] LPCWSTR name, [in] INT value);
+
+    HRESULT ReadInt([in] LPCWSTR section, [in] LPCWSTR name, [out] INT *value);
+
+    HRESULT WriteStruct([in] LPCWSTR section, [in] LPCWSTR name, [in] LPVOID value, [in] DWORD size);
+
+    HRESULT ReadStruct([in] LPCWSTR section, [in] LPCWSTR name, [out, size_is(buflen)] LPVOID buffer, [in] DWORD buflen);
+
+    HRESULT Clear();
+}
+
+cpp_quote("#define OQWF_OKCANCEL            0x00000001")
+cpp_quote("#define OQWF_DEFAULTFORM         0x00000002")
+cpp_quote("#define OQWF_SINGLESELECT        0x00000004")
+cpp_quote("#define OQWF_LOADQUERY           0x00000008")
+cpp_quote("#define OQWF_REMOVESCOPES        0x00000010")
+cpp_quote("#define OQWF_REMOVEFORMS         0x00000020")
+cpp_quote("#define OQWF_ISSUEONOPEN         0x00000040")
+cpp_quote("#define OQWF_SHOWOPTIONAL        0x00000080")
+cpp_quote("#define OQWF_SAVEQUERYONOK       0x00000200")
+cpp_quote("#define OQWF_HIDEMENUS           0x00000400")
+cpp_quote("#define OQWF_HIDESEARCHUI        0x00000800")
+cpp_quote("#define OQWF_PARAMISPROPERTYBAG  0x80000000")
+
+typedef struct {
+  DWORD         cbStruct;
+  DWORD         dwFlags;
+  CLSID         clsidHandler;
+  LPVOID        pHandlerParameters;
+  CLSID         clsidDefaultForm;
+  IPersistQuery *pPersistQuery;
+  union {
+    void         *pFormParameters;
+    IPropertyBag *ppbFormParameters;
+  };
+} OPENQUERYWINDOW, *LPOPENQUERYWINDOW;
+
+[
+    object,
+    uuid(ab50dec0-6f1d-11d0-a1c4-00aa00c16e65),
+    local
+]
+interface ICommonQuery : IUnknown
+{
+    HRESULT OpenQueryWindow([in] HWND parent, [in] LPOPENQUERYWINDOW query_window, [out] IDataObject **data_object);
+}
+
+[
+    threading(apartment),
+    uuid(83bc5ec0-6f2a-11d0-a1c4-00aa00c16e65)
+]
+coclass CommonQuery { interface ICommonQuery; }

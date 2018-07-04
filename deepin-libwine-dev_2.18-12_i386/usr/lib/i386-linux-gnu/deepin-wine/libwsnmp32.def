@@ -1,0 +1,10 @@
+; File generated automatically from ./dlls/wsnmp32/wsnmp32.spec; do not edit!
+
+LIBRARY wsnmp32.dll
+
+EXPORTS
+  SnmpSetTranslateMode@4 @101
+  SnmpSetRetransmitMode@4 @103
+  SnmpStartup@20 @200
+  SnmpCleanup@0 @201
+  SnmpOpen@8 @202

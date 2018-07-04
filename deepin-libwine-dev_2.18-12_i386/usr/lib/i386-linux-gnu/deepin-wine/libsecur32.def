@@ -1,0 +1,64 @@
+; File generated automatically from ./dlls/secur32/secur32.spec; do not edit!
+
+LIBRARY secur32.dll
+
+EXPORTS
+  AcceptSecurityContext@36 @3
+  AcquireCredentialsHandleA@36 @4
+  AcquireCredentialsHandleW@36 @5
+  AddCredentialsA@32 @6
+  AddCredentialsW@32 @7
+  AddSecurityPackageA@8 @8
+  AddSecurityPackageW@8 @9
+  ApplyControlToken@8 @10
+  CompleteAuthToken@8 @11
+  DecryptMessage@16 @12
+  DeleteSecurityContext@4 @13
+  EncryptMessage@16 @16
+  EnumerateSecurityPackagesA@8 @17
+  EnumerateSecurityPackagesW@8 @18
+  ExportSecurityContext@16 @19
+  FreeContextBuffer@4 @20
+  FreeCredentialsHandle@4 @21
+  GetComputerObjectNameA@12 @22
+  GetComputerObjectNameW@12 @23
+  GetUserNameExA@12 @25
+  GetUserNameExW@12 @26
+  ImpersonateSecurityContext@4 @27
+  ImportSecurityContextA@16 @28
+  ImportSecurityContextW@16 @29
+  InitSecurityInterfaceA@0 @30
+  InitSecurityInterfaceW@0 @31
+  InitializeSecurityContextA@48 @32
+  InitializeSecurityContextW@48 @33
+  LsaCallAuthenticationPackage@28 @34
+  LsaConnectUntrusted@4 @35
+  LsaDeregisterLogonProcess@4 @36
+  LsaEnumerateLogonSessions@8 @37
+  LsaFreeReturnBuffer@4 @38
+  LsaGetLogonSessionData@8 @39
+  LsaLogonUser@56 @40
+  LsaLookupAuthenticationPackage@12 @41
+  LsaRegisterLogonProcess@12 @42
+  MakeSignature@16 @45
+  QueryContextAttributesA@12 @46
+  QueryContextAttributesW@12 @47
+  QueryCredentialsAttributesA@12 @48
+  QueryCredentialsAttributesW@12 @49
+  QuerySecurityContextToken@8 @50
+  QuerySecurityPackageInfoA@8 @51
+  QuerySecurityPackageInfoW@8 @52
+  RevertSecurityContext@4 @53
+  SealMessage@16=EncryptMessage@16 @63
+  SetContextAttributesA@16 @69
+  SetContextAttributesW@16 @70
+  SspiEncodeAuthIdentityAsStrings@16=sspicli.SspiEncodeAuthIdentityAsStrings @71
+  SspiEncodeStringsAsAuthIdentity@16=sspicli.SspiEncodeStringsAsAuthIdentity @72
+  SspiFreeAuthIdentity@4=sspicli.SspiFreeAuthIdentity @73
+  SspiLocalFree@4=sspicli.SspiLocalFree @74
+  SspiPrepareForCredWrite@28=sspicli.SspiPrepareForCredWrite @75
+  SspiZeroAuthIdentity@4=sspicli.SspiZeroAuthIdentity @76
+  TranslateNameA@20 @77
+  TranslateNameW@20 @78
+  UnsealMessage@16=DecryptMessage@16 @79
+  VerifySignature@16 @80

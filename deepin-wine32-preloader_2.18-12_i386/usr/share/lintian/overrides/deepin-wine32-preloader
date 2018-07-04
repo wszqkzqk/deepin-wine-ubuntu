@@ -1,0 +1,2 @@
+# preloader binary is statically linked by definition
+statically-linked-binary usr/lib/deepin-wine/wine-preloader

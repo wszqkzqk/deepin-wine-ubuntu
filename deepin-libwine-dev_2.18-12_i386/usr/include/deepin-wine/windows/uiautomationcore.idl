@@ -1,0 +1,91 @@
+/*
+ * Copyright 2012 Jacek Caban for CodeWeavers
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
+ */
+
+#define DO_NO_IMPORTS
+import "oaidl.idl";
+import "oleacc.idl";
+
+enum ProviderOptions {
+    ProviderOptions_ClientSideProvider    = 0x0001,
+    ProviderOptions_ServerSideProvider    = 0x0002,
+    ProviderOptions_NonClientAreaProvider = 0x0004,
+    ProviderOptions_OverrideProvider      = 0x0008,
+    ProviderOptions_ProviderOwnsSetFocus  = 0x0010,
+    ProviderOptions_UseComThreading       = 0x0020
+};
+
+typedef int PROPERTYID;
+typedef int PATTERNID;
+typedef int EVENTID;
+typedef int TEXTATTRIBUTEID;
+typedef int CONTROLTYPEID;
+
+[
+    version(1.0),
+    uuid(930299ce-9965-4dec-b0f4-a54848d4b667),
+    lcid(0),
+    hidden
+]
+library UIA
+{
+    importlib("stdole2.tlb");
+
+    [
+        object,
+        uuid(d6dd68d1-86fd-4332-8666-9abedea2d24c),
+        pointer_default(unique)
+    ]
+    interface IRawElementProviderSimple : IUnknown
+    {
+        [propget] HRESULT ProviderOptions([out, retval] enum ProviderOptions *pRetVal);
+
+        HRESULT GetPatternProvider(
+                [in] PATTERNID patternId,
+                [out, retval] IUnknown **pRetVal);
+
+        HRESULT GetPropertyValue(
+                [in] PROPERTYID propertyId,
+                [out, retval] VARIANT *pRetVal);
+
+        [propget] HRESULT HostRawElementProvider([out, retval] IRawElementProviderSimple **pRetVal);
+    }
+
+    [
+        object,
+        uuid(f8b80ada-2c44-48d0-89be-5ff23c9cd875),
+        pointer_default(unique),
+        oleautomation
+    ]
+    interface IAccessibleEx : IUnknown
+    {
+        HRESULT GetObjectForChild(
+                [in] long idChild,
+                [out, retval] IAccessibleEx **pRetVal);
+
+        HRESULT GetIAccessiblePair(
+                [out] IAccessible **ppAcc,
+                [out] long *pidChild);
+
+        HRESULT GetRuntimeId(
+                [out, retval] SAFEARRAY(int) *pRetVal);
+
+        HRESULT ConvertReturnedElement(
+                [in] IRawElementProviderSimple *pIn,
+                [out] IAccessibleEx **ppRetValOut);
+    }
+}

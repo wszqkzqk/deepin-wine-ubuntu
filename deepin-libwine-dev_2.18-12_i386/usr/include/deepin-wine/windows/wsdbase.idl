@@ -1,0 +1,122 @@
+/*
+ * Copyright 2017 Owen Rudge for CodeWeavers
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
+ */
+
+import "objidl.idl";
+
+cpp_quote("#define WSDAPI_ADDRESSFAMILY_IPV4 1")
+cpp_quote("#define WSDAPI_ADDRESSFAMILY_IPV6 2")
+
+interface IWSDAddress;
+interface IWSDUdpAddress;
+interface IWSDMessageParameters;
+
+cpp_quote("HRESULT WINAPI WSDCreateUdpAddress(IWSDUdpAddress **ppAddress);")
+
+#ifndef SOCKADDR_STORAGE
+cpp_quote("#if 1")
+cpp_quote("#ifndef __CSADDR_DEFINED__")
+cpp_quote("typedef struct SOCKADDR_STORAGE SOCKADDR_STORAGE;")
+cpp_quote("#endif")
+cpp_quote("#else")
+typedef void SOCKADDR_STORAGE;
+cpp_quote("#endif")
+#endif
+
+[
+uuid(b9574c6c-12a6-4f74-93a1-3318ff605759),
+object,
+local
+]
+interface IWSDAddress : IUnknown
+{
+    HRESULT Serialize([out, size_is(cchLength)] LPWSTR pszBuffer, [in] DWORD cchLength, [in] BOOL fSafe);
+    HRESULT Deserialize([in] LPCWSTR pszBuffer);
+}
+
+[
+uuid(70d23498-4ee6-4340-a3df-d845d2235467),
+object,
+local
+]
+interface IWSDTransportAddress : IWSDAddress
+{
+    HRESULT GetPort([out] WORD *pwPort);
+    HRESULT SetPort([in] WORD wPort);
+    HRESULT GetTransportAddress([out] LPCWSTR *ppszAddress);
+    HRESULT GetTransportAddressEx([in] BOOL fSafe, [out] LPCWSTR *ppszAddress);
+    HRESULT SetTransportAddress([in] LPCWSTR pszAddress);
+}
+
+typedef enum _WSDUdpMessageType
+{
+    ONE_WAY,
+    TWO_WAY
+} WSDUdpMessageType;
+
+[
+uuid(74d6124a-a441-4f78-a1eb-97a8d1996893),
+object,
+local
+]
+interface IWSDUdpAddress : IWSDTransportAddress
+{
+    HRESULT SetSockaddr([in] const SOCKADDR_STORAGE *pSockAddr);
+    HRESULT GetSockaddr([out] SOCKADDR_STORAGE *pSockAddr);
+    HRESULT SetExclusive(BOOL fExclusive);
+    HRESULT GetExclusive();
+    HRESULT SetMessageType([in] WSDUdpMessageType messageType);
+    HRESULT GetMessageType([out] WSDUdpMessageType* pMessageType);
+    HRESULT SetTTL([in] DWORD dwTTL);
+    HRESULT GetTTL([out] DWORD *pdwTTL);
+    HRESULT SetAlias([in] const GUID* pAlias);
+    HRESULT GetAlias([out] GUID *pAlias);
+}
+
+[
+uuid(1fafe8a2-e6fc-4b80-b6cf-b7d45c416d7c),
+object
+]
+interface IWSDMessageParameters : IUnknown
+{
+    HRESULT GetLocalAddress([out] IWSDAddress** ppAddress);
+    HRESULT SetLocalAddress([in] IWSDAddress* pAddress);
+    HRESULT GetRemoteAddress([out] IWSDAddress** ppAddress);
+    HRESULT SetRemoteAddress([in] IWSDAddress* pAddress);
+    HRESULT GetLowerParameters([out] IWSDMessageParameters** ppTxParams);
+}
+
+cpp_quote("HRESULT WINAPI WSDCreateUdpMessageParameters(IWSDUdpMessageParameters **ppTxParams);")
+
+typedef struct _WSDUdpRetransmitParams
+{
+    ULONG ulSendDelay;
+    ULONG ulRepeat;
+    ULONG ulRepeatMinDelay;
+    ULONG ulRepeatMaxDelay;
+    ULONG ulRepeatUpperDelay;
+} WSDUdpRetransmitParams;
+
+[
+uuid(9934149f-8f0c-447b-aa0b-73124b0ca7f0),
+object
+]
+interface IWSDUdpMessageParameters : IWSDMessageParameters
+{
+    HRESULT SetRetransmitParams([in] const WSDUdpRetransmitParams *pParams);
+    HRESULT GetRetransmitParams([out] WSDUdpRetransmitParams *pParams);
+}

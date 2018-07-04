@@ -1,0 +1,30 @@
+; File generated automatically from ./dlls/d3d10/d3d10.spec; do not edit!
+
+LIBRARY d3d10.dll
+
+EXPORTS
+  D3D10CompileEffectFromMemory@36 @1
+  D3D10CompileShader@40 @2
+  D3D10CreateBlob@8=d3dcompiler_43.D3DCreateBlob @3
+  D3D10CreateDevice@24 @4
+  D3D10CreateDeviceAndSwapChain@32 @5
+  D3D10CreateEffectFromMemory@24 @6
+  D3D10CreateEffectPoolFromMemory@20 @7
+  D3D10CreateStateBlock@12 @8
+  D3D10DisassembleShader@20 @10
+  D3D10GetGeometryShaderProfile@4 @11
+  D3D10GetInputAndOutputSignatureBlob@12=d3dcompiler_43.D3DGetInputAndOutputSignatureBlob @12
+  D3D10GetInputSignatureBlob@12=d3dcompiler_43.D3DGetInputSignatureBlob @13
+  D3D10GetOutputSignatureBlob@12=d3dcompiler_43.D3DGetOutputSignatureBlob @14
+  D3D10GetPixelShaderProfile@4 @15
+  D3D10GetShaderDebugInfo@12=d3dcompiler_43.D3DGetDebugInfo @16
+  D3D10GetVertexShaderProfile@4 @18
+  D3D10ReflectShader@12 @20
+  D3D10StateBlockMaskDifference@12 @22
+  D3D10StateBlockMaskDisableAll@4 @23
+  D3D10StateBlockMaskDisableCapture@16 @24
+  D3D10StateBlockMaskEnableAll@4 @25
+  D3D10StateBlockMaskEnableCapture@16 @26
+  D3D10StateBlockMaskGetSetting@12 @27
+  D3D10StateBlockMaskIntersect@12 @28
+  D3D10StateBlockMaskUnion@12 @29

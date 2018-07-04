@@ -1,0 +1,31 @@
+; File generated automatically from ./dlls/nddeapi/nddeapi.spec; do not edit!
+
+LIBRARY nddeapi.dll
+
+EXPORTS
+  NDdeShareAddA@20 @500
+  NDdeShareDelA@12 @501
+  NDdeShareEnumA@24 @502
+  NDdeShareGetInfoA@28 @503
+  NDdeShareSetInfoA@24 @504
+  NDdeGetErrorStringA@12 @505
+  NDdeIsValidShareNameA@4 @506
+  NDdeIsValidAppTopicListA@4 @507
+  NDdeGetShareSecurityA@24 @509
+  NDdeSetShareSecurityA@16 @510
+  NDdeGetTrustedShareA@20 @511
+  NDdeSetTrustedShareA@12 @512
+  NDdeTrustedShareEnumA@24 @513
+  NDdeShareAddW@20 @600
+  NDdeShareDelW@12 @601
+  NDdeShareEnumW@24 @602
+  NDdeShareGetInfoW@28 @603
+  NDdeShareSetInfoW@24 @604
+  NDdeGetErrorStringW@12 @605
+  NDdeIsValidShareNameW@4 @606
+  NDdeIsValidAppTopicListW@4 @607
+  NDdeGetShareSecurityW@24 @609
+  NDdeSetShareSecurityW@16 @610
+  NDdeGetTrustedShareW@20 @611
+  NDdeSetTrustedShareW@12 @612
+  NDdeTrustedShareEnumW@24 @613

@@ -1,0 +1,3 @@
+#!/bin/sh -e
+
+WINEBUILD=/usr/lib/i386-linux-gnu/deepin-wine/winebuild /usr/lib/i386-linux-gnu/deepin-wine/winegcc $@

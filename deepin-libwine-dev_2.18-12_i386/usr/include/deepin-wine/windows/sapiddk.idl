@@ -1,0 +1,86 @@
+/*
+ * Speech API (SAPI) DDK IDL file.
+ *
+ * Copyright (C) 2017 Huw Davies
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
+ */
+
+import "oaidl.idl";
+import "ocidl.idl";
+import "sapi.idl";
+
+#ifndef __WIDL__
+#define threading(model)
+#define progid(str)
+#define vi_progid(str)
+#endif
+
+[
+    object,
+    uuid(06b64f9f-7fda-11d2-b4f2-00c04f797396),
+    helpstring("ISpObjectTokenEnumBuilder"),
+    pointer_default(unique),
+    local,
+    restricted
+]
+interface ISpObjectTokenEnumBuilder : IEnumSpObjectTokens
+{
+    HRESULT SetAttribs([in] LPCWSTR pszReqAttribs,
+                       [in] LPCWSTR pszOptAttribs);
+    HRESULT AddTokens([in] ULONG cTokens,
+                      [in] ISpObjectToken **pToken);
+    HRESULT AddTokensFromDataKey([in] ISpDataKey *pDataKey,
+                                 [in] LPCWSTR pszSubKey,
+                                 [in] LPCWSTR pszCategoryId);
+    HRESULT AddTokensFromTokenEnum([in] IEnumSpObjectTokens *pTokenEnum);
+    HRESULT Sort([in] LPCWSTR pszTokenIdToListFirst);
+}
+
+[
+    helpstring("Speech Object DDK Library"),
+    uuid(9903f14c-12ce-4c99-9986-2ee3d7d588a8),
+    version(5.4)
+]
+library SpeechDDKLib
+{
+    importlib("stdole2.tlb");
+
+    [
+        uuid(d9f6ee60-58c9-458b-88e1-2f908fd7f87c),
+        helpstring("Data Key"),
+        progid("SAPI.SpDataKey.1"),
+        vi_progid("SAPI.SpDataKey"),
+        threading(both)
+    ]
+    coclass SpDataKey
+    {
+        interface ISpRegDataKey;
+        [default] interface ISpDataKey;
+    }
+
+    [
+        uuid(3918d75f-0acb-41f2-b733-92aa15bcecf6),
+        helpstring("Object Token Enumerator"),
+        progid("SAPI.SpObjectTokenEnum.1"),
+        vi_progid("SAPI.SpObjectTokenEnum"),
+        threading(both)
+    ]
+    coclass SpObjectTokenEnum
+    {
+        interface ISpObjectTokenEnumBuilder;
+        [default] interface IEnumSpObjectTokens;
+    }
+}

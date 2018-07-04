@@ -1,0 +1,40 @@
+; File generated automatically from ./dlls/dnsapi/dnsapi.spec; do not edit!
+
+LIBRARY dnsapi.dll
+
+EXPORTS
+  DnsAcquireContextHandle_A@12 @1
+  DnsAcquireContextHandle_UTF8@12 @2
+  DnsAcquireContextHandle_W@12 @3
+  DnsExtractRecordsFromMessage_UTF8@12 @31
+  DnsExtractRecordsFromMessage_W@12 @32
+  DnsFlushResolverCache@0 @34
+  DnsFlushResolverCacheEntry_A@4 @35
+  DnsFlushResolverCacheEntry_UTF8@4 @36
+  DnsFlushResolverCacheEntry_W@4 @37
+  DnsFree@8 @38
+  DnsModifyRecordsInSet_A@24 @69
+  DnsModifyRecordsInSet_UTF8@24 @70
+  DnsModifyRecordsInSet_W@24 @71
+  DnsNameCompare_A@8 @72
+  DnsNameCompare_W@8 @76
+  DnsQuery_A@24 @80
+  DnsQueryConfig@24 @81
+  DnsQueryEx@12 @82
+  DnsQuery_UTF8@24 @83
+  DnsQuery_W@24 @84
+  DnsRecordCompare@8 @87
+  DnsRecordCopyEx@12 @88
+  DnsRecordListFree@8 @89
+  DnsRecordSetCompare@16 @90
+  DnsRecordSetCopyEx@12 @91
+  DnsRecordSetDetach@4 @92
+  DnsReleaseContextHandle@4 @98
+  DnsReplaceRecordSetA@20 @100
+  DnsReplaceRecordSetUTF8@20 @102
+  DnsReplaceRecordSetW@20 @104
+  DnsValidateName_A@8 @121
+  DnsValidateName_UTF8@8 @122
+  DnsValidateName_W@8 @123
+  DnsWriteQuestionToBuffer_UTF8@24 @127
+  DnsWriteQuestionToBuffer_W@24 @128

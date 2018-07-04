@@ -1,0 +1,11 @@
+; File generated automatically from ./dlls/wnaspi32/wnaspi32.spec; do not edit!
+
+LIBRARY wnaspi32.dll
+
+EXPORTS
+  GetASPI32SupportInfo @1
+  SendASPI32Command @2
+  GetASPI32DLLVersion @4
+  TranslateASPI32Address @7
+  GetASPI32Buffer @8
+  FreeASPI32Buffer @14

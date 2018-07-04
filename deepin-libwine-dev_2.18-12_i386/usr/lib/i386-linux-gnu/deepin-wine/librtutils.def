@@ -1,0 +1,7 @@
+; File generated automatically from ./dlls/rtutils/rtutils.spec; do not edit!
+
+LIBRARY rtutils.dll
+
+EXPORTS
+  TraceRegisterExA@8 @50
+  TraceRegisterExW@8 @51
