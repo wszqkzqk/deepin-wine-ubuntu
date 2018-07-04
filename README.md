@@ -1,7 +1,8 @@
 # deepin wine for ubuntu
 
 #### 项目介绍
-deepin wine for ubuntu
+
+deepin-wine环境的Ubuntu移植版
 
 #### 软件架构
 软件架构说明
