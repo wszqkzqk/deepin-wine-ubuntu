@@ -9,9 +9,9 @@ deepin wine for ubuntu
 
 #### 安装教程
 
-方法1：使用"git clone 'https://gitee.com/wszqkzqk/deepin-wine-for-ubuntu.git'" 克隆到本地，用图形界面的软件包管理器安装所有deb文件。
+方法1：使用"git clone 'https://github.com/wszqkzqk/deepin-wine-ubuntu.git'" 克隆到本地，用图形界面的软件包管理器安装所有deb文件。
 
-方法2：使用"git clone 'https://gitee.com/wszqkzqk/deepin-wine-for-ubuntu.git'" 克隆到本地,(授予可执行权限后)在终端中运行install.sh 。
+方法2：使用"git clone 'https://github.com/wszqkzqk/deepin-wine-ubuntu.git'" 克隆到本地,(授予可执行权限后)在终端中运行install.sh 。
 
 #### 使用说明
 
