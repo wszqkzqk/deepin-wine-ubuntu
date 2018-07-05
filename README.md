@@ -36,4 +36,4 @@ deepin-wine环境的Ubuntu移植版
 3. 提交代码
 4. 新建 Pull Request
 
-
+欢迎大家积极反馈！
