@@ -17,6 +17,15 @@ deepin-wine环境的Ubuntu移植版
 #### 使用说明
 
 自行到'http://mirrors.aliyun.com/deepin/pool/non-free/d/' 中下载想要的容器安装运行即可。
+推荐容器:
+QQ：http://mirrors.aliyun.com/deepin/pool/non-free/d/deepin.com.qq.im/
+TIM：http://mirrors.aliyun.com/deepin/pool/non-free/d/deepin.com.qq.office/
+QQ轻聊版：http://mirrors.aliyun.com/deepin/pool/non-free/d/deepin.com.qq.im.light/
+微信：http://mirrors.aliyun.com/deepin/pool/non-free/d/deepin.com.wechat/
+Foxmail：http://mirrors.aliyun.com/deepin/pool/non-free/d/deepin.com.foxmail/
+百度网盘：http://mirrors.aliyun.com/deepin/pool/non-free/d/deepin.com.baidu.pan/
+360压缩：http://mirrors.aliyun.com/deepin/pool/non-free/d/deepin.cn.360.yasuo/
+WinRAR：http://mirrors.aliyun.com/deepin/pool/non-free/d/deepin.cn.com.winrar/
 
 #### 参与贡献
 
