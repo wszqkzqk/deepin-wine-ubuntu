@@ -17,7 +17,7 @@ deepin-wine环境的Ubuntu移植版
 #### 使用说明
 
 自行到'http://mirrors.aliyun.com/deepin/pool/non-free/d/' 中下载想要的容器安装运行即可(容器建议使用命令安装)。
-注意：目前KDE桌面环境无法使用。
+
 
 推荐容器:
 
@@ -29,6 +29,8 @@ deepin-wine环境的Ubuntu移植版
 6. 百度网盘：http://mirrors.aliyun.com/deepin/pool/non-free/d/deepin.com.baidu.pan/
 7. 360压缩：http://mirrors.aliyun.com/deepin/pool/non-free/d/deepin.cn.360.yasuo/
 8. WinRAR：http://mirrors.aliyun.com/deepin/pool/non-free/d/deepin.cn.com.winrar/
+
+#注意：目前KDE桌面环境无法使用
 
 #### 参与贡献
 
