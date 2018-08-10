@@ -10,7 +10,7 @@
 
 ### （1）安装教程
 
-* 克隆 (`gut clone https://github.com/wszqkzqk/deepin-wine-ubuntu.git`) 或[下载](https://github.com/wszqkzqk/deepin-wine-ubuntu/archive/master.zip)到本地。
+* 克隆 (`git clone https://github.com/wszqkzqk/deepin-wine-ubuntu.git`) 或[下载](https://github.com/wszqkzqk/deepin-wine-ubuntu/archive/master.zip)到本地。
 
 * 方法1：使用图形界面的软件包管理器按顺序安装所有 deb 文件。
 * 方法2：在终端中运行（授予可执行权限后）： `./install.sh` 。
