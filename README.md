@@ -17,7 +17,7 @@
 
 ### （2）使用说明
 
-下载容器：[阿里云镜像下载](http://mirrors.aliyun.com/deepin/pool/non-free/d/)*（建议在终端下安装容器）*
+下载容器：[阿里云镜像下载](http://mirrors.aliyun.com/deepin/pool/non-free/d/)*（建议在终端下使用dpkg -i安装容器）*
 
 推荐容器:
 
