@@ -34,7 +34,7 @@
 9. [迅雷极速版](https://gitee.com/wszqkzqk/deepin-wine-containers-for-ubuntu/raw/master/deepin.com.thunderspeed_7.10.35.366deepin17_i386.deb)
 
 
-若无法访问上述地址，或想体验官方最新版，可选择下载安装以下包：
+若无法访问上述地址，或想体验官方最新版，可选择下载安装以下包文件：
 
 1. [QQ](http://mirrors.aliyun.com/deepin/pool/non-free/d/deepin.com.qq.im/)
 2. [TIM](http://mirrors.aliyun.com/deepin/pool/non-free/d/deepin.com.qq.office/)
