@@ -64,6 +64,7 @@ Ubuntu 18.04 下（Gnome 桌面）：
 * 4. 新建 Pull Request
 * 5. 捐赠：
 [捐赠开发者](https://bbs.deepin.org/forum.php?mod=viewthread&tid=40784&extra=page%3D1)
+
 捐赠打包者（这个其实不需要，支持deepin就好了，不过有人在问，我就加上吧）
 ![](https://raw.githubusercontent.com/wszqkzqk/deepin-wine-ubuntu/master/donate.png)
 
