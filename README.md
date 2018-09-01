@@ -49,6 +49,7 @@
 其它deepin-wine容器：[阿里云镜像下载](http://mirrors.aliyun.com/deepin/pool/non-free/d/)
 
 注意：**目前 KDE 桌面环境无法使用！**
+     **部分桌面环境无法正常使用视频通话功能！**
 
 ### （3）关于托盘
 
