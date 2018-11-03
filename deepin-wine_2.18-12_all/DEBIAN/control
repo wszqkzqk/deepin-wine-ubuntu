@@ -3,7 +3,7 @@ Version: 2.18-12
 Architecture: all
 Maintainer: Debian Wine Party <pkg-wine-party@lists.alioth.debian.org>
 Installed-Size: 131
-Depends: deepin-wine64 (>= 2.18-12) | deepin-wine32 (>= 2.18-12), deepin-wine64 (<< 2.18-12.1~) | deepin-wine32 (<< 2.18-12.1~)
+Depends: deepin-wine64 (>= 2.18-12) | deepin-wine32 (>= 2.18-12), deepin-wine64 (<< 2.18-12.1~) | deepin-wine32 (<< 2.18-12.1~), libjpeg62:i386
 Suggests: deepin-wine-binfmt, dosbox (>= 0.74-4.2~)
 Built-Using: khronos-api (= 0~svn29735-1.1), unicode-data (= 9.0-1)
 Section: otherosfs
