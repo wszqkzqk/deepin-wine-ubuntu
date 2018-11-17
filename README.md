@@ -70,6 +70,6 @@ Ubuntu 18.04 下（Gnome 桌面）：
 ![](https://raw.githubusercontent.com/wszqkzqk/deepin-wine-ubuntu/master/donate.png)
 
 ## 四、功能预报
-
+1. 计划加入QQ、TIM、QQ轻聊版的多开功能
 
 欢迎大家积极反馈！
