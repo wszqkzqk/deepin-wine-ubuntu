@@ -13,7 +13,7 @@
 选择操作I或II
 
 I.
-推荐使用在线安装脚本:
+可尝试使用在线安装脚本:
 
     wget -qO- https://raw.githubusercontent.com/wszqkzqk/deepin-wine-ubuntu/master/online_install.sh | bash -e
 
