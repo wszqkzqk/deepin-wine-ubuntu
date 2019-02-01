@@ -81,4 +81,5 @@ Ubuntu 18.04 下（Gnome 桌面）：
 ![](https://raw.githubusercontent.com/wszqkzqk/deepin-wine-ubuntu/master/donate.png)
 
 欢迎大家积极反馈！
+
     *本软件最近更新可能有点缓慢
