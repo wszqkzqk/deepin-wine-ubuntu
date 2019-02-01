@@ -21,8 +21,8 @@ II.
 * 克隆 (`git clone https://github.com/wszqkzqk/deepin-wine-ubuntu.git`) 或[下载](https://github.com/wszqkzqk/deepin-wine-ubuntu/archive/master.zip)到本地。
 * 在中国推荐用下面的地址，速度更快： (`git clone https://gitee.com/wszqkzqk/deepin-wine-for-ubuntu.git`) 
 
-* 方法1(推荐)：在终端中运行（授予可执行权限后）： `./install.sh` 。
-* 方法2：使用图形界面的软件包管理器按顺序安装所有 deb 文件。
+* 在终端中运行（授予可执行权限后）： `./install.sh` 
+    KDE桌面环境执行 `./KDE-install.sh` 。
 
 
 
@@ -57,7 +57,7 @@ II.
 
 其它deepin-wine容器：[阿里云镜像下载](http://mirrors.aliyun.com/deepin/pool/non-free/d/)
 
-注意：**目前 KDE 桌面环境无法使用！**
+注意：**目前基本适配最新版KDE，但测试可能不足，欢迎大家测试反馈（建议将KDE升级到最新版）**
      **部分桌面环境无法正常使用视频通话功能！**
 
 ### （3）关于托盘
@@ -76,7 +76,7 @@ Ubuntu 18.04 下（Gnome 桌面）：
 1. [捐赠开发者](https://bbs.deepin.org/forum.php?mod=viewthread&tid=40784&extra=page%3D1)
 
 2. 捐赠打包者（这个其实不需要，我的贡献并不多，支持deepin就好了，不过有人在问，我就加上吧）
-![](https://raw.githubusercontent.com/wszqkzqk/deepin-wine-ubuntu/master/donate.png)
+![](https://raw.githubusercontent.com/wszqkzqk/deepin-wine-ubuntu/master/donate.jpg)
 
 
 欢迎大家积极反馈！
