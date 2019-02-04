@@ -58,7 +58,6 @@ II.
 其它deepin-wine容器：[阿里云镜像下载](http://mirrors.aliyun.com/deepin/pool/non-free/d/)
 
 注意：**目前基本适配最新版KDE，但测试可能不足，欢迎大家测试反馈（建议将KDE升级到最新版）**
-
      **部分桌面环境无法正常使用视频通话功能！**
 
 ### （3）关于托盘
@@ -69,7 +68,7 @@ Ubuntu 18.04 下（Gnome 桌面）：
 
 ### （4）卸载方法
 
-    执行uninstall.sh即可
+* 执行uninstall.sh即可
 
 ## 三、参与贡献
 
