@@ -67,6 +67,10 @@ Ubuntu 18.04 下（Gnome 桌面）：
 
 安装 Gnome Shell 插件：[TopIcons Plus](https://extensions.gnome.org/extension/1031/topicons/)
 
+### （4）卸载方法
+
+    执行uninstall.sh即可
+
 ## 三、参与贡献
 
 * 1. Fork 本项目
