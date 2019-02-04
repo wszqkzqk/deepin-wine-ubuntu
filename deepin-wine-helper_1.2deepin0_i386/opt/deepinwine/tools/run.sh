@@ -16,6 +16,10 @@ LOG_FILE=$0
 
 init_log_file()
 {
+    if [ ! -d "$DEBUG_LOG" ];then
+        return
+    fi
+
     LOG_DIR=$(realpath $DEBUG_LOG)
     if [ -d "$LOG_DIR" ];then
         LOG_FILE="${LOG_DIR}/${LOG_FILE##*/}.log"
@@ -26,7 +30,7 @@ init_log_file()
 
 debug_log_to_file()
 {
-    if [ -f "$DEBUG_LOG" ];then
+    if [ -d "$DEBUG_LOG" ];then
         strDate=$(date)
         echo -e "${strDate}:${1}" >> "$LOG_FILE"
     fi
@@ -53,6 +57,28 @@ _DeleteRegistry()
 _SetOverride()
 {
     _SetRegistryValue 'HKCU\Software\Wine\DllOverrides' "$2" REG_SZ "$1"
+}
+
+_DisableAliUpdate()
+{
+    if [ -f "${WINEPREFIX}/.disable" ];then
+        return
+    fi
+    debug_log "Disable AliUpdate"
+    touch ${WINEPREFIX}/.disable
+
+    /opt/deepinwine/tools/kill.sh AliWorkbench block
+    VERSIONS=$(ls ${WINEPREFIX}'/drive_c/Program Files/AliWorkbench' | grep -E '*.*.*N')
+    VERSIONS=$(echo $VERSIONS | awk '{print $2}')
+    debug_log $VERSIONS
+
+    if [ -n "$VERSIONS" ];then
+        debug_log "Remove bottle"
+        rm -rf "$WINEPREFIX"
+        /opt/deepinwine/apps/Deepin-QianNiu/run.sh -c
+    fi
+
+    _SetOverride "" "AliUpdate"
 }
 
 HelpApp()
@@ -154,11 +180,20 @@ CallATM()
         env WINEPREFIX="$WINEPREFIX" $WINE_CMD "c:\\Program Files\\TradeManager\\AliIM.exe" &
     fi
 }
+CallMaxthon2()
+{
+    if [ "autostart" == "$1" ]; then
+        env WINEPREFIX="$WINEPREFIX" $WINE_CMD /opt/deepinwine/tools/startbottle.exe &
+    else
+        env WINEPREFIX="$WINEPREFIX" $WINE_CMD "c:\\Program Files\\Maxthon2\\Maxthon.exe" &
+    fi
+}
 CallQIANNIU()
 {
     if [ "autostart" == "$1" ]; then
         env WINEPREFIX="$WINEPREFIX" $WINE_CMD /opt/deepinwine/tools/startbottle.exe &
     else
+        _DisableAliUpdate
         env WINEPREFIX="$WINEPREFIX" $WINE_CMD "c:\\Program Files\\AliWorkbench\\AliWorkbench.exe" &
     fi
 }
@@ -218,11 +253,8 @@ CallYMRDWS()
 CallQQGame()
 {
     debug_log "run $1"
-    if [ -f "$WINEPREFIX/drive_c/users/$USER/Application Data/Tencent/QQMicroGameBox/Launch.exe" ]; then
-        env WINEPREFIX="$WINEPREFIX" $WINE_CMD "c:\\users\\$USER/Application Data\\Tencent\\QQMicroGameBox\\Launch.exe" -/appid:$1 &
-    else
-        env WINEPREFIX="$WINEPREFIX" $WINE_CMD "c:\\Program Files\\QQMicroGameBoxMini\\QQMGameBoxUpdater.exe" -action:force_download -appid:$1 -pid:8 -bin_version:1.1.2.4 -loginuin: &
-    fi
+    /opt/deepinwine/tools/kill.sh QQMicroGameBox block
+    env WINEPREFIX="$WINEPREFIX" /opt/deepinwine/tools/QQGameRunner $1 &
 }
 CallWXWork()
 {
@@ -239,6 +271,7 @@ CallRTX2009()
     if [ "autostart" == "$1" ]; then
         env WINEPREFIX="$WINEPREFIX" $WINE_CMD /opt/deepinwine/tools/startbottle.exe &
     else
+        cd "$WINEPREFIX/drive_c/Program Files/Tencent/RTXC"
         env WINEPREFIX="$WINEPREFIX" $WINE_CMD "c:\\Program Files\\Tencent\\RTXC\\RTX.exe" &
     fi
 }
@@ -327,6 +360,7 @@ CallWeChat()
         rm "${WINEPREFIX}/drive_c/users/${USER}/Application Data/Tencent/WeChat/All Users/config/configEx.ini"
 
         export DISABLE_RENDER_CLIPBOARD=1
+        export ATTACH_FILE_DIALOG=1
         debug_log "start running..."
         env WINEPREFIX="$WINEPREFIX" $WINE_CMD "c:\\Program Files\\Tencent\\WeChat\\WeChat.exe" &
     fi
@@ -395,12 +429,61 @@ CallQQEIM()
         env WINEPREFIX="$WINEPREFIX" $WINE_CMD "c:\\Program Files\\Tencent\\QQEIM\\Bin\\QQEIM.exe" &
     fi
 }
+CallMTXX()
+{
+    if [ "autostart" == "$1" ]; then
+        env WINEPREFIX="$WINEPREFIX" $WINE_CMD /opt/deepinwine/tools/startbottle.exe &
+    else
+        env WINEPREFIX="$WINEPREFIX" $WINE_CMD "c:\\Program Files\\Meitu\\XiuXiu\\XiuXiu.exe " &
+    fi
+}
+CallDecryptDoc()
+{
+    if [ "autostart" == "$1" ]; then
+        env WINEPREFIX="$WINEPREFIX" $WINE_CMD /opt/deepinwine/tools/startbottle.exe &
+    else
+        env WINEPREFIX="$WINEPREFIX" $WINE_CMD "c:\\DecryptDoc.exe " &
+    fi
+}
+CallYNote()
+{
+    if [ "autostart" == "$1" ]; then
+        env WINEPREFIX="$WINEPREFIX" $WINE_CMD /opt/deepinwine/tools/startbottle.exe &
+    else
+        env WINEPREFIX="$WINEPREFIX" $WINE_CMD "c:\\Program Files\\Youdao\\YoudaoNote\\YoudaoNote.exe " &
+    fi
+}
 CallQQCRM()
 {
     if [ "autostart" == "$1" ]; then
         env WINEPREFIX="$WINEPREFIX" $WINE_CMD /opt/deepinwine/tools/startbottle.exe &
     else
         env WINEPREFIX="$WINEPREFIX" $WINE_CMD "c:\\Program Files\\Tencent\\BizQQ\\Bin\\QQCRM.exe" &
+    fi
+}
+CallPRCReader()
+{
+    if [ "autostart" == "$1" ]; then
+        env WINEPREFIX="$WINEPREFIX" $WINE_CMD /opt/deepinwine/tools/startbottle.exe &
+    else
+        env WINEPREFIX="$WINEPREFIX" $WINE_CMD "c:\\Program Files\\Founder\\Apabi Reader 4.0\\ApaReader.exe" &
+    fi
+}
+CallMiniCADSee()
+{
+    if [ "autostart" == "$1" ]; then
+        env WINEPREFIX="$WINEPREFIX" $WINE_CMD /opt/deepinwine/tools/startbottle.exe &
+    else
+        env WINEPREFIX="$WINEPREFIX" $WINE_CMD "c:\\Program Files\\CAD迷你看图\\DWGView.exe" &
+    fi
+}
+CallCMBChina()
+{
+    if [ "autostart" == "$1" ]; then
+        env WINEPREFIX="$WINEPREFIX" $WINE_CMD /opt/deepinwine/tools/startbottle.exe &
+    else
+        /opt/deepinwine/tools/kill.sh PersonalBankPortal.exe block
+        env WINEPREFIX="$WINEPREFIX" $WINE_CMD "c:\\windows\\system32\\PersonalBankPortal.exe" &
     fi
 }
 CallWangWang()
@@ -414,6 +497,23 @@ CallWangWang()
         env WINEPREFIX="$WINEPREFIX" $WINE_CMD "c:\\Program Files\\AliWangWang\\9.12.03C\\WWCmd.exe" "$1" &
     fi
 }
+CallEM263()
+{
+    if [ "autostart" == "$1" ]; then
+        env WINEPREFIX="$WINEPREFIX" $WINE_CMD /opt/deepinwine/tools/startbottle.exe &
+    else
+        env WINEPREFIX="$WINEPREFIX" $WINE_CMD "c:\\Program Files\\263\\263 Enterprise Messenger\\263em.exe " &
+    fi
+}
+CallThunderSpeed()
+{
+    if [ "autostart" == "$1" ]; then
+        env WINEPREFIX="$WINEPREFIX" $WINE_CMD /opt/deepinwine/tools/startbottle.exe &
+    else
+        /opt/deepinwine/tools/kill.sh Thunder.exe block
+        env WINEPREFIX="$WINEPREFIX" $WINE_CMD "c:\\Program Files\\Thunder Network\\Thunder\\Program\\Thunder.exe" &
+    fi
+}
 CallApp()
 {
     FixLink
@@ -421,6 +521,33 @@ CallApp()
     case $BOTTLENAME in
         "Deepin-WangWang")
             CallWangWang "$1" "$2"
+            ;;
+        "Deepin-ThunderSpeed")
+            CallThunderSpeed "$1" "$2"
+            ;;
+        "Deepin-EM263")
+            CallEM263 "$1" "$2"
+            ;;
+        "Deepin-MTXX")
+            CallMTXX "$1" "$2"
+            ;;
+        "Deepin-PRCReader")
+            CallPRCReader "$1" "$2"
+            ;;
+        "Deepin-MiniCADSee")
+            CallMiniCADSee "$1" "$2"
+            ;;
+        "Deepin-CMBChina")
+            CallCMBChina "$1" "$2"
+            ;;
+        "Deepin-DecryptDoc")
+            CallDecryptDoc "$1" "$2"
+            ;;
+        "Deepin-YNote")
+            CallYNote "$1" "$2"
+            ;;
+        "Deepin-Maxthon")
+            CallMaxthon2 "$1" "$2"
             ;;
         "Deepin-Foobar2000")
             CallFoobar2000 "$1" "$2"
