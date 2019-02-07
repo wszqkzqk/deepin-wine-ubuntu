@@ -2,7 +2,7 @@
 
 ## 一、项目介绍
 
-> Deepin-wine 环境的 Ubuntu 移植版
+> Deepin-wine 环境的 Ubuntu 移植版 （基于deepin原版二进制文件解决依赖问题）
 
 ## 二、软件架构
 
