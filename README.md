@@ -3,6 +3,7 @@
 ## 一、项目介绍
 
 > Deepin-wine 环境的 Ubuntu 移植版 （使用deepin原版二进制文件，解决依赖问题）
+> (仅供个人研究学习使用)
 
 ## 二、软件架构
 
@@ -14,7 +15,7 @@
 * 在中国推荐用下面的地址，速度更快： (`git clone https://gitee.com/wszqkzqk/deepin-wine-for-ubuntu.git`) 
 
 * 在终端中运行（授予可执行权限后）： `./install.sh` 
-    KDE桌面环境执行 `./KDE-install.sh` 。
+    KDE桌面环境执行 `./KDE-install.sh`  （部分其他桌面环境如果安装容器后仍然无法启动也可以尝试执行这个脚本）。
 
 
 
