@@ -2,7 +2,9 @@
 
 ## 一、项目介绍
 
-> Deepin-wine 环境的 Ubuntu 移植版 （使用deepin原版二进制文件，解决依赖问题）
+> Deepin-wine 环境的 Ubuntu 移植版 
+
+> 使用deepin原版二进制文件，解决依赖问题
 
 > 仅供个人研究学习使用
 
