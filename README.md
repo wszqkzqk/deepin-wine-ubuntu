@@ -63,7 +63,17 @@ Ubuntu 18.04 下（Gnome 桌面）：
 
 安装 Gnome Shell 插件：[TopIcons Plus](https://extensions.gnome.org/extension/1031/topicons/)
 
-### （4）卸载方法
+### （4）TIM 需要的 Flash 的安装方法
+*本操作无必要性
+1. 下载需要的 install_flash_player_ppapi.exe 
+2. 将下载的安装文件放入 ~/.deepinwine/Deepin-TIM/drive_c 下，即 TIM 所在 Wine C 盘根目录
+3. 打开一个 Terminal ，执行：
+```
+WINEPREFIX=~/.deepinwine/Deepin-TIM deepin-wine "c:\\install_flash_player_ppapi.exe"
+```
+然后按提示进行安装、重启 TIM 即可。
+
+### （5）卸载方法
 
 * 执行uninstall.sh即可
 
