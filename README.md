@@ -29,15 +29,15 @@
 
 可使用deepin发布的最新版容器安装包：
 
-1. [QQ](http://mirrors.aliyun.com/deepin/pool/non-free/d/deepin.com.qq.im/)
-2. [TIM](http://mirrors.aliyun.com/deepin/pool/non-free/d/deepin.com.qq.office/)
-3. [QQ轻聊版](http://mirrors.aliyun.com/deepin/pool/non-free/d/deepin.com.qq.im.light/)
-4. [微信](http://mirrors.aliyun.com/deepin/pool/non-free/d/deepin.com.wechat/)
-5. [Foxmail](http://mirrors.aliyun.com/deepin/pool/non-free/d/deepin.com.foxmail/)
-6. [百度网盘](http://mirrors.aliyun.com/deepin/pool/non-free/d/deepin.com.baidu.pan/)
-7. [360压缩](http://mirrors.aliyun.com/deepin/pool/non-free/d/deepin.cn.360.yasuo/)
-8. [WinRAR](http://mirrors.aliyun.com/deepin/pool/non-free/d/deepin.cn.com.winrar/)
-9. [迅雷极速版](http://mirrors.aliyun.com/deepin/pool/non-free/d/deepin.com.thunderspeed/)
+1. [QQ](https://mirrors.aliyun.com/deepin/pool/non-free/d/deepin.com.qq.im/)
+2. [TIM](https://mirrors.aliyun.com/deepin/pool/non-free/d/deepin.com.qq.office/)
+3. [QQ轻聊版](https://mirrors.aliyun.com/deepin/pool/non-free/d/deepin.com.qq.im.light/)
+4. [微信](https://mirrors.aliyun.com/deepin/pool/non-free/d/deepin.com.wechat/)
+5. [Foxmail](https://mirrors.aliyun.com/deepin/pool/non-free/d/deepin.com.foxmail/)
+6. [百度网盘](https://mirrors.aliyun.com/deepin/pool/non-free/d/deepin.com.baidu.pan/)
+7. [360压缩](https://mirrors.aliyun.com/deepin/pool/non-free/d/deepin.cn.360.yasuo/)
+8. [WinRAR](https://mirrors.aliyun.com/deepin/pool/non-free/d/deepin.cn.com.winrar/)
+9. [迅雷极速版](https://mirrors.aliyun.com/deepin/pool/non-free/d/deepin.com.thunderspeed/)
 
 其它deepin-wine容器：[阿里云镜像下载](http://mirrors.aliyun.com/deepin/pool/non-free/d/)
 
