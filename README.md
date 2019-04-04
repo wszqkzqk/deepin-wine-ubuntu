@@ -16,6 +16,7 @@
 
 * 克隆 (`git clone https://github.com/wszqkzqk/deepin-wine-ubuntu.git`) 或[下载](https://github.com/wszqkzqk/deepin-wine-ubuntu/archive/master.zip)到本地。
 * 在中国推荐用下面的地址，速度更快： (`git clone https://gitee.com/wszqkzqk/deepin-wine-for-ubuntu.git`) 
+* 当然也可以选择下载[releases](https://github.com/wszqkzqk/deepin-wine-ubuntu/releases)
 
 * 在终端中运行（授予可执行权限后）： `./install.sh` 
 
