@@ -19,7 +19,7 @@
 * 当然也可以选择下载releases：[Github](https://github.com/wszqkzqk/deepin-wine-ubuntu/releases)
 [Gitee](https://gitee.com/wszqkzqk/deepin-wine-for-ubuntu/releases)
 
-* 在终端中运行（授予可执行权限后）： `./install.sh` 
+* 解压后切换到解压文件目录，在终端中运行（授予可执行权限后）： `./install.sh` 
 
     KDE或其他按照普通安装方式安装后运行出现X错误的桌面环境执行 `./KDE-install.sh`  ）。
 
