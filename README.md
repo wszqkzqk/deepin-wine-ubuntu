@@ -56,7 +56,7 @@
 9. [迅雷极速版](https://gitee.com/wszqkzqk/deepin-wine-containers-for-ubuntu/raw/master/deepin.com.thunderspeed_7.10.35.366deepin18_i386.deb)
 
 
-注意：**1.目前基本适配最新版KDE，但测试可能不足(已测试可用：最新版KDE neon、Kubuntu 18.04.1)，欢迎大家测试反馈（建议将KDE升级到最新版）**
+注意：**1.目前基本适配最新版KDE，但测试可能不足(已测试可用：最新版KDE neon、Kubuntu 18.04/18.0.1/18.0.2)，欢迎大家测试反馈（建议将KDE升级到最新版）**
      **2.部分桌面环境无法正常使用视频通话功能！**
 
 ### （3）关于托盘
