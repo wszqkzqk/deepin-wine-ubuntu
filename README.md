@@ -75,7 +75,10 @@ WINEPREFIX=~/.deepinwine/Deepin-TIM deepin-wine "c:\\install_flash_player_ppapi.
 ```
 然后按提示进行安装、重启 TIM 即可。
 
-### （5）卸载方法
+### （5）手动配置（winecfg）
+执行 `WINEPREFIX=~/.deepinwine/容器名称 deepin-wine winecfg` 即可，也可以用此方法来调整缩放问题
+
+### （6）卸载方法
 
 * 执行uninstall.sh即可
 
