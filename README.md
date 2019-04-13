@@ -65,7 +65,7 @@ Ubuntu 18.04 下（Gnome 桌面）：
 
 安装 Gnome Shell 插件：[TopIcons Plus](https://extensions.gnome.org/extension/1031/topicons/)
 
-### （4）TIM 的弹窗提醒--Flash 的安装方法
+### （4）TIM 的可选操作--Flash 的安装方法
 *本操作无必要性
 1. 下载需要的 install_flash_player_ppapi.exe 
 2. 将下载的安装文件放入 ~/.deepinwine/Deepin-TIM/drive_c 下，即 TIM 所在 Wine C 盘根目录
