@@ -14,6 +14,16 @@
 
 ### （1）安装教程
 
+#### 在线安装
+
+直接使用在线安装脚本，安装最新的Release版本:
+
+```bash
+wget -qO- https://raw.githubusercontent.com/wszqkzqk/deepin-wine-ubuntu/master/online_install.sh | bash -e
+```
+
+#### 本地安装
+
 * 克隆 (`git clone https://github.com/wszqkzqk/deepin-wine-ubuntu.git`) 或[下载](https://github.com/wszqkzqk/deepin-wine-ubuntu/archive/master.zip)到本地。
 * 在中国推荐用下面的地址，速度更快： (`git clone https://gitee.com/wszqkzqk/deepin-wine-for-ubuntu.git`) 
 * 当然也可以选择下载releases：[Github](https://github.com/wszqkzqk/deepin-wine-ubuntu/releases) 或者
