@@ -94,6 +94,7 @@ WINEPREFIX=~/.deepinwine/Deepin-TIM deepin-wine "c:\\install_flash_player_ppapi.
 
 ### （7）最近问题
 部分环境出现deepin最新容器无法安装的问题，主要是因为这套软件包为了保证兼容性，保持了较旧的软件包版本，使得某些deepin新打包的容器无法正常获得依赖关系，可以到[这里下载兼容包](https://gitee.com/wszqkzqk/deepin-wine-containers-for-ubuntu)
+
 另外，希望大家遇到问题时，先检测自己的deepin-wine环境是否升级到了最新版。
 
 ## 三、参与贡献
