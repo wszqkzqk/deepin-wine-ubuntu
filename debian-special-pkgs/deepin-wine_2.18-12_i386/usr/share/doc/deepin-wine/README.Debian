@@ -1,0 +1,100 @@
+Resources
+=========
+
+If you have any problems, the Wine Troubleshooting Guide is often very useful:
+http://www.winehq.com/Trouble
+
+The Wine FAQ may also be informative:
+http://www.winehq.com/FAQ
+
+Detailed documentation about Wine and it's internals are available in the
+various User Guides and manpages:
+http://www.winehq.org/documentation
+
+For resources related to Debian wine packaging, please visit:
+http://pkg-wine.alioth.debian.org
+
+To participate in development and/or discussion about the Debian packages,
+please subscribe to the pkg-wine-party mailing list:
+http://lists.alioth.debian.org/mailman/listinfo/pkg-wine-party
+
+The Debian package repository can also be checked out with git:
+$ git clone git://anonscm.debian.org/pkg-wine/wine.git
+
+Or viewed online at:
+http://anonscm.debian.org/gitweb/?p=pkg-wine/wine.git
+
+Debugging
+=========
+
+Debugging information is no longer output by default.  If you are interested in
+more verbose debugging output, you can set the WINEDEBUG environment variable.
+
+Examples:
+$ WINEDEBUG=all wine
+$ WINEDEBUG=all wine-development
+
+If you always want verbose information, you can include an
+"export WINEDEBUG=all" line in your ~/.bashrc file.
+
+Old Versions
+============
+
+If you want to install a previous version of Wine, you should be able to fetch
+prior Debian versions from:
+http://snapshot.debian.org/package/wine
+http://snapshot.debian.org/package/wine-development
+
+You can also use debsnap from the devscripts package, for example:
+$ debsnap -v -d . wine 1.6.1-1
+$ debsnap -v -d . wine-development 1.7.24-3
+
+debsnap fetches source packages by default, which you will then need to build
+(see debuild).  debsnap also lets you fetch the binary packages with the
+"-a <architecture>" option and then specifying each of the binary packages.
+
+Configuration
+=============
+Usually everything is automatically configured, but for fine-tuning a good tool
+is winecfg or winecfg-development.
+
+If you need to set up Wine manually, without winecfg, you can force the
+creation of a ~/.wine directory by running:
+$ wineboot
+
+If something goes horribly wrong, you can always completely wipe your Wine
+setup with "rm -rf ~/.wine". This will destroy everything you've installed,
+including configuration and data files, so if you have anything important,
+please back it up first. You can then start fresh.
+
+Wine Gecko
+==========
+The downloader for Wine Gecko is intentionally disabled in the Debian packages.
+Instead libwine-gecko-* packages are available in the official Debian archives,
+which provide Wine Gecko support.
+
+Information about which Wine Gecko should be associated with any particular
+wine version is available at:
+http://wiki.winehq.org/Gecko
+
+If the right libwine-gecko-*.deb package is not currently available, you can
+manually extract an associated upstream WineGecko tarball to
+/usr/share/wine-development/gecko. Or preferably, please provide help building
+the new Debian libwine-gecko-* package that is needed.
+
+Automatically Launching Windows Executables
+===========================================
+
+You can configure wine to automatically launch Windows executables from
+the command line, for example:
+
+$ notepad.exe
+
+To configure backend support for that, you'll need to install the
+wine-binfmt package first and then execute:
+
+$ sudo update-binfmts --import wine
+
+This change increases the risk of inadvertently launching Windows
+malware, so please make sure that you understand the security risks
+before blindly setting this up.
