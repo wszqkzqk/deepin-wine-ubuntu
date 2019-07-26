@@ -3,7 +3,7 @@ Version: 2.18-12
 Architecture: i386
 Maintainer: Debian Wine Party <pkg-wine-party@lists.alioth.debian.org>
 Installed-Size: 131
-Depends: deepin-wine32 (>= 2.18-12), deepin-wine32 (<< 2.18-12.1~), libjpeg-turbo8:i386 | libjpeg62:i386
+Depends: deepin-wine32 (>= 2.18-12), deepin-wine32 (<< 2.18-12.1~), libjpeg-turbo8 | libjpeg62:i386 | libjpeg-turbo8:i386
 Suggests: deepin-wine-binfmt, dosbox (>= 0.74-4.2~)
 Built-Using: khronos-api (= 0~svn29735-1.1), unicode-data (= 9.0-1)
 Section: otherosfs

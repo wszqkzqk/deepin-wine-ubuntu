@@ -1,2 +1,0 @@
-SUBSYSTEM=="usb", MODE="0666"
-SUBSYSTEM=="tty", MODE="0666"

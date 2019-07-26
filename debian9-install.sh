@@ -11,9 +11,9 @@ sudo apt update
 echo '即将开始安装...'
 
 ## （1）防止 依赖报错：（见本文附录1）
-sudo apt-get install liblcms2-2:i386 libldap-2.4-2:i386   libmpg123-0:i386   libopenal1:i386   libpcap0.8:i386   libudev1:i386  libusb-1.0-0:i386   libxml2:i386   ocl-icd-libopencl1:i386  libxcursor1:i386  libxrandr2:i386  libxinerama1:i386  libxcomposite1:i386  libglu1-mesa:i386  libosmesa6:i386  libxslt1.1:i386  libgnutls30:i386  libv4l-0:i386  libcups2:i386 libtiff5:i386  libodbc1:i386  -y
+sudo apt-get install liblcms2-2:i386 libldap-2.4-2:i386   libmpg123-0:i386   libopenal1:i386   libpcap0.8:i386   libudev1:i386  libusb-1.0-0:i386   libxml2:i386   ocl-icd-libopencl1:i386  libxcursor1:i386  libxrandr2:i386  libxinerama1:i386  libxcomposite1:i386  libglu1-mesa:i386  libosmesa6:i386  libxslt1.1:i386  libgnutls30:i386  libv4l-0:i386  libcups2:i386 libtiff5:i386  libodbc1:i386 libjpeg-turbo8|libjpeg-turbo8:i386  -y
 
-sudo dpkg -i debian-special-pkgs/1.1-libjpeg-turbo8_2.0.1-0ubuntu2_i386.deb
+#sudo dpkg -i debian-special-pkgs/1.1-libjpeg-turbo8_2.0.1-0ubuntu2_i386.deb
 
 ## （2）防止错误提示缺少依赖：deepin-wine32-preloader_2.18-12:i386 
 dpkg-deb --build deepin-wine32-preloader_2.18-12_i386
