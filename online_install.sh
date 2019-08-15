@@ -6,7 +6,7 @@ RELEASE_ASSERTS_URL="$(wget -qO- -T10 --tries=10 --retry-connrefused https://api
 echo "开始下载deepin-wine安装包: ${RELEASE_ASSERTS_URL}, 请稍后..."
 wget -c -T10 --tries=10 --show-progress -qO- "${RELEASE_ASSERTS_URL}" | tar zxf - -C "${TMP_DIR}"
 
-echo "正在安装, 请稍后(需要sudo提权)"
+echo "正在安装, 请稍候(需要sudo提权)"
 sudo dpkg --add-architecture i386
 sudo apt update && sudo apt install -y "${TMP_DIR}"/*.deb
 
