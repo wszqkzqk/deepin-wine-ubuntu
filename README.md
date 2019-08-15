@@ -35,10 +35,6 @@ wget -qO- https://raw.githubusercontent.com/wszqkzqk/deepin-wine-ubuntu/master/o
 
     KDE或其他按照普通安装方式安装后运行出现X错误的桌面环境执行 `./KDE-install.sh`  ）。
 
-* Debian9（amd64）下的安装方式：
-  解压或git clone项目后切换到文件目录，在终端中以root用户权限运行（授予可执行权限后）： `./Debian9-install.sh`
-  若一路无提示错误信息，则安装通过。命令方式启动千牛工作台 /opt/deepinwine/apps/Deepin-QianNiu/run.sh（或通过debian的系统菜单里找到 千牛工作台 运行） 
-
 
 ### （2）使用说明
 
