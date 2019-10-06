@@ -1,5 +1,5 @@
 # Deepin wine for Ubuntu and Debian
-
+#Please  put the content in english also so that contributers of other countries should also able to contribute in this repo.
 ## 一、项目介绍
 
 > Deepin-wine 环境的 Ubuntu/Debian 移植版 
