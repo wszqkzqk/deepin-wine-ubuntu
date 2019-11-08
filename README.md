@@ -45,7 +45,7 @@ wget -qO- https://raw.githubusercontent.com/wszqkzqk/deepin-wine-ubuntu/master/o
 1. [QQ](https://mirrors.aliyun.com/deepin/pool/non-free/d/deepin.com.qq.im/)
 2. [TIM](https://mirrors.aliyun.com/deepin/pool/non-free/d/deepin.com.qq.office/)
 3. [QQ轻聊版](https://mirrors.aliyun.com/deepin/pool/non-free/d/deepin.com.qq.im.light/)
-4. [微信](https://mirrors.aliyun.com/deepin/pool/non-free/d/deepin.com.wechat/)
+4. [微信](https://mirrors.aliyun.com/deepin/pool/non-free/d/deepin.com.wechat/) 如果出现更新请查看第
 5. [Foxmail](https://mirrors.aliyun.com/deepin/pool/non-free/d/deepin.com.foxmail/)
 6. [百度网盘](https://mirrors.aliyun.com/deepin/pool/non-free/d/deepin.com.baidu.pan/)
 7. [360压缩](https://mirrors.aliyun.com/deepin/pool/non-free/d/deepin.cn.360.yasuo/)
@@ -96,6 +96,12 @@ WINEPREFIX=~/.deepinwine/Deepin-TIM deepin-wine "c:\\install_flash_player_ppapi.
 ### （7）卸载方法
 
 * 执行uninstall.sh即可
+
+### （8）微信更新问题
+* 如果出现微信提示跟新问题执行这一条语句即可
+```
+ wget -qO- https://deepin-wine.i-m.dev/setup.sh | sudo sh
+```
 
 ### （7）最近问题
 部分环境出现deepin最新容器无法安装的问题，主要是因为这套软件包为了保证兼容性，保持了较旧的软件包版本，使得某些deepin新打包的容器无法正常获得依赖关系，可以到[这里下载兼容包](https://gitee.com/wszqkzqk/deepin-wine-containers-for-ubuntu)
