@@ -91,7 +91,7 @@ WINEPREFIX=~/.deepinwine/Deepin-TIM deepin-wine "c:\\install_flash_player_ppapi.
 执行 `WINEPREFIX=~/.deepinwine/容器名称 deepin-wine winecfg` 即可，也可以用此方法来调整缩放问题
 
 ### （6）解决系统非中文语言环境时软件无法设置为中文
-在/opt/deepinwine/tools/run.sh 中添加LC_ALL="zh_CN.UTF-8" 即可
+在/opt/deepinwine/tools/run.sh 中将 WINE_CMD 那一行修改为 WINE_CMD="LC_ALL=zh_CN.UTF-8 deepin-wine"
 
 ### （7）卸载方法
 
