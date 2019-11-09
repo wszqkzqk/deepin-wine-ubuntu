@@ -1,0 +1,12 @@
+Source: deepin-wine-helper
+Package: deepin-wine-helper
+Version: 1.2deepin8
+Architecture: i386
+Maintainer: Deepin Packages Builder <xiewei@deepin.com>
+Depends: libbsd0:i386 (>= 0.0), libxt6:i386, deepin-wine-plugin-virtual
+Recommends: libasound2-plugins:i386
+Section: non-free/otherosfs
+Priority: extra
+Multi-Arch: foreign
+Homepage: http://www.linuxdeepin.com/
+Description: Deepin Wine Helper

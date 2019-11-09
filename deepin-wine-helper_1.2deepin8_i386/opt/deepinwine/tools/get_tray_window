@@ -1,0 +1,28 @@
+#!/usr/bin/env python2
+# vim: set ts=4 sw=4 fileencoding=utf-8:
+# Luomio <nohappiness@gmail.com>
+# Filename: dde-first-run.py
+# Create Date: 27-03, 13
+
+def get_tray_window():
+    try:
+        import gobject
+        from dbus import glib
+        import dbus
+    except ImportError:
+        return False
+
+    gobject.threads_init()
+    glib.init_threads()
+    bus = dbus.SessionBus()
+    traymanager = bus.get_object("com.deepin.dde.TrayManager", "/com/deepin/dde/TrayManager")
+
+    windows = traymanager.Get("com.deepin.dde.TrayManager","TrayIcons")
+    str="window_id:"
+    for i in xrange(len(windows)):
+        str += '{:#x} '.format(windows[i])
+
+    print(str)
+
+if __name__ == "__main__":
+    get_tray_window()
