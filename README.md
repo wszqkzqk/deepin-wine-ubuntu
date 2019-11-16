@@ -103,10 +103,58 @@ WINEPREFIX=~/.deepinwine/Deepin-TIM deepin-wine "c:\\install_flash_player_ppapi.
  wget -qO- https://deepin-wine.i-m.dev/setup.sh | sudo sh
 ```
 
-### （7）最近问题
+### （9）最近问题
 部分环境出现deepin最新容器无法安装的问题，主要是因为这套软件包为了保证兼容性，保持了较旧的软件包版本，使得某些deepin新打包的容器无法正常获得依赖关系，可以到[这里下载兼容包](https://gitee.com/wszqkzqk/deepin-wine-containers-for-ubuntu)
 
 另外，希望大家遇到问题时，先检测自己的deepin-wine环境是否升级到了最新版。
+
+### （10）[wine 应用程序全局快捷键无效的解决方案](https://blog.diqigan.cn/posts/wine-global-hotkey-problem.html) 
+
+#### 1. 安装 xdotool
+
+直接在命令行运行以下命令即可: 
+
+```shell
+sudo apt install --no-install-recommends xdotool
+```
+
+#### 2. 编写 xdotool 脚本
+
+*思路: Wine 应用在后台无法接收到快捷键状态, 此时借助 xdotool 向 Wine 应用发送模拟按键信息即可. * 
+
+在合适的位置新建一个脚本文件 "open_wechat.sh", 写入以下内容: 
+
+```shell
+#!/bin/sh
+#在当前运行的应用中找到名为WeChat.exe的应用程序，并向它发送按键事件"ctrl+alt+W"
+#WeChat的可执行文件名为WeChat.exe，如果是其它应用程序就修改成其它应用程序的可执行文件名, 应用名称大小写敏感, 一个字母都不能错!
+xdotool key --window $(xdotool search --limit 1 --all --pid $(pgrep WeChat.exe)) "ctrl+alt+W"
+```
+
+赋予脚本可执行权限: 
+
+```shell
+chmod +x open_wechat.sh
+```
+
+如果此时你的微信正好运行在后台, 执行这个脚本就可以把它召唤到前台. 如果没有, 请检查脚本是否有错误. 
+
+#### 3. 设置快捷键
+
+图形界面依次打开 "设置" -> "设备" -> "键盘", 点击列表最底部的 "+" 号添加自定义快捷键. 
+
+![快捷键设置](https://i.loli.net/2019/11/09/bFEcLqX9fp4uJel.png)
+
+* 名称随便, 填写 "打开微信" 即可; 
+* 命令填写刚才编写的脚本的**全路径**;
+* 快捷键设置自己想用的快捷键即可, 建议于应用内部快捷键相同; 
+* 最后点击"添加"即可. 
+
+#### 4. 验证
+
+到这里已经设置成功了, 打开微信, 切换到后台, 然后按下刚才设置的快捷键就能召唤应用至前台. 如果不能, 请检查自己前面的设置是否有误. 
+
+
 
 ## 三、参与贡献
 
