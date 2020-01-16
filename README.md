@@ -14,6 +14,7 @@
 >因为使用本仓库的任何内容所导致的任何后果与本人无关，若你无法对使用该仓库后的任何后果负责，请不要使用本仓库的任何内容。
 >本仓库所有者不拥有该仓库任何二进制文件的版权，所有由本人编写的非二进制文件以GPL开源协议开源。若该仓库的文件侵犯了您的法律权益，请联系1726509538@qq.com，我会删除侵权内容并道歉。
 >该项目得以实现的全部功劳来自于深度操作系统开发人员的辛勤努力，本人只是将其成果适配到Ubuntu/Debian平台以让这一伟大成果能为更多人所共享，本人对深度操作系统的开发人员致以崇高的敬意。
+>2.18-19适配计划可能会推迟（因暂时无必要性，实际上新版软件改依赖即可安装，不太影响使用。）。
 
 ## 二、软件架构
 
@@ -148,7 +149,7 @@ chmod +x open_wechat.sh
 
 图形界面依次打开 "设置" -> "设备" -> "键盘", 点击列表最底部的 "+" 号添加自定义快捷键. 
 
-![快捷键设置](https://i.loli.net/2019/11/09/bFEcLqX9fp4uJel.png)
+![快捷键设置](https://images.gitee.com/uploads/images/2020/0117/075141_4d17fab4_1442530.png)
 
 * 名称随便, 填写 "打开微信" 即可; 
 * 命令填写刚才编写的脚本的**全路径**;
@@ -171,8 +172,8 @@ chmod +x open_wechat.sh
 1. [捐赠开发者](https://bbs.deepin.org/forum.php?mod=viewthread&tid=40784&extra=page%3D1)
 
 2. 捐赠打包者（这个其实不需要，我的贡献并不多，支持deepin就好了，不过有人在问，我就加上吧）
-![](https://raw.githubusercontent.com/wszqkzqk/deepin-wine-ubuntu/master/donate.jpg)
-![](https://!raw.githubusercontent.com/wszqkzqk/deepin-wine-ubuntu/master/donate.png)
+![](https://images.gitee.com/uploads/images/2020/0117/075141_46371cf6_1442530.jpeg)
+![](https://images.gitee.com/uploads/images/2020/0117/075141_595c4b6a_1442530.png)
 
 欢迎大家积极反馈！
 
