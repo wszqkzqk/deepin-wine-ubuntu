@@ -43,6 +43,10 @@ wget -qO- https://raw.githubusercontent.com/wszqkzqk/deepin-wine-ubuntu/master/o
 
     KDE或其他按照普通安装方式安装后运行出现X错误的桌面环境执行 `./KDE-install.sh`  ）。
 
+#### 本地安装deepin-wine的官方最新环境(目前2.18-22版本/仅ubuntu测试)
+
+* 解压后切换到解压文件目录，在终端中运行（授予可执行权限后）： `./install_2.8.22.sh` 
+
 
 ### （2）使用说明
 
@@ -118,6 +122,7 @@ WINEPREFIX=~/.deepinwine/Deepin-TIM deepin-wine "c:\\install_flash_player_ppapi.
 
 ### （10）[wine 应用程序全局快捷键无效的解决方案](https://blog.diqigan.cn/posts/wine-global-hotkey-problem.html) 
 
+
 #### 1. 安装 xdotool
 
 直接在命令行运行以下命令即可: 
@@ -162,6 +167,12 @@ chmod +x open_wechat.sh
 
 到这里已经设置成功了, 打开微信, 切换到后台, 然后按下刚才设置的快捷键就能召唤应用至前台. 如果不能, 请检查自己前面的设置是否有误. 
 
+### （11）问题记录及解决方案
+
+#### 1. 微信无法发送图片
+```shell
+sudo apt-get install libjpeg62:i386
+```
 
 
 ## 三、参与贡献
