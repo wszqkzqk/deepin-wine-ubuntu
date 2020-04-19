@@ -171,11 +171,8 @@ chmod +x open_wechat.sh
 * 3. 提交代码
 * 4. 新建 Pull Request
 * 5. 捐赠：
-1. [捐赠开发者](https://bbs.deepin.org/forum.php?mod=viewthread&tid=40784&extra=page%3D1)
+1. [捐赠开发者deepin](https://bbs.deepin.org/forum.php?mod=viewthread&tid=40784&extra=page%3D1)
 
-2. 捐赠打包者（这个其实不需要，我的贡献并不多，支持deepin就好了，不过有人在问，我就加上吧）
-![](https://images.gitee.com/uploads/images/2020/0117/075141_46371cf6_1442530.jpeg)
-![](https://images.gitee.com/uploads/images/2020/0117/075141_595c4b6a_1442530.png)
 
 欢迎大家积极反馈！
 
