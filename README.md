@@ -110,7 +110,7 @@ WINEPREFIX=~/.deepinwine/Deepin-TIM deepin-wine "c:\\install_flash_player_ppapi.
 * 执行uninstall.sh即可
 
 ### （8）微信更新问题
-* 如果出现微信提示跟新问题执行这一条语句即可
+* 如果出现微信提示更新问题执行这一条语句即可
 ```
  wget -qO- https://deepin-wine.i-m.dev/setup.sh | sudo sh
 ```
