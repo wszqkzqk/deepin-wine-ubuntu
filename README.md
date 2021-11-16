@@ -54,18 +54,18 @@ wget -qO- https://raw.githubusercontent.com/wszqkzqk/deepin-wine-ubuntu/master/o
 
 可使用deepin发布的最新版容器安装包：
 
-1. [QQ](https://mirrors.aliyun.com/deepin/pool/non-free/d/deepin.com.qq.im/)
-2. [TIM](https://mirrors.aliyun.com/deepin/pool/non-free/d/deepin.com.qq.office/)
-3. [QQ轻聊版](https://mirrors.aliyun.com/deepin/pool/non-free/d/deepin.com.qq.im.light/)
-4. [微信](https://mirrors.aliyun.com/deepin/pool/non-free/d/deepin.com.wechat/) 如果出现依赖错误，请下载[这个版本](https://gitee.com/wszqkzqk/deepin-wine-containers-for-ubuntu/raw/master/deepin.com.wechat_2.6.8.65deepin0_i386.deb)
-5. [Foxmail](https://mirrors.aliyun.com/deepin/pool/non-free/d/deepin.com.foxmail/)
-6. [百度网盘](https://mirrors.aliyun.com/deepin/pool/non-free/d/deepin.com.baidu.pan/)
-7. [360压缩](https://mirrors.aliyun.com/deepin/pool/non-free/d/deepin.cn.360.yasuo/)
-8. [WinRAR](https://mirrors.aliyun.com/deepin/pool/non-free/d/deepin.cn.com.winrar/)
-9. [迅雷极速版](https://mirrors.aliyun.com/deepin/pool/non-free/d/deepin.com.thunderspeed/)
-10. [千牛卖家工作台](https://mirrors.aliyun.com/deepin/pool/non-free/d/deepin.com.taobao.aliclient.qianniu/)
+1. [QQ](http://packages.deepin.com/deepin/pool/non-free/d/deepin.com.qq.im/)
+2. [TIM](http://packages.deepin.com/deepin/pool/non-free/d/deepin.com.qq.office/)
+3. [QQ轻聊版](https://packages.deepin.com/deepin/pool/non-free/d/deepin.com.qq.im.light/)
+4. [微信](http://packages.deepin.com/deepin/pool/non-free/d/deepin.com.wechat/) 如果出现依赖错误，请下载[这个版本](https://gitee.com/wszqkzqk/deepin-wine-containers-for-ubuntu/raw/master/deepin.com.wechat_2.6.8.65deepin0_i386.deb)
+5. [Foxmail](https://packages.deepin.com/deepin/pool/non-free/d/deepin.com.foxmail/)
+6. [百度网盘](https://packages.deepin.com/deepin/pool/non-free/d/deepin.com.baidu.pan/)
+7. [360压缩](https://packages.deepin.com/deepin/pool/non-free/d/deepin.cn.360.yasuo/)
+8. [WinRAR](https://packages.deepin.com/deepin/pool/non-free/d/deepin.cn.com.winrar/)
+9. [迅雷极速版](https://packages.deepin.com/deepin/pool/non-free/d/deepin.com.thunderspeed/)
+10. [千牛卖家工作台](https://packages.deepin.com/deepin/pool/non-free/d/deepin.com.taobao.aliclient.qianniu/)
 
-其它deepin-wine容器：[阿里云镜像下载](https://mirrors.aliyun.com/deepin/pool/non-free/d/)
+其它deepin-wine容器：[阿里云镜像下载](https://packages.deepin.com/deepin/pool/non-free/d/)
 
 #### 若版本不兼容，可选择下载安装以下旧版包文件：
 
