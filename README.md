@@ -1,5 +1,7 @@
 # Deepin wine for Ubuntu and Debian
 
+## 本项目仅为存档，不再维护
+
 ## 一、项目介绍
 
 > Deepin-wine 环境的 Ubuntu/Debian 移植版 
